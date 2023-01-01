@@ -1,0 +1,20 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+    <h1>Book read</h1>
+
+    {% if book_list %}
+    <ul>
+
+      {% for book in book_list %}
+      <li class="{% if bookinst.is_overdue %}text-danger{% endif %}">
+        <a>{{book.title}}</a>
+      </li>
+      {% endfor %}
+    </ul>
+
+    {% else %}
+      <p>There are no books read.</p>
+    {% endif %}
+{% endblock %}
+
