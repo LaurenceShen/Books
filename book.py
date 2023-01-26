@@ -28,6 +28,7 @@ def personal_profile(ID):
             book_profile(ID, choice)
         elif (choice == 'E'):
             start_menu()
+            return
         else:
             print("error, please input again")
         choice = input()
