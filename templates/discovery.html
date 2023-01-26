@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+{% block title %}探索{% endblock %}
+{% block main %}
+    
+    <h1>專屬推薦 | Recommandation</h1>
+    <div class="card-group">
+    {% for book in books %}
+        <div class="card">
+            <img src="https://images.unsplash.com/photo-1495446815901-a7297e633e8d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80" class="card-img-top" alt="...">
+            <div class="card-body">
+                <h5 class="card-title">{{book}}</h5>
+                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                    <a href="#" class="btn btn-primary">Go somewhere</a>
+            </div>
+        </div>
+    {% endfor %}
+    </div>
+
+{% endblock %}

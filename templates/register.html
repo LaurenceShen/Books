@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
+{% block title %}註冊{% endblock %}
+{% block main %}
+<div class="container">
+    <h1>註冊已加入探索與收集的行列</h1>
+    {{ wtf.quick_form(form) }}
+</div>    
+{% endblock content%}
