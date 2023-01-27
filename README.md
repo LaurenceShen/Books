@@ -1,5 +1,5 @@
 # 使用說明書
-* 為了幫助大家更熟悉git，務必要跟著 <a href = https://hackmd.io/egyoowsRTu-BzwRWdMxTCg?view>這份文件</a> 學習```git```跟sublime merge要怎麼用
+* 為了幫助大家更熟悉git，一定要先跟著 <a href = https://hackmd.io/egyoowsRTu-BzwRWdMxTCg?view>這份文件</a> 學習```git```跟sublime merge要怎麼用
   * 下面這些可以幫助你更了解git!
   - [x] <a href = "https://www.youtube.com/watch?v=Zd5jSDRjWfA&ab_channel=%E8%B5%B0%E6%AD%AA%E7%9A%84%E5%B7%A5%E7%A8%8B%E5%B8%ABJames"> git教學影片
   - [x] <a href = "https://www.maxlist.xyz/2018/11/02/git_tutorial/"> git教學文章
