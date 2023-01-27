@@ -1,5 +1,5 @@
 # 使用說明書
-* 用 **git clone** 把整個repo複製下來
+* 用 **git clone** 把整個repo複製下來（如果沒有終端機的話也可以下載<a href = https://www.sublimemerge.com/>sublime merge</a>）
   * 下面這些可以幫助你更了解git!
   - [x] <a href = "https://www.youtube.com/watch?v=Zd5jSDRjWfA&ab_channel=%E8%B5%B0%E6%AD%AA%E7%9A%84%E5%B7%A5%E7%A8%8B%E5%B8%ABJames"> git教學影片
   - [x] <a href = "https://www.maxlist.xyz/2018/11/02/git_tutorial/"> git教學文章
