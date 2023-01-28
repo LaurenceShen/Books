@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% block title %}我的書房{% endblock %}
+{% block main %}
+    
+    <h1>我的回憶 | Books</h1>
+    {% if name == "" %}
+    <form method="post">
+      <input type="text" name="mybook">
+      <input type="submit" name="send" value="探索">
+    </form>
+    {% else %}
+    <p>以下是{{name}}的資訊</p>
+    {% endif %}
+    <p>這是一個段落</p>
+
+{% endblock %}
+
