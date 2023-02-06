@@ -1,8 +1,1 @@
-{% extends "base.html" %}
 
-{% block title %}地圖{% endblock %}
-{% block main %}
-
-    <h1>我的明信片 ｜ My Post Cards</h1>
-    
-{% endblock %}
