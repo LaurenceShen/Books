@@ -10,10 +10,10 @@
 
 :root {
     --main-color:#ff702a;
-    --text-color:#fff;
-    --bg-color:#1e1c2a;
+    --text-color:#1e1c2a;
+    --bg-color:#fefdfa;
     --big-font:5rem;
-    --h2-font:2.25rem;
+    --h2-font:2rem;
     --p-font:0.9rem;
 }
 
@@ -35,14 +35,14 @@ header{
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 30px 170px;
+    padding: 10px 170px;
     background: var(--bg-color);
 }
 
 .logo{
     color: var(--main-color);
     font-weight: 600;
-    font-size: 2.4rem;
+    font-size: 2rem;
 }
 
 .navbar{
@@ -67,89 +67,31 @@ header{
     display: none;
 }
 
-section{
-    padding: 70px 17%;
-}
-
-.home{
-    width: 100%;
-    min-height: 90vh;
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    grid-gap: 1.5rem;
-    align-items:center;
-}
-.home-img img{
-    max-width: 100%;
-    width: 600px;
-    height: auto;
-}
-.home-text h1{
-    font-size: var(--big-font);
-    color: var(--main-color);
-}
-.home-text h2{
-    font-size: var(--h2-font);
-    margin: 1rem 0 2rem;
-}
-.btn{
-    display: inline-block;
-    padding: 10px 20px;
-    background: var(--main-color);
-    color: #fff;
-    border-radius: 0.5rem;
-}
-.btn:hover{
-    transform: scale(1.2) translateY(10px);
-    transition: .4s;
-}
-
-.about{
-    display: grid;
-    grid-template-columns: repeat(2, 2fr);
-    grid-gap: 1.5rem;
-    align-items: center;
-}
-
-.about-img img{
-    max-width: 100%;
-    width: 480px;
-    height: auto;
-}
-
-.about-text span{
-    color: var(--main-color);
-    font-weight: 600;
-} 
-
-.about-text h2{
-    font-size: var(--h2-font);
-}
-
-.about-text p{
-    margin: 0.8rem 0 1.8rem;
-    line-height: 1.7;
-}
 .heading{
-    text-align: center;
+    position: relative;
+    margin-top: 4rem;
 }
+
 .heading span{
     color: var(--main-color);
     font-weight: 600;
 }
 .heading h2{
     font-size: var(--h2-font);
+    margin-left: 270px;
 }
 .menu-container{
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(220px,auto));
     grid-gap: 1.5rem;
     align-items: center;
+    margin-left: 250px;
+    margin-right: 150px;
 }
 
 .box{
     position: relative;
-    margin-top: 4rem;
+    margin-top: 1rem;
     height: auto;
     display: flex;
     flex-direction: column;
@@ -169,10 +111,10 @@ section{
 }
 .box h2{
     font-size: 1.3rem;
-    color: var(--bg-color);
+    color: var(--text-color);
 }
 .box h3{
-    color: var(--bg-color);
+    color: var(---color);
     font-size: 1rem;
     font-weight: 400;
     margin: 4px 0 10px;
