@@ -98,7 +98,11 @@ def login():
 
     flash('登入失敗了...')
     return render_template('login.html')
-#hi
+
+@app.route('/noteindex')
+def note():
+    return render_template('noteindex.html')
+
 @app.route('/logout')
 def logout():
     user_id = current_user.get_id()
