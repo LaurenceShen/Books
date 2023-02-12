@@ -81,7 +81,7 @@ def mybooks():
 
 @app.route('/discovery', methods = ['POST', 'GET'])
 def discovery():
-    return render_template("discovery.html", books = books)
+    return render_template("ryan_discovery.html", books = books)
 
 @app.route('/login', methods = ['POST', 'GET'])
 def login():

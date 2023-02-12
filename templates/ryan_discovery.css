@@ -21,6 +21,7 @@
     background: var(--main-color);
     color:#fff;
 }
+
 body{
     color: var(--text-color);
     background: var(--bg-color);
@@ -35,7 +36,7 @@ header{
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 10px 170px;
+    padding: 15px 150px 10px 30px;
     background: var(--bg-color);
 }
 
@@ -69,7 +70,7 @@ header{
 
 .heading{
     position: relative;
-    margin-top: 4rem;
+    margin-top: 2rem;
 }
 
 .heading span{
@@ -82,11 +83,11 @@ header{
 }
 .menu-container{
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px,auto));
+    grid-template-columns: repeat(auto-fit, minmax(250px,auto));
     grid-gap: 1.5rem;
     align-items: center;
     margin-left: 250px;
-    margin-right: 150px;
+    margin-right: 1.5rem;
 }
 
 .box{
@@ -132,4 +133,36 @@ header{
     font-size: 20px;
     padding: 7px 10px;
     border-radius: 0 0.5rem 0 0.5rem;
+}
+
+::-webkit-scrollbar{
+    width: 5pxl
+}
+
+.backpack-container{
+    position: fixed;
+    margin-top: 3rem;
+    margin-left: 1.5rem;
+    width: 200px;
+    height: 100%;
+    background: #feeee7;
+    display: flex;
+    flex-direction: column;
+}
+
+.scrollbox{
+    overflow: auto;
+}
+
+.scrollbox-inner{
+    margin-top:  3rem;
+    margin-left: 1rem;
+}
+
+.scrollbox-inner h2{
+    font-size: 20px;
+}
+
+.scrollbox-inner h3{
+    font-size: 16px;
 }
