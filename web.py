@@ -13,7 +13,7 @@ import configparser
 config = configparser.ConfigParser()
 config.read('config.ini')
 
-books = ['A', 'B', 'C']
+books = [{'A':['Allen', '借閱中', '2050/01/01', '25%', '50']}, 'B', 'C']
 users = {'Me': {'password': 'myself'}}
 pjdir = os.path.abspath(os.path.dirname(__file__))
 
@@ -99,7 +99,7 @@ def login():
     flash('登入失敗了...')
     return render_template('login.html')
 
-@app.route('./noteindex')
+@app.route('/noteindex')
 def note():
     return render_template('noteindex.html')
 
