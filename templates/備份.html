@@ -1,0 +1,97 @@
+{% extends "base.html" %}
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width", initial-scale=1.0 />
+        <title>full website design</title>
+        <!-- Bootstrap -->
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        <!-- Bootstrap -->
+        <link rel="stylesheet" type="text/css" href="File:///Users/linyuyou/Desktop/git/coding101/templates/ryan_discovery.css"/>
+        <link rel="stylesheet" href="https://unpkg.com/boxicons@latest/css/boxicons.min.css">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+        <title>{% block title %}{% endblock %}</title>
+
+    </head>
+
+    <body>
+    <!--上方選單-->
+        <header>
+            <a href="#" class="logo">我的貓咪書友</a>
+            <div class="bx bx-menu" id="menu-icon"></div>
+            
+            <ul class="navbar">
+                <li><a href="#home">地圖</a></li>
+                <li><a href="#about">回憶</a></li>
+                <li><a href="#menu">探索</a></li>
+                <li><a href="#services">圖書館</a></li>
+                <li><a href="#contact">個人資料</a></li>
+            </ul>
+        </header>
+
+        <!-- 可供更改的部分 -->
+         <!----上兩排----->
+        <section class="menu" id="menu">
+            <div class="heading">
+                <br>
+                <br>
+                <h2>   近期活動</h2>
+            </div>
+
+            <div class="menu-container">
+                <div class="box">
+                    <div class="box-img">
+                        <img src="img/food1.png">
+                    </div>
+                    <h2>書名</h2>
+                    <h3>書的介紹</h3>
+                    <i class='bx bx-link-external'></i>
+                </div>
+
+                <div class="box">
+                    <div class="box-img">
+                        <img src="img/food2.png">
+                    </div>
+                    <h2>書名</h2>
+                    <h3>書的介紹</h3>
+                    <i class='bx bx-link-external'></i>
+                </div>
+            </div>
+        </section>
+
+         <!----下兩排----->
+         <section class="menu" id="menu">
+            <div class="heading">
+                <h2>   專屬推薦</h2>
+            </div>
+
+            <div class="menu-container">
+                <div class="box">
+                    <div class="box-img">
+                        <img src="img/food1.png">
+                    </div>
+                    <h2>書名</h2>
+                    <h3>書的介紹</h3>
+                    <i class='bx bx-link-external'></i>
+                </div>
+
+                <div class="box">
+                    <div class="box-img">
+                        <img src="img/food2.png">
+                    </div>
+                    <h2>書名</h2>
+                    <h3>書的介紹</h3>
+                    <i class='bx bx-link-external'></i>
+                </div>
+            </div>
+        </section>
+        
+        <br>
+        <br>
+        <br>
+
+    </body>
+</html>
