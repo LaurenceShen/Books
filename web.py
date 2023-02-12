@@ -17,7 +17,7 @@ books = ['A', 'B', 'C']
 users = {'Me': {'password': 'myself'}}
 pjdir = os.path.abspath(os.path.dirname(__file__))
 
-app = Flask(__name__)
+app = Flask(__name__, static_folder="statics", static_url_path="/")
 app.config['SECRET_KEY'] = "Your_secret_string"
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = True
 #  設置資料庫為sqlite3
@@ -98,6 +98,10 @@ def login():
 
     flash('登入失敗了...')
     return render_template('login.html')
+
+@app.route('./noteindex')
+def note():
+    return render_template('noteindex.html')
 
 @app.route('/logout')
 def logout():
