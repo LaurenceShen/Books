@@ -101,7 +101,7 @@ def login():
 
 @app.route('/noteindex')
 def note():
-    return render_template('noteindex.html')
+    return render_template('noteindex.html', book = books[0])
 
 @app.route('/logout')
 def logout():
