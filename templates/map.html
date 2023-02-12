@@ -1,26 +1,29 @@
 {% extends "base.html" %}
 
-{% block title %}地圖{% endblock %}
+{% block title %}地圖
+
+{% endblock %}
 {% block main %}    
+<!--
 <!DOCTYPE html>
 <html>
     <head>
-        <link rel="stylesheet" href="map.css">
+        <link rel="stylesheet" href="map.css"> 
     </head>
 
     <body>
-        <!--地圖部分--> 
+        地部分--> 
         <div class="grid-container">
             <div class="item1">
             <div class="flex-container1">
                 <div>
-                    <h1>地圖 | Map</h1>
+                    <h1>地圖hi | Map</h1>
                 </div>
                 <div style="flex-basis: 30px">
-                    <div class="div1">20</div><img src="stamp.png" width="65" height="70">
+                    <div class="div1">20</div><img src="https://mrsbanana.simgs.com/upload/images/2015_2016/v01_2.jpg" width="65" height="70">
                 </div>  
             </div>
-            <img src="map.png" width="350" height="450" usemap="#workmap">
+            <img src="https://i.imgur.com/XKlYd8F.jpeg" width="350" height="450" usemap="#workmap">
             <map name="workmap">
                 <area shape="poly" coords="250,40, 330,40, 265,90" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal">
                 <area shape="poly" coords="300,50, 230,130, 300,130" href="">
@@ -53,7 +56,7 @@
                     </tr>
                     <tr>
                         <td>MON</td>
-                        <td><a href="">書名</a></td>
+                        <td><a href="#">書名</a></td>
                     </tr>
                     <tr>
                         <td>TUE</td>
@@ -93,7 +96,7 @@
                     <img src="" width="90" height="100">
                 </div>
                 <div style="flex-basis: 300px">
-                    <a href="">書名</a><br>
+                    <a href="#">書名</a><br>
                     閱讀進度
                     <div class="progress">
                     <div class="progress-bar" role="progressbar" style="width: 25%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">25%</div>
@@ -106,6 +109,7 @@
             </div>
             </div>
         </div>
+   <!--
     </body>
-</html>
+</html> -->
 {% endblock %}
