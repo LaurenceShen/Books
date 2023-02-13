@@ -5,16 +5,16 @@
 .center {
     position: absolute;
     top: 20%;
-    width: 150%;
+    width: 113%;
     text-align: center;
-    font-size: 22px;
+    font-size: 20px;
   }
   
 
 .grid-container {
     display: grid;
     justify-content: space-evenly;
-    column-gap: 50px;
+    column-gap: 15px;
     grid-template-columns: auto auto;
     padding: 30px;
   }
@@ -80,7 +80,8 @@ table {
  
   .flex-container2 {
     display: flex;
-    justify-content: center;
+    justify-content: space-evenly;
+    align-items: center;
   }
   
   .flex-container2 > div {
