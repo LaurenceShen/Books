@@ -8,27 +8,28 @@
     <meta charset="UTR-8"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title> 手札 </title>-->
-    <style>
-        img {
-            height: auto;
-            width: 128px;
-            }
-        .button {
-            background-color: #cfcfcf;
-            border: none;
-            color: black;
-            padding: 4px 128px;
-            text-align: center;
-            text-decoration: none;
-            display: inline-block;
-            font-size: 14px;
-            margin: 4px 2px;
-            cursor: pointer;
-            border-radius: 12px;
-            }
-    </style>
-</head>
+    <title> 手札 </title>
+</head>-->
+<!--<style>
+    img {
+        height: auto;
+        width: 128px;
+        }
+    .button {
+        background-color: #cfcfcf;
+        border: none;
+        color: black;
+        padding: 4px 128px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 14px;
+        margin: 4px 2px;
+        cursor: pointer;
+        border-radius: 12px;
+        }
+</style>-->
+<link rel="stylesheet" href="./mystyle.css">
 <body style="background-color: white;">
 <div>
     <h1 title="書名" style="font-size: 22px;"> 《當失戀的我，遇上尼采》 </h1>
@@ -49,7 +50,12 @@
         </div>
         書籤：<br>
         <link rel="stylesheet" href="更新書籤.css">
-        <button class="button">更新書籤</button>
+        <button id="bookmark" class="button" onclick="myFunction()">更新書籤</button>
+            <script>
+                function myFunction() {
+                document.getElementById("bookmark").style.color = "white";
+                }
+            </script>
     </div>
     </p>
 </div>
