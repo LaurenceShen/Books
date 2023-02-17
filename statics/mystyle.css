@@ -1,0 +1,27 @@
+.bookname {
+    padding: 20px 10px 10px 10px;
+}
+img {
+    content: 'img';
+    display: block;
+    height: auto;
+    width: 150px;
+    float: left;
+    padding: 0px 20px 10px 20px;
+    }
+.button {
+    background-color: #d4d4d4;
+    border: none;
+    color: rgb(255, 255, 255);
+    padding: 4px 128px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 14px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 12px;
+    }
+.thoughts{
+    padding: 0px 0px 0px 20px;
+}

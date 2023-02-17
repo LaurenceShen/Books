@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+ <h1>借閱中</h1>
+        <nav>
+            <ul>
+                <li><a href="#">貓戰士</a></li>
+                <li><a href="#">哈利波特</a></li>
+                <li><a href="#">三國演義</a></li>
+        </nav>
+        <h1>已預約</h1>
+        <nav>
+            <ul>
+                <li><a href="#">紅樓夢</a></li>
+                <li><a href="#">行銷策略</a></li>
+                <li><a href="#">蘋果橘子經濟學</a></li>
+                
+            </ul>
+        </nav>
+{% endblock %}
