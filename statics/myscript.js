@@ -1,3 +1,3 @@
 function myFunction() {
-    document.getElementById("bookmark").style.color = "white";
+    document.getElementById("bookmark").style.color = "light-orange";
     }

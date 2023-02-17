@@ -30,6 +30,7 @@
         }
 </style>-->
 <link rel="stylesheet" href="./mystyle.css">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <body style="background-color: rgb(255, 255, 255);">
 <div>
     <h1 title="書名" class= "bookname" style="font-size: 22px;"> 《當失戀的我，遇上尼采》 </h1>
@@ -40,12 +41,12 @@
         <!--這裡擺的是書本相關資訊-->
     </div>
     <p>
-        <div>
+        <div class="w3-mobile">
         作者：<span>{{book['A'][0]}}</span><br>
         狀態：<span>{{book['A'][1]}}</span><br>
         期限：<span>{{book['A'][2]}}</span><br>
         閱讀進度/書籤：<br>
-        <button id="bookmark" class="button" onclick="myFunction()">更新書籤</button>
+        <button id="bookmark" class="button w3-button w3-light-gray w3-mobile" onclick="myFunction()">更新書籤</button><br>
         <script src="./myscript.js"></script>
             <!--<script>
                 function myFunction() {
@@ -54,9 +55,8 @@
             </script>-->
         </div>
     </p>
-<br>
 </div>
-<section>
+<div>
     <div style="font-size: 22px;" class="thoughts">
         <p>心得紀錄 | Thoughts</p>
     </div>
@@ -71,7 +71,7 @@
             </div>
         </div>
     </div>
-</section>
+</div>
 </body>    
 
 
