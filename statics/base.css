@@ -28,7 +28,7 @@ body{
 }
 
 header{
-    position: absolute;
+    position: fixed;
     top: 0;
     right: 0;
     width: 100%;
@@ -37,6 +37,10 @@ header{
     justify-content: space-between;
     padding: 15px 50px 10px 50px;
     background: var(--bg-color);
+}
+
+section{
+    padding: 70px 17%
 }
 
 .logo{
