@@ -99,7 +99,7 @@ def login():
     flash('登入失敗了...')
     return render_template('login.html')
 
-@app.route('./noteindex')
+@app.route('/noteindex')
 def note():
     return render_template('noteindex.html')
 
