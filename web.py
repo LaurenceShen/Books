@@ -13,11 +13,11 @@ import configparser
 config = configparser.ConfigParser()
 config.read('config.ini')
 
-books = ['A', 'B', 'C']
+books = [{'A':['Allen', '借閱中', '2050/01/01', '25%', '50']}, 'B', 'C']
 users = {'Me': {'password': 'myself'}}
 pjdir = os.path.abspath(os.path.dirname(__file__))
 
-app = Flask(__name__)
+app = Flask(__name__, static_folder="statics", static_url_path="/")
 app.config['SECRET_KEY'] = "Your_secret_string"
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = True
 #  設置資料庫為sqlite3
@@ -36,26 +36,26 @@ class User(UserMixin):
     pass
 
 @login_manager.user_loader
-def user_loader(使用者):
-    if 使用者 not in users:
+def user_loader(tmpuser):
+    if tmpuser not in users:
         return
 
     user = User()
-    user.id = 使用者
+    user.id = tmpuser
     return user
 
 @login_manager.request_loader
 def request_loader(request):
-    使用者 = request.form.get('user_id')
-    if 使用者 not in users:
+    tmpuser = request.form.get('user_id')
+    if tmpuser not in users:
         return
 
     user = User()
-    user.id = 使用者
+    user.id = tmpuser
 
     # DO NOT ever store passwords in plaintext and always compare password
     # hashes using constant-time comparison!
-    user.is_authenticated = request.form['password'] == users[使用者]['password']
+    user.is_authenticated = request.form['password'] == users[tmpuser]['password']
 
     return user
 
@@ -99,6 +99,10 @@ def login():
     flash('登入失敗了...')
     return render_template('login.html')
 
+@app.route('/noteindex')
+def note():
+    return render_template('noteindex.html', book = books[0])
+
 @app.route('/logout')
 def logout():
     user_id = current_user.get_id()
@@ -112,9 +116,13 @@ from flask import render_template
 #from app_blog.author.model import UserReister
 #from app_blog.author.form import FormRegister
 
+import smtplib
+server = smtplib.SMTP('smtp.gmail.com',587)
+
 #  import Model
 @app.route('/register', methods=['GET', 'POST'])
 def register():
+    '''
     from model import UserReister
     from form import FormRegister
     form = FormRegister()
@@ -127,6 +135,26 @@ def register():
         db.session.add(user)
         db.session.commit()
         return 'Success Thank You'
-    return render_template('register.html', form=form)
+    '''
+    if request.method == 'POST':
+        name = str(request.values.get('name'))
+        password = str(request.values.get('password'))
+        print(name.isalpha())
+        if name.isalpha() == False:
+            flash('請輸入有效id（英文或數字）')
+            return render_template('register.html')
+        if password.isalpha() == False:
+            flash('請輸入有效密碼（英文或數字）')
+            return render_template('register.html')
+        if name in users.keys():
+            flash('用戶已存在')
+            return render_template('register.html')
+        users[name] = {}
+        users[name]['password'] = password
+        flash('Success! Please login. user: ' + name)
+        return render_template('login.html')
+
+
+    return render_template('register.html')
 
 app.run(host = '0.0.0.0', port=5000, debug=True)
