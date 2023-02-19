@@ -30,20 +30,7 @@
                 <area shape="poly" coords="250,40, 330,40, 265,90" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal">
                 <area shape="poly" coords="300,50, 230,130, 300,130" href="">
             </map>
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">TAIPEI CITY</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
-        
-        </div>
-      </div>
-    </div>
-</div>
-</div>
+            </div>
         <!--本週進度、table-->
             <div class="item2">
             <h1>本週進度 | WEEKLY PLAN</h1>
@@ -89,29 +76,51 @@
             </div>
 
         <!--正在閱讀-->
+        <!--for p, i in enumerate(mybooks['是否完成閱讀']):
+            if i == FALSE:-->
+
             <div class="item3">
-            <h1>正在閱讀 | READING</h1>
-            <div class="div2">
-            <div class="flex-container2">
-                <div style="flex-basis: 150px">
-                    正在遊覽<br>
-                    <img src="" width="90" height="100">
-                </div>
-                <div style="flex-basis: 400px">
-                    <a href="../noteindex">書名</a><br>
-                    閱讀進度
-                    <div class="progress">
-                    <div class="progress-bar" role="progressbar" style="width: 25%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">25%</div>
+                <h1>正在閱讀 | READING</h1>
+                <div class="div2">
+                <div class="flex-container2">
+                    <div style="flex-basis: 150px">
+                        正在遊覽<br>
+                        <img src="" width="90" height="100">
+                    </div>
+                    <div style="flex-basis: 400px">
+                        <a href="../noteindex">'mybooks'[書名'][p]</a><br>
+                        閱讀進度
+                        <div class="progress">
+                        <div class="progress-bar" role="progressbar" style="width: 25%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">'mybooks'['書籤頁數'][p]/'mybooks'['總頁數'][p]</div>
+                        </div>
+                    </div>
+                    <div style="flex-basis: 150px">
+                        <button type="button" class="btn btn-secondary btn-lg" href="">完 成<br>閱 讀</button>
                     </div>
                 </div>
-                <div style="flex-basis: 150px">
-                    <button type="button" class="btn btn-secondary btn-lg" href="">完 成<br>閱 讀</button>
+                </div>
                 </div>
             </div>
-            </div>
+        
+        <script>
+            var myModal = document.getElementById('myModal')
+            var myInput = document.getElementById('myInput')
+            
+            myModal.addEventListener('shown.bs.modal', function () {
+              myInput.focus()
+            })
+        </script>
+    <a href="#" type="botton" data-bs-toggle="modal" data-bs-target="#examplemodal">會員登錄</a>
+    <div class="modal fade" id="#examplemodal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3>會員登錄</h3>
+                </div>
             </div>
         </div>
-   <!--
-    </body>
-</html> -->
-{% endblock %}
+    </div>
+       <!--
+        </body>
+    </html> -->
+    {% endblock %}
