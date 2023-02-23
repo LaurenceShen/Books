@@ -1,9 +1,11 @@
 import os
 
 from flask import Flask, request, abort, render_template, url_for, flash, redirect
-from app_blog import app
 from flask_script import Manager, Command, prompt_bool, Shell
+from flask_bcrypt import Bcrypt
 
+bcrypt = Bcrypt()
+#from app_blog import app
 from flask_login import LoginManager, UserMixin, login_user, logout_user, login_required, current_user
 
 from flask_bootstrap import Bootstrap
@@ -93,7 +95,7 @@ def login():
 
     user_id = request.form['user_id']
     user_password = request.form['password']
-
+    '''
     conn = sqlite3.connect('Coding101.db')
     cursor = conn.cursor()
     
@@ -106,7 +108,7 @@ def login():
         if user_id== i[1]:
             whe_exist = True
             print("YES")
-        if user_password == i[2]:
+        if bcrypt.check_password_hash(i[2], password):
             whe_pass_corr = True
             print("yes")
     if whe_exist and whe_pass_corr:
@@ -118,8 +120,8 @@ def login():
     flash('登入失敗了...')
     return render_template('login.html')
 
-    """
-    if (user_id in users) and (request.form['password'] == users[user_id]['password']):
+    '''
+    if (user_id in users) and (bcrypt.check_password_hash(users[user_id]['password'], request.form['password'])):
         user = User()
         user.id = user_id
         login_user(user)
@@ -128,7 +130,6 @@ def login():
 
     flash('登入失敗了...')
     return render_template('login.html')
-    """
 
 @app.route('/noteindex/<book>')
 def note(book):
@@ -188,18 +189,19 @@ def register():
         name = str(request.values.get('name'))
         password = str(request.values.get('password'))
         print(name.isalpha())
-        if name.isalpha() == False:
+        if name.isalnum() == False:
             flash('請輸入有效id（英文或數字）')
             return render_template('register.html')
-        if password.isalpha() == False:
+        if password.isalnum() == False:
             flash('請輸入有效密碼（英文或數字）')
             return render_template('register.html')
         if name in users.keys():
             flash('用戶已存在')
             return render_template('register.html')
         users[name] = {}
-        users[name]['password'] = password
+        users[name]['password'] = bcrypt.generate_password_hash(password).decode('utf-8')
         flash('Success! Please login. user: ' + name)
+        print(users)
         return render_template('login.html')
 
 
