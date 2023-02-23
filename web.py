@@ -88,6 +88,10 @@ def mybooks():
 def discovery():
     return render_template("discovery.html", books = books)
 
+@app.route('/donate')
+def donate():
+    return render_template("donate.html")
+
 @app.route('/login', methods = ['POST', 'GET'])
 def login():
     if request.method == 'GET':
