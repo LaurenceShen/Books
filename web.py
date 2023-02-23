@@ -13,7 +13,7 @@ import configparser
 config = configparser.ConfigParser()
 config.read('config.ini')
 
-books = [{'A':['Allen', '借閱中', '2050/01/01', '25%', '50']}, 'B', 'C']
+books = [['A', 'Allen', '借閱中', '2050/01/01', '25%', '50'], 'B', 'C']
 users = {'Me': {'password': 'myself'}}
 pjdir = os.path.abspath(os.path.dirname(__file__))
 
@@ -23,7 +23,6 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = True
 #  設置資料庫為sqlite3
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///' + \
                                         os.path.join(pjdir, 'data_register.sqlite')
-
 bootstrap = Bootstrap(app)
 db = SQLAlchemy(app)
 
@@ -64,9 +63,10 @@ def request_loader(request):
 def home():
     return redirect(url_for('map'))
 
-@app.route('/map')
+@app.route('/map', methods = ['POST', 'GET'])
 def map():
-    return render_template('map.html')
+    
+    return render_template('map.html', bookurl = './noteindex/'+ books[0][0],book = books[0])
 
 @app.route('/post_cards')
 def post_cards():
@@ -99,10 +99,27 @@ def login():
     flash('登入失敗了...')
     return render_template('login.html')
 
-@app.route('/noteindex')
-def note():
-    return render_template('noteindex.html', book = books[0])
+@app.route('/noteindex/<book>')
+def note(book):
+    for i in books:
+        if i[0] == book:
+            output = i
+    return render_template('noteindex.html', book = output)
 
+'''
+@app.route('/<name>')
+def name1(name):
+    return render_template('login.html')
+'''
+'''
+@app.route('/<bookname>')
+def note1(bookname):
+    for i in books:
+        if i[0] == bookname:
+            return render_template('noteindex.html', book = i)
+    return 'not found:('
+    #return render_template('noteindex.html', book = )
+'''
 @app.route('/logout')
 def logout():
     user_id = current_user.get_id()
