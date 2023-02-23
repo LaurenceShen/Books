@@ -1,6 +1,8 @@
 import os
 
 from flask import Flask, request, abort, render_template, url_for, flash, redirect
+from app_blog import app
+from flask_script import Manager, Command, prompt_bool, Shell
 
 from flask_login import LoginManager, UserMixin, login_user, logout_user, login_required, current_user
 
