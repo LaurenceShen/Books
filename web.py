@@ -9,6 +9,7 @@ from flask_login import LoginManager, UserMixin, login_user, logout_user, login_
 from flask_bootstrap import Bootstrap
 from flask_sqlalchemy import SQLAlchemy
 import configparser
+import sqlite3
 
 
 # config 初始化
@@ -91,6 +92,33 @@ def login():
         return render_template("login.html")
 
     user_id = request.form['user_id']
+    user_password = request.form['password']
+
+    conn = sqlite3.connect('Coding101.db')
+    cursor = conn.cursor()
+    
+    cursor.execute("SELECT * FROM User;")
+    record = cursor.fetchall()
+
+    whe_exist = False
+    whe_pass_corr = False
+    for i in record:
+        if user_id== i[1]:
+            whe_exist = True
+            print("YES")
+        if user_password == i[2]:
+            whe_pass_corr = True
+            print("yes")
+    if whe_exist and whe_pass_corr:
+        user = User()
+        user.id = user_id
+        login_user(user)
+        flash(f'{user_id}！開始冒險吧！')
+        return redirect(url_for('map'))
+    flash('登入失敗了...')
+    return render_template('login.html')
+
+    """
     if (user_id in users) and (request.form['password'] == users[user_id]['password']):
         user = User()
         user.id = user_id
@@ -100,6 +128,7 @@ def login():
 
     flash('登入失敗了...')
     return render_template('login.html')
+    """
 
 @app.route('/noteindex/<book>')
 def note(book):
