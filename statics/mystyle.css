@@ -57,20 +57,23 @@ html {
     -moz-box-sizing: inherit;
     box-sizing: inherit;
     }
-.whole {
-    margin-left: auto;
-    margin-right: auto;
-}
+
 .bookname {
     padding: 20px 10px 10px 10px;
 }
+.container1{
+    display: flex;
+    background-color: rgb(255, 211, 153);
+    width: 900px;
+    justify-content: start;
+}
+.item{
+    background-color: rgb(255, 176, 30);
+    width: 300px;
+}
 img {
-    content: 'img';
-    display: block;
-    height: auto;
-    width: 150px;
-    float: left;
-    padding: 0px 20px 10px 20px;
+    width: 200px;
+    padding: 25px;
     }
 .button {
     background-color: #d4d4d4;
@@ -85,6 +88,17 @@ img {
     cursor: pointer;
     border-radius: 12px;
     }
+.container2{
+    display: flex;
+    background-color: rgb(255, 231, 214);
+    width: 900px;
+    justify-content: start;
+    flex-direction: column;
+}
+.item2{
+    background-color: rgb(255, 184, 108);
+    width: 800px;
+}
 .thoughts{
     padding: 0px 0px 0px 20px;
 }
