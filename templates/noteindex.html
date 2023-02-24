@@ -45,7 +45,7 @@
             狀態：<span>{{book['A'][1]}}</span><br>
             期限：<span>{{book['A'][2]}}</span><br>
             閱讀進度/書籤：<br>
-            <button id="bookmark" class="button" onclick="myFunction()">更新書籤</button><br>
+            <button class="button">更新書籤</button><br>
             </div>
         </div>
     </div>
@@ -54,16 +54,17 @@
             <p>心得紀錄 | Thoughts</p>
         </div>
         <div class="item2">
-            <form method="get"><div class="p-3 m-0 border-0 bd-example">  
-                <div class="form-floating">
-                    <grammarly-extension data-grammarly-shadow-root="true" class="cGcvT"></grammarly-extension>
-                    <grammarly-extension data-grammarly-shadow-root="true" class="cGcvT"></grammarly-extension>
-                <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea2" name="thought" spellcheck="false"></textarea>
+            <form method="get">
+                <div class="p-3 m-0 border-0 bd-example">  
+                    <div class="form-floating">
+                        <grammarly-extension data-grammarly-shadow-root="true" class="cGcvT"></grammarly-extension>
+                        <grammarly-extension data-grammarly-shadow-root="true" class="cGcvT"></grammarly-extension>
+                        <textarea class="form-control" placeholder="暢所欲言你的感想吧！" id="floatingTextarea2" name="thought" spellcheck="false"></textarea>
+                    </div>
+                    <div class="submitbtn">
+                        <input type="submit" value="紀錄" class="button">
+                    </div>
                 </div>
-                <div class="submitbtn">
-                    <input type="submit" value="紀錄" class="button">
-                </div>
-            </div>
             </form>
         </div>
     </div>

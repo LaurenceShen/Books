@@ -76,10 +76,10 @@ html {
     background-color: white;
     width: 300px;
     text-align: center;
-    margin: 10px;
+    margin: 5px;
 }
 .itemtext{
-    padding: 50px;
+    padding: 30px;
     text-align: left;
     line-height: 2;
 }
@@ -113,11 +113,11 @@ img {
 .item2{
     background-color: rgb(255, 255, 255);
     width: 800px;
-    margin: 10px;
     padding-left: 50px;
 }
 .thought{
     padding-left: 70px;
+    padding-bottom: 0 auto;
 }
 .cGcvT{
     position: absolute;
@@ -126,5 +126,8 @@ img {
     pointer-events: none;
 }
 .form-control{
-    height: 100px;
+    height: 500px;
+}
+.submitbtn{
+    margin-top: 25px;
 }
