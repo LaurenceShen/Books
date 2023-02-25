@@ -30,7 +30,7 @@
         }
 </style>-->
 <link rel="stylesheet" href="./mystyle.css">
-<div class="wrap">
+<div class="allwrap">
     <h1 title="書名" class= "bookname" style="font-size: 22px;"> 《當失戀的我，遇上尼采》 </h1>
     <div class="container1">
         <div class="item">
@@ -45,7 +45,18 @@
             狀態：<span>{{book['A'][1]}}</span><br>
             期限：<span>{{book['A'][2]}}</span><br>
             閱讀進度/書籤：<br>
-            <button class="button">更新書籤</button><br>
+            <!-- popup的書籤 -->
+            <div class="wrap">
+                <a class="btn popup-btn" href="#letmeopen">更新書籤</a>
+            </div>
+              <div class="popup-wrap" id="letmeopen">
+                <div class="popup-box transform-out">
+                  <h2>標題</h2>
+                  <h3>內容可以打很多在這裡</h3>
+                  <a class="close-btn popup-close" href="#">x</a>
+                </div>
+              </div>
+            <!-- end -->
             </div>
         </div>
     </div>
