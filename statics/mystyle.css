@@ -58,13 +58,13 @@ html {
     box-sizing: inherit;
     }
 */
-.allwrap{
+/* .allwrap{
     margin: 0 auto;
     width: 1000px;
-}
+} */
 
 .bookname {
-    margin-top: 100px;
+    font-size: 22px;
 }
 .container1{
     display: flex;
@@ -83,7 +83,7 @@ html {
     text-align: left;
     line-height: 2;
 }
-img {
+.bookimg {
     width: 200px;
     padding: 25px;
     }
