@@ -104,24 +104,16 @@
             {% endif %}
         {% endfor %}
         
-        <script>
-            var myModal = document.getElementById('myModal')
-            var myInput = document.getElementById('myInput')
-            
-            myModal.addEventListener('shown.bs.modal', function () {
-              myInput.focus()
-            })
-        </script>
-    <a href="#" type="botton" data-bs-toggle="modal" data-bs-target="#examplemodal">會員登錄</a>
-    <div class="modal fade" id="#examplemodal">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h3>會員登錄</h3>
-                </div>
+        <div class="wrap">
+            <a class="btn popup-btn" href="#letmeopen">打開popup視窗</a>
+          </div>
+          <div class="popup-wrap" id="letmeopen">
+            <div class="popup-box transform-out">
+              <h2>標題請下在這裡</h2>
+              <h3>內容可以打很多在這裡</h3>
+              <a class="close-btn popup-close" href="#">x</a>
             </div>
-        </div>
-    </div>
+          </div>
        <!--
         </body>
     </html> -->
