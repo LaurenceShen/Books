@@ -40,13 +40,29 @@ header{
 }
 
 section{
-    padding: 70px 17%
+    padding: 70px 17%;
+}
+
+.catlogo{
+    width: 32px;
+    height: 32px;
+    margin-bottom: 6px;
+}
+
+.catlogo:hover{
+    box-shadow: #ff702a;
 }
 
 .logo{
     color: var(--main-color);
     font-weight: 600;
     font-size: 2rem;
+}
+
+.logo:hover{
+    color: black;
+    text-shadow: #ff702a;
+    text-decoration: none;
 }
 
 .navbar{
@@ -105,7 +121,32 @@ ul li:hover ul.dropdown{
     height: 8%;
     background: #fefdfa;
     transition: all.5s ease;
+}   
+/* .sidebar{
+    position: absolute;
+    margin-top: 50px;
+    top: 0;
+    bottom: 0;
+    width: 250px;
+    background: #fefdfa;
+    overflow: hidden;
+    transform: translateX(-250px);
+} */
+/* 推擠main */
+/* main{
+    position: relative;
+    width: 100%;
+    float: right;
+    transition: 0.3 ease;
 }
+*/
+.open .sidebar{
+    transform: 0;
+}
+.open main{
+    transform: 250px;
+} 
+
 .sidebar h2{
     font-size: 23px;
     color: white;

@@ -1,4 +1,8 @@
 $(document).ready(function(){
+//    推擠main效果
+    $('#check').click(function(event){
+        $('main').toggleClass('.open');
+    });
 //    popup的書籤
     $(".popup-btn").click(function() {
         var href = $(this).attr("href")
@@ -19,4 +23,6 @@ $(document).ready(function(){
         event.preventDefault();
     }
 //    書籤結束
+
+
 });
