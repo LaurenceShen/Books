@@ -1,7 +1,11 @@
 import os
 
 from flask import Flask, request, abort, render_template, url_for, flash, redirect
+from flask_script import Manager, Command, prompt_bool, Shell
+from flask_bcrypt import Bcrypt
 
+bcrypt = Bcrypt()
+#from app_blog import app
 from flask_login import LoginManager, UserMixin, login_user, logout_user, login_required, current_user
 
 from flask_bootstrap import Bootstrap
@@ -14,6 +18,7 @@ import sqlite3
 config = configparser.ConfigParser()
 config.read('config.ini')
 
+#<<<<<<< HEAD
 conn = sqlite3.connect('Coding101.db')
 cursor = conn.cursor()
 cursor.execute("SELECT * FROM Library;")
@@ -28,7 +33,12 @@ users = cursor.fetchall()
 cursor.close()
 conn.close()
 #users = {'Me': {'password': 'myself'}}
-
+'''
+=======
+books = [['A', 'Allen', '借閱中', '2050/01/01', '25%', '50'], 'B', 'C']
+users = {'Me': {'password': 'myself'}}
+>>>>>>> origin/main
+'''
 pjdir = os.path.abspath(os.path.dirname(__file__))
 
 app = Flask(__name__, static_folder="statics", static_url_path="/")
@@ -37,7 +47,6 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = True
 #  設置資料庫為sqlite3
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///' + \
                                         os.path.join(pjdir, 'data_register.sqlite')
-
 bootstrap = Bootstrap(app)
 db = SQLAlchemy(app)
 
@@ -87,9 +96,10 @@ def request_loader(request):
 def home():
     return redirect(url_for('map'))
 
-@app.route('/map')
+@app.route('/map', methods = ['POST', 'GET'])
 def map():
-    return render_template('map.html')
+    
+    return render_template('map.html', bookurl = './noteindex/'+ str(books[0][0]), book = books[0])
 
 @app.route('/post_cards')
 def post_cards():
@@ -106,6 +116,10 @@ def mybooks():
 def discovery():
     return render_template("discovery.html", books = books)
 
+@app.route('/donate')
+def donate():
+    return render_template("donate.html")
+
 @app.route('/login', methods = ['POST', 'GET'])
 def login():
     if request.method == 'GET':
@@ -114,20 +128,13 @@ def login():
     user_id = request.form['user_id']
     user_password = request.form['password']
 
-    conn = sqlite3.connect('Coding101.db')
-    cursor = conn.cursor()
-    cursor.execute("SELECT * FROM User;")
-    record = cursor.fetchall()
-
     whe_exist = False
     whe_pass_corr = False
-    for i in record:
+    for i in users:
         if user_id == i[1]:
             whe_exist = True
-        if user_password == i[2]:
+        if bcrypt.check_password_hash(i[2], user_password):
             whe_pass_corr = True
-    cursor.close()
-    conn.close()
     if whe_exist and whe_pass_corr:
         user = User()
         user.id = user_id
@@ -136,11 +143,49 @@ def login():
         return redirect(url_for('map'))
     flash('登入失敗了...')
     return render_template('login.html')
+'''
 
 @app.route('/noteindex')
 def note():
     return render_template('noteindex.html', book = books[0])
+'''
+'''
+    if (user_id in users) and (bcrypt.check_password_hash(users[user_id]['password'], request.form['password'])):
+        user = User()
+        user.id = user_id
+        login_user(user)
+        flash(f'{user_id}！開始冒險吧！')
+        return redirect(url_for('map'))
 
+    flash('登入失敗了...')
+    return render_template('login.html')
+'''
+
+@app.route('/noteindex/<book>')
+def note(book):
+    output = None
+    for i in books:
+        #print(i[0])
+        if i[0] == int(book):
+            output = i
+            print(':(')
+    return render_template('noteindex.html', book = output)
+
+
+'''
+@app.route('/<name>')
+def name1(name):
+    return render_template('login.html')
+'''
+'''
+@app.route('/<bookname>')
+def note1(bookname):
+    for i in books:
+        if i[0] == bookname:
+            return render_template('noteindex.html', book = i)
+    return 'not found:('
+    #return render_template('noteindex.html', book = )
+'''
 @app.route('/logout')
 def logout():
     user_id = current_user.get_id()
@@ -181,6 +226,8 @@ def register():
         if whe_exist:
             flash('用戶已存在')
             return render_template('register.html')
+        password = bcrypt.generate_password_hash(password).decode('utf-8')
+        print(type(password))
         sql = """
         INSERT INTO User (User_Name, Password, Stamp, Postcard)
         VALUES (\"{}\", \"{}\", 0, 0);
@@ -188,6 +235,7 @@ def register():
         cursor.execute(sql)
         conn.commit()
         flash('Success! Please login. user: ' + name)
+        print(users)
         return render_template('login.html')
         cursor.close()
         conn.close()
