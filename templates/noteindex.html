@@ -1,0 +1,74 @@
+{% extends "base.html" %}
+
+{% block title %}手札{% endblock %}
+{% block main %}
+<!--<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTR-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> 手札 </title>
+</head>-->
+<!--<style>
+    img {
+        height: auto;
+        width: 128px;
+        }
+    .button {
+        background-color: #cfcfcf;
+        border: none;
+        color: black;
+        padding: 4px 128px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 14px;
+        margin: 4px 2px;
+        cursor: pointer;
+        border-radius: 12px;
+        }
+</style>-->
+<link rel="stylesheet" href="./mystyle.css">
+<div class="wrap">
+    <h1 title="書名" class= "bookname" style="font-size: 22px;"> 《當失戀的我，遇上尼采》 </h1>
+    <div class="container1">
+        <div class="item">
+            <!--<p title="正在閱讀" style="font-family:oswald;"></p>-->
+            <!---<a href="書本的連結" target="">-->
+            <img src="./images/book001.jpg" alt="您所選擇的書籍">
+            <!--這裡擺的是書本相關資訊-->
+        </div>
+        <div class="item itemtext">
+            <div>
+            作者：<span>{{book['A'][0]}}</span><br>
+            狀態：<span>{{book['A'][1]}}</span><br>
+            期限：<span>{{book['A'][2]}}</span><br>
+            閱讀進度/書籤：<br>
+            <button class="button">更新書籤</button><br>
+            </div>
+        </div>
+    </div>
+    <div class="container2">
+        <div style="font-size: 22px;" class="item2 thought">
+            <p>心得紀錄 | Thoughts</p>
+        </div>
+        <div class="item2">
+            <form method="get">
+                <div class="p-3 m-0 border-0 bd-example">  
+                    <div class="form-floating">
+                        <grammarly-extension data-grammarly-shadow-root="true" class="cGcvT"></grammarly-extension>
+                        <grammarly-extension data-grammarly-shadow-root="true" class="cGcvT"></grammarly-extension>
+                        <textarea class="form-control" placeholder="暢所欲言你的感想吧！" id="floatingTextarea2" name="thought" spellcheck="false"></textarea>
+                    </div>
+                    <div class="submitbtn">
+                        <input type="submit" value="紀錄" class="button">
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>    
+
+
+{% endblock %}
