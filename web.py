@@ -14,8 +14,21 @@ import sqlite3
 config = configparser.ConfigParser()
 config.read('config.ini')
 
-books = [{'A':['Allen', '借閱中', '2050/01/01', '25%', '50']}, 'B', 'C']
-users = {'Me': {'password': 'myself'}}
+conn = sqlite3.connect('Coding101.db')
+cursor = conn.cursor()
+cursor.execute("SELECT * FROM Library;")
+books = cursor.fetchall()
+cursor.close()
+conn.close()
+
+conn = sqlite3.connect('Coding101.db')
+cursor = conn.cursor()
+cursor.execute("SELECT * FROM User;")
+users = cursor.fetchall()
+cursor.close()
+conn.close()
+#users = {'Me': {'password': 'myself'}}
+
 pjdir = os.path.abspath(os.path.dirname(__file__))
 
 app = Flask(__name__, static_folder="statics", static_url_path="/")
@@ -38,27 +51,36 @@ class User(UserMixin):
 
 @login_manager.user_loader
 def user_loader(tmpuser):
-    if tmpuser not in users:
-        return
-
-    user = User()
-    user.id = tmpuser
-    return user
+    for i in users:
+        if tmpuser == i[1]:
+            user = User()
+            user.id = tmpuser
+            return user
+    return 
 
 @login_manager.request_loader
 def request_loader(request):
     tmpuser = request.form.get('user_id')
+    for i in users:
+        if tmpuser == i[1]:
+            user = User()
+            user.id = tmpuser
+            user.is_authenticated = request.form['password'] == users[tmpuser]['password']
+            return user
+    
+    return 
+    '''
     if tmpuser not in users:
         return
 
     user = User()
     user.id = tmpuser
-
+    '''
     # DO NOT ever store passwords in plaintext and always compare password
     # hashes using constant-time comparison!
-    user.is_authenticated = request.form['password'] == users[tmpuser]['password']
+    
 
-    return user
+    #return user
 
 
 @app.route('/')
@@ -94,19 +116,18 @@ def login():
 
     conn = sqlite3.connect('Coding101.db')
     cursor = conn.cursor()
-    
     cursor.execute("SELECT * FROM User;")
     record = cursor.fetchall()
 
     whe_exist = False
     whe_pass_corr = False
     for i in record:
-        if user_id== i[1]:
+        if user_id == i[1]:
             whe_exist = True
-            print("YES")
         if user_password == i[2]:
             whe_pass_corr = True
-            print("yes")
+    cursor.close()
+    conn.close()
     if whe_exist and whe_pass_corr:
         user = User()
         user.id = user_id
@@ -115,18 +136,6 @@ def login():
         return redirect(url_for('map'))
     flash('登入失敗了...')
     return render_template('login.html')
-
-    """
-    if (user_id in users) and (request.form['password'] == users[user_id]['password']):
-        user = User()
-        user.id = user_id
-        login_user(user)
-        flash(f'{user_id}！開始冒險吧！')
-        return redirect(url_for('map'))
-
-    flash('登入失敗了...')
-    return render_template('login.html')
-    """
 
 @app.route('/noteindex')
 def note():
@@ -151,39 +160,37 @@ server = smtplib.SMTP('smtp.gmail.com',587)
 #  import Model
 @app.route('/register', methods=['GET', 'POST'])
 def register():
-    '''
-    from model import UserReister
-    from form import FormRegister
-    form = FormRegister()
-    if form.validate_on_submit():
-        user = UserReister(
-            username = form.username.data,
-            email = form.email.data,
-            password = form.password.data
-        )
-        db.session.add(user)
-        db.session.commit()
-        return 'Success Thank You'
-    '''
     if request.method == 'POST':
         name = str(request.values.get('name'))
         password = str(request.values.get('password'))
-        print(name.isalpha())
-        if name.isalpha() == False:
+        if name.isalnum() == False:
             flash('請輸入有效id（英文或數字）')
             return render_template('register.html')
-        if password.isalpha() == False:
+        if password.isalnum() == False:
             flash('請輸入有效密碼（英文或數字）')
             return render_template('register.html')
-        if name in users.keys():
+        conn = sqlite3.connect('Coding101.db')
+        cursor = conn.cursor()
+        cursor.execute("SELECT * FROM User;")
+        record = cursor.fetchall()
+
+        whe_exist = False
+        for i in record:
+            if name == i[1]:
+                whe_exist = True
+        if whe_exist:
             flash('用戶已存在')
             return render_template('register.html')
-        users[name] = {}
-        users[name]['password'] = password
+        sql = """
+        INSERT INTO User (User_Name, Password, Stamp, Postcard)
+        VALUES (\"{}\", \"{}\", 0, 0);
+        """.format(name, password)
+        cursor.execute(sql)
+        conn.commit()
         flash('Success! Please login. user: ' + name)
         return render_template('login.html')
-
-
+        cursor.close()
+        conn.close()
     return render_template('register.html')
 
 app.run(host = '0.0.0.0', port=5000, debug=True)
