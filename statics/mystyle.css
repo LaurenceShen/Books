@@ -221,3 +221,34 @@ h3 {
 .submitbtn{
     margin-top: 25px;
 }
+/* test */
+.wholemap{
+    position: relative;
+    width: 322px;
+    height: 610px;
+    background-image: url(./images/map/pngegg.png);
+    background-color: #ffffff;
+    background-position: 0 0;
+}
+.wholemap .img2{
+    position: absolute;
+    margin-left: 12px;
+    margin-top: 267px;
+    text-indent: 101%;
+    overflow: hidden;
+    white-space: nowrap;       
+}
+.wholemap .img15{
+    position: absolute;
+    margin-left: 12px;
+    margin-top: 302px;
+    text-indent: 101%;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+img:hover{ 
+    box-shadow: 0 0 2px 1px rgba(0, 140, 186, 0.5);
+}
+
+/* testend */
