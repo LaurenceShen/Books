@@ -1,27 +1,130 @@
+/* http://meyerweb.com/eric/tools/css/reset/ 
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+/*
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+body {
+	line-height: 1;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}*/
+/*到這裡是CSS reset的語法，避免不同瀏覽器有不同的預設值而導致跑版
+html {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+  }
+  *, *:before, *:after {
+    -webkit-box-sizing: inherit;
+    -moz-box-sizing: inherit;
+    box-sizing: inherit;
+    }
+*/
+.wrap{
+    margin: 0 auto;
+    width: 1000px;
+}
+
 .bookname {
-    padding: 70px 10px 10px 10px;
+    margin-top: 100px;
+}
+.container1{
+    display: flex;
+    background-color: rgb(255, 255, 255);
+    width: 900px;
+    justify-content: start;
+}
+.item{
+    background-color: white;
+    width: 300px;
+    text-align: center;
+    margin: 10px;
+}
+.itemtext{
+    padding: 50px;
+    text-align: left;
+    line-height: 2;
 }
 img {
-    content: 'img';
-    display: block;
-    height: auto;
-    width: 150px;
-    float: left;
-    padding: 0px 20px 10px 20px;
+    width: 200px;
+    padding: 25px;
     }
 .button {
-    background-color: #d4d4d4;
+    width: 200px;
+    background-color: #ffe3cd;
     border: none;
-    color: rgb(255, 255, 255);
-    padding: 4px 128px;
+    color: rgb(255, 144, 40);
     text-align: center;
-    text-decoration: none;
-    display: inline-block;
+    display: block;
     font-size: 14px;
-    margin: 4px 2px;
-    cursor: pointer;
-    border-radius: 12px;
+    padding: 10px;
+    margin-top: 10px;
+    border-radius: 15px;
     }
-.thoughts{
-    padding: 0px 0px 0px 20px;
+.button:hover{
+    background-color: rgb(255, 144, 40);
+    color: #ffe3cd;;
+}
+.container2{
+    display: flex;
+    background-color: rgb(255, 255, 255);
+    width: 900px;
+    justify-content: start;
+    flex-direction: column;
+}
+.item2{
+    background-color: rgb(255, 255, 255);
+    width: 800px;
+    margin: 10px;
+    padding-left: 50px;
+}
+.thought{
+    padding-left: 70px;
+}
+.cGcvT{
+    position: absolute;
+    top: 0px;
+    left: 0px; 
+    pointer-events: none;
+}
+.form-control{
+    height: 100px;
 }
