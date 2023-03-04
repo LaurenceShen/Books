@@ -18,7 +18,6 @@ import sqlite3
 config = configparser.ConfigParser()
 config.read('config.ini')
 
-#<<<<<<< HEAD
 conn = sqlite3.connect('Coding101.db')
 cursor = conn.cursor()
 cursor.execute("SELECT * FROM Library;")
@@ -32,13 +31,22 @@ cursor.execute("SELECT * FROM User;")
 users = cursor.fetchall()
 cursor.close()
 conn.close()
-#users = {'Me': {'password': 'myself'}}
-'''
-=======
-books = [['A', 'Allen', '借閱中', '2050/01/01', '25%', '50'], 'B', 'C']
-users = {'Me': {'password': 'myself'}}
->>>>>>> origin/main
-'''
+
+Month = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+borrowed = {}
+conn = sqlite3.connect('Coding101.db')
+cursor = conn.cursor()
+for i in Month:
+    sql = """
+SELECT * FROM Borrowed_{} INNER JOIN User ON User.ID = Borrowed_{}.User_ID
+    """.format(i, i)
+    cursor.execute(sql)
+    borrowed_mon = cursor.fetchall()
+    borrowed[i] = borrowed_mon
+cursor.close()
+conn.close()
+
+
 pjdir = os.path.abspath(os.path.dirname(__file__))
 
 app = Flask(__name__, static_folder="statics", static_url_path="/")
@@ -78,19 +86,6 @@ def request_loader(request):
             return user
     
     return 
-    '''
-    if tmpuser not in users:
-        return
-
-    user = User()
-    user.id = tmpuser
-    '''
-    # DO NOT ever store passwords in plaintext and always compare password
-    # hashes using constant-time comparison!
-    
-
-    #return user
-
 
 @app.route('/')
 def home():
@@ -99,7 +94,7 @@ def home():
 @app.route('/map', methods = ['POST', 'GET'])
 def map():
     
-    return render_template('map.html', bookurl = './noteindex/'+ str(books[0][0]), book = books[0])
+    return render_template('map.html', bookurl = './noteindex/'+ str(books[0][0]), book = books[0], bag = borrowed)
 
 @app.route('/post_cards')
 def post_cards():
@@ -134,7 +129,7 @@ def login():
         if user_id == i[1] and bcrypt.check_password_hash(i[2], user_password):
             whe_exist = True
             whe_pass_corr = True
-    print(bcrypt.check_password_hash(i[2], user_password))
+        print(bcrypt.check_password_hash(i[2], user_password))
     if whe_exist and whe_pass_corr:
         user = User()
         user.id = user_id
@@ -143,52 +138,17 @@ def login():
         return redirect(url_for('map'))
     flash('登入失敗了...')
     return render_template('login.html')
-'''
-
-@app.route('/noteindex')
-def note():
-    return render_template('noteindex.html', book = books[0])
-'''
-'''
-    if (user_id in users) and (bcrypt.check_password_hash(users[user_id]['password'], request.form['password'])):
-        user = User()
-        user.id = user_id
-        login_user(user)
-        flash(f'{user_id}！開始冒險吧！')
-        return redirect(url_for('map'))
-
-    flash('登入失敗了...')
-    return render_template('login.html')
-'''
 
 @app.route('/noteindex/<book>')
 def note(book):
-    if type(book) != int:
-        return render_template('error.html')
     output = None
     for i in books:
         #print(i[0])
         if i[0] == int(book):
             output = i
-    if output == None:
-        return render_template('error.html')
+            print(':(')
     return render_template('noteindex.html', book = output)
 
-
-'''
-@app.route('/<name>')
-def name1(name):
-    return render_template('login.html')
-'''
-'''
-@app.route('/<bookname>')
-def note1(bookname):
-    for i in books:
-        if i[0] == bookname:
-            return render_template('noteindex.html', book = i)
-    return 'not found:('
-    #return render_template('noteindex.html', book = )
-'''
 @app.route('/logout')
 def logout():
     user_id = current_user.get_id()
@@ -196,11 +156,7 @@ def logout():
     flash(f'{user_id}！歡迎下次再來！')
     return render_template('login.html') 
 
-#from app_blog import app
-#from app_blog import db
 from flask import render_template
-#from app_blog.author.model import UserReister
-#from app_blog.author.form import FormRegister
 
 import smtplib
 server = smtplib.SMTP('smtp.gmail.com',587)
