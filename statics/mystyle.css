@@ -83,8 +83,12 @@ html {
     text-align: left;
     line-height: 2;
 }
+img {
+    max-width: 100%;
+    height: auto;
+}
 .bookimg {
-    width: 200px;
+    width: 67%;
     padding: 25px;
     }
 .button {
@@ -137,7 +141,8 @@ html {
   }
   
 .popup-box {
-    width: 50%;
+    width: 80%;
+    height: auto;
     padding: 50px 75px;
     transform: translate(-50%, -50%) scale(0.5);
     position: absolute;
@@ -153,10 +158,6 @@ h2 {
     color: #1a1a1a;
 }
   
-h3 {
-    font-size: 24px;
-    color: #888;
-}
   
 .close-btn {
     width: 50px;
@@ -221,7 +222,8 @@ h3 {
 .submitbtn{
     margin-top: 25px;
 }
-/* test */
+
+/* maptest */
 .wholemap{
     position: relative;
     width: 322px;
@@ -251,4 +253,44 @@ img:hover{
     box-shadow: 0 0 2px 1px rgba(0, 140, 186, 0.5);
 }
 
-/* testend */
+/* maptest end */
+
+
+/* progressbar */
+
+.body{
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.progress{
+    background-color: grey;
+    border-radius:20px;
+    height: 30px;
+    width: 100%;
+}
+
+.progress-done{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-image: repeating-linear-gradient(
+        to left, #0546e0,#1172f9,#4892f9);
+    box-shadow: 0 5px 5px -6px #0546e0, 0 3px 7px #1172f9;
+    border-radius: 20px;
+    color: white;
+    height: 100%;
+    width: 0;
+    transition: 1s ease 0.3s;
+}
+
+.inputContainer{
+    display: flex;
+    width: 100%;
+    justify-content: space-evenly;
+    font-size: 30px;
+}
+/* progressbar end */
