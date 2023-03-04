@@ -67,7 +67,6 @@ login_manager.login_view = 'login'
 login_manager.login_message = 'login_message'
 class User(UserMixin):
     pass
-loginornot = False
 @login_manager.user_loader
 def user_loader(tmpuser):
     for i in users:
@@ -91,25 +90,24 @@ def request_loader(request):
 
 @app.route('/')
 def home():
-    print("login:", loginornot)
-    if loginornot:
-        return redirect(url_for('map'))
-    return redirect(url_for('login'))
+    return redirect(url_for('map'))
 
 @app.route('/map', methods = ['POST', 'GET'])
 def map():
-    if loginornot:
+    try:
         for j in borrowed.values():
             for i in j:
                 print(i[1])
                 if i[6] == current_user.id and i[3] == 0:
                     if [books[i[1] - 1][0], books[i[1] - 1][1], books[i[1] - 1][3]] not in current_borrowed:
                         current_borrowed.append([books[i[1]][0], books[i[1]][1], books[i[1]][3]])
-    return render_template('map.html', bookurl = './noteindex/'+ str(books[0][0]), book = books[0],  bag_books = current_borrowed)
-
+        return render_template('map.html', bookurl = './noteindex/'+ str(books[0][0]), book = books[0],  bag_books = current_borrowed)
+    except:
+        return redirect(url_for('login'))
 @app.route('/analysis')
 def analysis():
     borrow_size = []
+    print(current_borrowed)
     for i in borrowed.values():
         borrow_size.append(len(i))
     return render_template('analysis.html', borrow_size = borrow_size, bag_books = current_borrowed)
@@ -128,7 +126,7 @@ def mybooks():
 
 @app.route('/discovery', methods = ['POST', 'GET'])
 def discovery():
-    return render_template("discovery.html", books = books, bag_books = current_borrowed)
+     return render_template("discovery.html", books = books, bag_books = current_borrowed)
 
 @app.route('/donate')
 def donate():
@@ -153,7 +151,6 @@ def login():
         user = User()
         user.id = user_id
         login_user(user)
-        login = True
         flash(f'{user_id}！開始冒險吧！')
         return redirect(url_for('home'))
     flash('登入失敗了...')
