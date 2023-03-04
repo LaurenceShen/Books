@@ -140,22 +140,10 @@ def note(book):
     for i in books:
         if i[0] == book:
             output = i
+    if request.method == 'POST':
+        print(request.value['紀錄'])
     return render_template('noteindex.html', book = output)
 
-'''
-@app.route('/<name>')
-def name1(name):
-    return render_template('login.html')
-'''
-'''
-@app.route('/<bookname>')
-def note1(bookname):
-    for i in books:
-        if i[0] == bookname:
-            return render_template('noteindex.html', book = i)
-    return 'not found:('
-    #return render_template('noteindex.html', book = )
-'''
 @app.route('/logout')
 def logout():
     user_id = current_user.get_id()
