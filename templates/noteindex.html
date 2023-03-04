@@ -2,41 +2,14 @@
 
 {% block title %}手札{% endblock %}
 {% block main %}
-<!--<!DOCTYPE html>
-<html lang="zh-Hant">
-<head>
-    <meta charset="UTR-8"/>
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title> 手札 </title>
-</head>-->
-<!--<style>
-    img {
-        height: auto;
-        width: 128px;
-        }
-    .button {
-        background-color: #cfcfcf;
-        border: none;
-        color: black;
-        padding: 4px 128px;
-        text-align: center;
-        text-decoration: none;
-        display: inline-block;
-        font-size: 14px;
-        margin: 4px 2px;
-        cursor: pointer;
-        border-radius: 12px;
-        }
-</style>-->
 <link rel="stylesheet" href="./mystyle.css">
-<div class="wrap">
-    <h1 title="書名" class= "bookname" style="font-size: 22px;"> {{book[1]}} </h1>
+<div class="allwrap">
+    <h1 title="書名" class= "bookname"> {{book[1]}} </h1>
     <div class="container1">
         <div class="item">
             <!--<p title="正在閱讀" style="font-family:oswald;"></p>-->
             <!---<a href="書本的連結" target="">-->
-            <img src={{book[3]}} alt="您所選擇的書籍">
+            <img src={{book[3]}} alt="您所選擇的書籍" class="bookimg">
             <!--這裡擺的是書本相關資訊-->
         </div>
         <div class="item itemtext">
@@ -45,8 +18,36 @@
             狀態：<span>{{book[1]}}</span><br>
             期限：<span>{{book[2]}}</span><br>
             閱讀進度/書籤：<br>
-            <button id="bookmark" class="button" onclick="myFunction()">更新書籤</button><br>
-            <script src="./myscript.js"></script>
+            <!-- popup的書籤 -->
+            <div class="wrap">
+                <a class="btn popup-btn" href="#letmeopen">更新書籤</a>
+            </div class="body">
+              <div class="popup-wrap" id="letmeopen">
+                <div class="popup-box transform-out">
+                  <h2>您的閱讀進度</h2>
+                    <!-- progressbar test -->
+                    <div>                     
+                        <div class="progress">
+                            <div class="progress-done"></div>
+                        </div>
+
+                        <div class="inputContainer">
+                            <div>
+                                <div>目前閱讀頁數</div>
+                                <input class="input" type="number"/>
+                            </div>
+                            
+                            <div>
+                                <div>此書總共頁數</div>
+                                <input class="maxInput" type="number"/>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- progressbar test end-->
+                  <a class="close-btn popup-close" href="#">x</a>
+                </div>
+              </div>
+            <!-- end -->
             </div>
         </div>
     </div>
@@ -55,20 +56,21 @@
             <p>心得紀錄 | Thoughts</p>
         </div>
         <div class="item2">
-            <form method="get"><div class="p-3 m-0 border-0 bd-example">  
-                <div class="form-floating">
-                    <grammarly-extension data-grammarly-shadow-root="true" class="cGcvT"></grammarly-extension>
-                    <grammarly-extension data-grammarly-shadow-root="true" class="cGcvT"></grammarly-extension>
-                <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea2" name="thought" spellcheck="false"></textarea>
+            <form method="get">
+                <div class="p-3 m-0 border-0 bd-example">  
+                    <div class="form-floating">
+                        <grammarly-extension data-grammarly-shadow-root="true" class="cGcvT"></grammarly-extension>
+                        <grammarly-extension data-grammarly-shadow-root="true" class="cGcvT"></grammarly-extension>
+                        <textarea class="form-control" placeholder="暢所欲言你的感想吧！" id="floatingTextarea2" name="thought" spellcheck="false"></textarea>
+                    </div>
+                    <div class="submitbtn">
+                        <input type="submit" value="紀錄" class="button">
+                    </div>
                 </div>
-                <div class="submitbtn">
-                    <input type="submit" value="紀錄" class="button">
-                </div>
-            </div>
             </form>
         </div>
     </div>
 </div>    
-
+<script src="./js/myscript.js"></script>
 
 {% endblock %}

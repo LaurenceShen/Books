@@ -58,13 +58,13 @@ html {
     box-sizing: inherit;
     }
 */
-.wrap{
+/* .allwrap{
     margin: 0 auto;
     width: 1000px;
-}
+} */
 
 .bookname {
-    margin-top: 100px;
+    font-size: 22px;
 }
 .container1{
     display: flex;
@@ -76,15 +76,19 @@ html {
     background-color: white;
     width: 300px;
     text-align: center;
-    margin: 10px;
+    margin: 5px;
 }
 .itemtext{
-    padding: 50px;
+    padding: 30px;
     text-align: left;
     line-height: 2;
 }
 img {
-    width: 200px;
+    max-width: 100%;
+    height: auto;
+}
+.bookimg {
+    width: 67%;
     padding: 25px;
     }
 .button {
@@ -101,8 +105,95 @@ img {
     }
 .button:hover{
     background-color: rgb(255, 144, 40);
-    color: #ffe3cd;;
+    color: #ffe3cd;
 }
+
+/* popup書籤 */
+
+.wrap {
+    text-align: center;
+  }
+.btn {
+    background-color: #ffe3cd;
+    text-decoration: none;
+    color: rgb(255, 144, 40);;
+    padding: 10px;
+    border-radius: 15px;
+    font-size: 14px;
+    padding: 10px;
+    margin-top: 10px;
+    border-radius: 15px;
+    width: 200px;
+}
+.btn:hover{
+    background-color: rgb(255, 144, 40);
+    color: #ffe3cd;;
+}  
+.popup-wrap {
+    width: 100%;
+    height: 100%;
+    display: none;
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    content: '';
+    background: rgba(0, 0, 0, 0.406);
+  }
+  
+.popup-box {
+    width: 80%;
+    height: auto;
+    padding: 50px 75px;
+    transform: translate(-50%, -50%) scale(0.5);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    box-shadow: 0px 2px 16px rgba(208, 208, 208, 0.5);
+    border-radius: 3px;
+    background: #fff;
+    text-align: center;
+}
+h2 {
+    font-size: 32px;
+    color: #1a1a1a;
+}
+  
+  
+.close-btn {
+    width: 50px;
+    height: 50px;
+    display: inline-block;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    border-radius: 100%;
+    background: #d75f70;
+    font-weight: bold;
+    text-decoration: none;
+    color: #fff;
+    line-height: 40px;
+    font-size: 32px;
+}
+  
+.transform-in, .transform-out {
+    display: block;
+    -webkit-transition: all ease 0.5s;
+    transition: all ease 0.5s;
+}
+  
+.transform-in {
+    -webkit-transform: translate(-50%, -50%) scale(1);
+    transform: translate(-50%, -50%) scale(1);
+}
+  
+.transform-out {
+    -webkit-transform: translate(-50%, -50%) scale(0.5);
+    transform: translate(-50%, -50%) scale(0.5);
+  }
+  
+
+/* end */
+
 .container2{
     display: flex;
     background-color: rgb(255, 255, 255);
@@ -113,11 +204,11 @@ img {
 .item2{
     background-color: rgb(255, 255, 255);
     width: 800px;
-    margin: 10px;
     padding-left: 50px;
 }
 .thought{
     padding-left: 70px;
+    padding-bottom: 0 auto;
 }
 .cGcvT{
     position: absolute;
@@ -126,5 +217,80 @@ img {
     pointer-events: none;
 }
 .form-control{
-    height: 100px;
+    height: 500px;
 }
+.submitbtn{
+    margin-top: 25px;
+}
+
+/* maptest */
+.wholemap{
+    position: relative;
+    width: 322px;
+    height: 610px;
+    background-image: url(./images/map/pngegg.png);
+    background-color: #ffffff;
+    background-position: 0 0;
+}
+.wholemap .img2{
+    position: absolute;
+    margin-left: 12px;
+    margin-top: 267px;
+    text-indent: 101%;
+    overflow: hidden;
+    white-space: nowrap;       
+}
+.wholemap .img15{
+    position: absolute;
+    margin-left: 12px;
+    margin-top: 302px;
+    text-indent: 101%;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+img:hover{ 
+    box-shadow: 0 0 2px 1px rgba(0, 140, 186, 0.5);
+}
+
+/* maptest end */
+
+
+/* progressbar */
+
+.body{
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.progress{
+    background-color: grey;
+    border-radius:20px;
+    height: 30px;
+    width: 100%;
+}
+
+.progress-done{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-image: repeating-linear-gradient(
+        to left, #0546e0,#1172f9,#4892f9);
+    box-shadow: 0 5px 5px -6px #0546e0, 0 3px 7px #1172f9;
+    border-radius: 20px;
+    color: white;
+    height: 100%;
+    width: 0;
+    transition: 1s ease 0.3s;
+}
+
+.inputContainer{
+    display: flex;
+    width: 100%;
+    justify-content: space-evenly;
+    font-size: 30px;
+}
+/* progressbar end */
