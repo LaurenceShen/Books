@@ -25,13 +25,15 @@ books = cursor.fetchall()
 cursor.close()
 conn.close()
 
+bag_books = []
+
 conn = sqlite3.connect('Coding101.db')
 cursor = conn.cursor()
 cursor.execute("SELECT * FROM User;")
 users = cursor.fetchall()
 cursor.close()
 conn.close()
-
+current_borrowed = []
 Month = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
 borrowed = {}
 conn = sqlite3.connect('Coding101.db')
@@ -46,7 +48,7 @@ SELECT * FROM Borrowed_{} INNER JOIN User ON User.ID = Borrowed_{}.User_ID
 cursor.close()
 conn.close()
 
-
+#print(borrowed)
 pjdir = os.path.abspath(os.path.dirname(__file__))
 
 app = Flask(__name__, static_folder="statics", static_url_path="/")
@@ -82,7 +84,7 @@ def request_loader(request):
         if tmpuser == i[1]:
             user = User()
             user.id = tmpuser
-            user.is_authenticated = request.form['password'] == users[tmpuser]['password']
+            user.is_authenticated = bcrypt.check_password_hash(i[2],request.form['password'])
             return user
     
     return 
@@ -93,8 +95,13 @@ def home():
 
 @app.route('/map', methods = ['POST', 'GET'])
 def map():
-    
-    return render_template('map.html', bookurl = './noteindex/'+ str(books[0][0]), book = books[0], bag = borrowed)
+    for j in borrowed.values():
+        for i in j:
+            print(i[1])
+            if i[6] == current_user.id and i[3] == 0:
+                if [books[i[1] - 1][0], books[i[1] - 1][1], books[i[1] - 1][3]] not in current_borrowed:
+                    current_borrowed.append([books[i[1]][0], books[i[1]][1], books[i[1]][3]])
+    return render_template('map.html', bookurl = './noteindex/'+ str(books[0][0]), book = books[0],  bag_books = current_borrowed)
 
 @app.route('/post_cards')
 def post_cards():
@@ -135,7 +142,7 @@ def login():
         user.id = user_id
         login_user(user)
         flash(f'{user_id}！開始冒險吧！')
-        return redirect(url_for('map'))
+        return redirect(url_for('home'))
     flash('登入失敗了...')
     return render_template('login.html')
 

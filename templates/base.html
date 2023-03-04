@@ -63,7 +63,9 @@
         <div class="sidebar">
             <h2>背包</h2>
             <ul>
-                <li><a href="#"><i class="fas fa-book">  書 1</i></a></li>
+                {% for b in bag_books%}
+                <li><a href="#"><img src = {{b[2]}}>{{b[1]}}</i></a></li>
+                <!--
                 <li><a href="#"><i class="fas fa-book">  書 2</i></a></li>
                 <li><a href="#"><i class="fas fa-book">  書 3</i></a></li>
                 <li><a href="#"><i class="fas fa-book">  書 4</i></a></li>
@@ -71,6 +73,8 @@
                 <li><a href="#"><i class="fas fa-book">  書 6</i></a></li>
                 <li><a href="#"><i class="fas fa-book">  書 7</i></a></li>
                 <li><a href="#"><i class="fas fa-book">  書 8</i></a></li>
+                -->
+                {% endfor %}
             </ul>
         </div>
 <!-- 背包結束 -->
