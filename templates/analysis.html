@@ -1,19 +1,105 @@
-
-<!DOCTYPE html>
-<html>
-<head>
+{% extends "base.html" %}
+{% block title %}探索{% endblock %}
+{% block main %}
     <link rel="stylesheet" href="rong.css"/>
-</head>
-<body>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
     
     <h1>偏好類型｜Your Type</h1>
     <!--放圖表-->
-    <svg viewBox="0 0 200 100">
-        <path d="M0,2 1,5 3,7 3,9" stroke="black"/>
-    </svg>
+    <canvas id="myChart"></canvas>
+    <script>
+      // 直條圖資料
+      var data = {
+        labels: ["哲學", "財經", "科幻", "恐怖", "漫畫"],
+        datasets: [
+          {
+            label: "閱讀量",
+            data: [12, 19, 3, 5, 2],
+            backgroundColor: [
+              "rgba(255, 99, 132, 1)",
+              "rgba(54, 162, 235, 1)",
+              "rgba(255, 206, 86, 1)",
+              "rgba(75, 192, 192, 1)",
+              "rgba(153, 102, 255, 1)"
+            ],
+            borderColor: [
+              "rgba(255, 99, 132, 1)",
+              "rgba(54, 162, 235, 1)",
+              "rgba(255, 206, 86, 1)",
+              "rgba(75, 192, 192, 1)",
+              "rgba(153, 102, 255, 1)"
+            ],
+            borderWidth: 1
+          }
+        ]
+      };
 
-    
+      // 直條圖設定
+     
+      var options = {
+        scales: {
+            yAxes: [{
+            ticks: {
+                beginAtZero: true,
+                fontSize: 20 // 設定文字大小為20
+            },
+            gridLines: {
+                color: "rgba(255, 0, 0, 1)"
+            }
+            }]
+        }
+        };
+
+      // 建立直條圖
+      var ctx = document.getElementById("myChart").getContext("2d");
+      var myChart = new Chart(ctx, {
+        type: "bar",
+        data: data,
+        options: options
+      });
+    </script>
+
+
     <h1>時間歷程｜Past Time</h1>
-    <!--放圖表-->
 
-</body>
+    <canvas id="myChart2"></canvas>
+    <script>
+    
+      // 折線圖資料
+      var data = {
+        labels: ["一月", "二月", "三月", "四月", "五月", "六月"],
+        datasets: [
+          {
+            label: "閱讀量",
+            data: [{{ borrow_size[0] }}, {{ borrow_size[1] }}, {{ borrow_size[2] }}, {{ borrow_size[3] }}, {{ borrow_size[4] }}, {{ borrow_size[5] }}],
+            backgroundColor: "rgba(75,192,192,0.4)",
+            borderColor: "rgba(75,192,192,1)",
+            borderWidth: 5
+          }
+        ]
+      };
+
+      // 折線圖設定
+      var options = {
+        scales: {
+          yAxes: [{
+            ticks: {
+              beginAtZero: true,
+              fontSize: 1000
+            }
+          }]
+        }
+      };
+
+      // 建立折線圖
+      var ctx = document.getElementById("myChart2").getContext("2d");
+      var myChart = new Chart(ctx, {
+        type: "line",
+        data: data,
+        options: options
+      });
+    
+    </script>
+{% endblock %}

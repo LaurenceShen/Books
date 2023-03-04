@@ -103,16 +103,24 @@ def map():
                     current_borrowed.append([books[i[1]][0], books[i[1]][1], books[i[1]][3]])
     return render_template('map.html', bookurl = './noteindex/'+ str(books[0][0]), book = books[0],  bag_books = current_borrowed)
 
+@app.route('/analysis')
+def analysis():
+    borrow_size = []
+    for i in borrowed.values():
+        borrow_size.append(len(i))
+    return render_template('analysis.html', borrow_size = borrow_size)
+
 @app.route('/post_cards')
 def post_cards():
-    return render_template('post_cards.html')
+    return render_template('postcards.html')
 
 @app.route('/mybooks' ,methods=['POST','GET'])
 def mybooks():
+    print(borrowed['Jan'])
     if request.method =='POST':
         if request.values['send']=='探索':
             return render_template('mybooks.html', name = request.values['mybook'])
-    return render_template('mybooks.html', name = "")
+    return render_template('mybooks.html', name = "", borrowed = borrowed, books = books)
 
 @app.route('/discovery', methods = ['POST', 'GET'])
 def discovery():
