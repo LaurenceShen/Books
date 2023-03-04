@@ -1,24 +1,21 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="UTF-8">
-    <title>My Post Cards and Cat Collection</title>
+{% extends "base.html" %}
+{% block title %}探索{% endblock %}
+{% block main %}
     <link rel="stylesheet" href="rong.css"/>
-</head>
-<body>
-    <!--明信片-->
-    <h1>我的明信片｜My Post Cards</h1>
-    <div class="card">
-        <h2 class="card-title">新北市 | NEW TAIPEI CITY</h2>
-        <img src="https://www.taiwan.net.tw/pic.ashx?qp=1/big_scenic_spots/pic_A12-00268_3.jpg&sizetype=3" width="300" height="200">
-        <img src="https://www.taiwan.net.tw/pic.ashx?qp=1/big_scenic_spots/pic_A12-00268_3.jpg&sizetype=3" width="300" height="200"><br>
-    </div>
 
-    <!--貓咪圖鑑-->
-    <h1>貓咪圖鑑｜Cat Collection</h1>
+    <h1>我的明信片｜My Post Cards</h1>
+    
     <div class="card">
-        <h2 class="card-title">喵咪</h2>
-        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT0I-T18M8xpJIhe8ct89gllAdCBeuIHK_OM1s1W1sY&s" width="300" height="200" alt="一張圖片"><br>
+    <h2 class="card-title">新北市 | NEW TAIPEI CITY</h2>
+    <img src="https://www.taiwan.net.tw/pic.ashx?qp=1/big_scenic_spots/pic_A12-00268_3.jpg&sizetype=3" width="300" height="200">
+    <img src="https://www.taiwan.net.tw/pic.ashx?qp=1/big_scenic_spots/pic_A12-00268_3.jpg&sizetype=3" width="300" height="200"><br/>
     </div>
-</body>
-</html>
+ 
+
+    <h1>貓咪圖鑑｜Cat Collection</h1>
+    
+    <div class="card">
+    <h2 class="card-title">喵咪</h2>
+    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT0I-T18M8xpJIhe8ct89gllAdCBeuIHK_OM1s1W1sY&s" width="300" height="200" alt="一張圖片"><br/>
+    </div>
+{% endblock %}

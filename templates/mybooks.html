@@ -1,12 +1,14 @@
-<!DOCTYPE html>
+{% extends "base.html" %}
+{% block title %}探索{% endblock %}
+{% block main %}
+<!--<!DOCTYPE html>
 <html>
-<head>
-  <link rel="stylesheet" href="./rong.css"/>
-</head>
-<body>
- 
-<!--我的回憶-->
+<head>-->
+
+  
+
     <h1>我的回憶｜Books</h1> 
+    <!--
     <select>
       <option>所有月份</option>
       <option>1</option>
@@ -22,17 +24,20 @@
       <option>11</option>
       <option>12</option>
   </select>
-
-  <h2>January</h2>
+-->
+{% for i in borrowed.keys()%}
+  <h2>{{i}}</h2>
   <div class="card">
-    <a href="貓戰士連結"> <img src="http://album.udn.com/community/img/PSN_PHOTO/tg020090/f_2986537_1.jpg" width="150" height="250"></a>
-    
+    {% for j in borrowed[i] %}
+    <a href="#"> <img src= {{ books[j[2] - 1][3] }} width="150" height="250"></a>
+    {% endfor %}
+    <!-- <a href="#"> <img src="" width="150" height="250"></a> -->
   </div>
-
+  <!--
   <h2>December</h2>
   <div class="card">
     <a href="書本連結"> <img src="https://im2.book.com.tw/image/getImage?i=https://www.books.com.tw/img/001/077/32/0010773253_bc_01.jpg&v=5a38f8b9k&w=280&h=280" width="150" height="250"></a>
-  
+  -->
+{% endfor %}
 
-</body>
-
+{% endblock %}

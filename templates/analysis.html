@@ -1,13 +1,10 @@
-
-<!DOCTYPE html>
-<html>
-<head>
+{% extends "base.html" %}
+{% block title %}探索{% endblock %}
+{% block main %}
     <link rel="stylesheet" href="rong.css"/>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
-</head>
-<body>
     
     <h1>偏好類型｜Your Type</h1>
     <!--放圖表-->
@@ -69,13 +66,14 @@
 
     <canvas id="myChart2"></canvas>
     <script>
+    
       // 折線圖資料
       var data = {
         labels: ["一月", "二月", "三月", "四月", "五月", "六月"],
         datasets: [
           {
             label: "閱讀量",
-            data: [4,4,5,6,4,3],
+            data: [{{ borrow_size[0] }}, {{ borrow_size[1] }}, {{ borrow_size[2] }}, {{ borrow_size[3] }}, {{ borrow_size[4] }}, {{ borrow_size[5] }}],
             backgroundColor: "rgba(75,192,192,0.4)",
             borderColor: "rgba(75,192,192,1)",
             borderWidth: 5
@@ -86,16 +84,14 @@
       // 折線圖設定
       var options = {
         scales: {
-            yAxes: [{
+          yAxes: [{
             ticks: {
-                beginAtZero: false,
-                callback: function(value, index, values) {
-                return parseInt(value);
-                }
+              beginAtZero: true,
+              fontSize: 1000
             }
-            }]
+          }]
         }
-        };
+      };
 
       // 建立折線圖
       var ctx = document.getElementById("myChart2").getContext("2d");
@@ -104,5 +100,6 @@
         data: data,
         options: options
       });
+    
     </script>
-</body>
+{% endblock %}
