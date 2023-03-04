@@ -98,17 +98,11 @@ def login():
 
     flash('登入失敗了...')
     return render_template('login.html')
-<<<<<<< HEAD
-@app.route('/books')
-def booooks():
-    return render_template('books.html')
-=======
 
-@app.route('./noteindex')
+@app.route('/noteindex')
 def note():
     return render_template('noteindex.html')
 
->>>>>>> origin/main
 @app.route('/logout')
 def logout():
     user_id = current_user.get_id()
@@ -139,4 +133,4 @@ def register():
         return 'Success Thank You'
     return render_template('register.html', form=form)
 
-app.run(host = '0.0.0.0', port=6000, debug=True)
+app.run(host = '0.0.0.0', port=5000, debug=True)
