@@ -131,10 +131,10 @@ def login():
     whe_exist = False
     whe_pass_corr = False
     for i in users:
-        if user_id == i[1]:
+        if user_id == i[1] and bcrypt.check_password_hash(i[2], user_password):
             whe_exist = True
-        if bcrypt.check_password_hash(i[2], user_password):
             whe_pass_corr = True
+    print(bcrypt.check_password_hash(i[2], user_password))
     if whe_exist and whe_pass_corr:
         user = User()
         user.id = user_id
@@ -163,12 +163,15 @@ def note():
 
 @app.route('/noteindex/<book>')
 def note(book):
+    if type(book) != int:
+        return render_template('error.html')
     output = None
     for i in books:
         #print(i[0])
         if i[0] == int(book):
             output = i
-            print(':(')
+    if output == None:
+        return render_template('error.html')
     return render_template('noteindex.html', book = output)
 
 
