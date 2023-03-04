@@ -25,8 +25,11 @@
               <div class="popup-wrap" id="letmeopen">
                 <div class="popup-box transform-out">
                   <h2>您的閱讀進度</h2>
+                  <div><input type="range" id="bookprogress" min="0" max="{{book[4]}}" step="1" value="0" /></div>
+                  <span class="rangeTxt"></span>
+                  <div></div>
                     <!-- progressbar test -->
-                    <div>                     
+                    <!-- <div>                     
                         <div class="progress">
                             <div class="progress-done"></div>
                         </div>
@@ -39,11 +42,11 @@
                             
                             <div>
                                 <div>此書總共頁數</div>
-                                <input class="maxInput" type="number"/>
+                                <div class="maxInput">{{book[4]}}</div>
                             </div>
                         </div>
-                    </div>
-                    <!-- progressbar test end-->
+                    </div> -->
+                    <!-- progressbar test end -->
                   <a class="close-btn popup-close" href="#">x</a>
                 </div>
               </div>
