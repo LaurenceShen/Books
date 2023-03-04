@@ -18,8 +18,27 @@ import sqlite3
 config = configparser.ConfigParser()
 config.read('config.ini')
 
+#<<<<<<< HEAD
+conn = sqlite3.connect('Coding101.db')
+cursor = conn.cursor()
+cursor.execute("SELECT * FROM Library;")
+books = cursor.fetchall()
+cursor.close()
+conn.close()
+
+conn = sqlite3.connect('Coding101.db')
+cursor = conn.cursor()
+cursor.execute("SELECT * FROM User;")
+users = cursor.fetchall()
+cursor.close()
+conn.close()
+#users = {'Me': {'password': 'myself'}}
+'''
+=======
 books = [['A', 'Allen', '借閱中', '2050/01/01', '25%', '50'], 'B', 'C']
 users = {'Me': {'password': 'myself'}}
+>>>>>>> origin/main
+'''
 pjdir = os.path.abspath(os.path.dirname(__file__))
 
 app = Flask(__name__, static_folder="statics", static_url_path="/")
@@ -41,27 +60,36 @@ class User(UserMixin):
 
 @login_manager.user_loader
 def user_loader(tmpuser):
-    if tmpuser not in users:
-        return
-
-    user = User()
-    user.id = tmpuser
-    return user
+    for i in users:
+        if tmpuser == i[1]:
+            user = User()
+            user.id = tmpuser
+            return user
+    return 
 
 @login_manager.request_loader
 def request_loader(request):
     tmpuser = request.form.get('user_id')
+    for i in users:
+        if tmpuser == i[1]:
+            user = User()
+            user.id = tmpuser
+            user.is_authenticated = request.form['password'] == users[tmpuser]['password']
+            return user
+    
+    return 
+    '''
     if tmpuser not in users:
         return
 
     user = User()
     user.id = tmpuser
-
+    '''
     # DO NOT ever store passwords in plaintext and always compare password
     # hashes using constant-time comparison!
-    user.is_authenticated = request.form['password'] == users[tmpuser]['password']
+    
 
-    return user
+    #return user
 
 
 @app.route('/')
@@ -71,7 +99,7 @@ def home():
 @app.route('/map', methods = ['POST', 'GET'])
 def map():
     
-    return render_template('map.html', bookurl = './noteindex/'+ books[0][0],book = books[0])
+    return render_template('map.html', bookurl = './noteindex/'+ str(books[0][0]), book = books[0])
 
 @app.route('/post_cards')
 def post_cards():
@@ -99,22 +127,14 @@ def login():
 
     user_id = request.form['user_id']
     user_password = request.form['password']
-    '''
-    conn = sqlite3.connect('Coding101.db')
-    cursor = conn.cursor()
-    
-    cursor.execute("SELECT * FROM User;")
-    record = cursor.fetchall()
 
     whe_exist = False
     whe_pass_corr = False
-    for i in record:
-        if user_id== i[1]:
+    for i in users:
+        if user_id == i[1]:
             whe_exist = True
-            print("YES")
-        if bcrypt.check_password_hash(i[2], password):
+        if bcrypt.check_password_hash(i[2], user_password):
             whe_pass_corr = True
-            print("yes")
     if whe_exist and whe_pass_corr:
         user = User()
         user.id = user_id
@@ -123,8 +143,13 @@ def login():
         return redirect(url_for('map'))
     flash('登入失敗了...')
     return render_template('login.html')
+'''
 
-    '''
+@app.route('/noteindex')
+def note():
+    return render_template('noteindex.html', book = books[0])
+'''
+'''
     if (user_id in users) and (bcrypt.check_password_hash(users[user_id]['password'], request.form['password'])):
         user = User()
         user.id = user_id
@@ -134,16 +159,33 @@ def login():
 
     flash('登入失敗了...')
     return render_template('login.html')
+'''
 
 @app.route('/noteindex/<book>')
 def note(book):
+    output = None
     for i in books:
-        if i[0] == book:
+        #print(i[0])
+        if i[0] == int(book):
             output = i
-    if request.method == 'POST':
-        print(request.value['紀錄'])
+            print(':(')
     return render_template('noteindex.html', book = output)
 
+
+'''
+@app.route('/<name>')
+def name1(name):
+    return render_template('login.html')
+'''
+'''
+@app.route('/<bookname>')
+def note1(bookname):
+    for i in books:
+        if i[0] == bookname:
+            return render_template('noteindex.html', book = i)
+    return 'not found:('
+    #return render_template('noteindex.html', book = )
+'''
 @app.route('/logout')
 def logout():
     user_id = current_user.get_id()
@@ -163,40 +205,40 @@ server = smtplib.SMTP('smtp.gmail.com',587)
 #  import Model
 @app.route('/register', methods=['GET', 'POST'])
 def register():
-    '''
-    from model import UserReister
-    from form import FormRegister
-    form = FormRegister()
-    if form.validate_on_submit():
-        user = UserReister(
-            username = form.username.data,
-            email = form.email.data,
-            password = form.password.data
-        )
-        db.session.add(user)
-        db.session.commit()
-        return 'Success Thank You'
-    '''
     if request.method == 'POST':
         name = str(request.values.get('name'))
         password = str(request.values.get('password'))
-        print(name.isalpha())
         if name.isalnum() == False:
             flash('請輸入有效id（英文或數字）')
             return render_template('register.html')
         if password.isalnum() == False:
             flash('請輸入有效密碼（英文或數字）')
             return render_template('register.html')
-        if name in users.keys():
+        conn = sqlite3.connect('Coding101.db')
+        cursor = conn.cursor()
+        cursor.execute("SELECT * FROM User;")
+        record = cursor.fetchall()
+
+        whe_exist = False
+        for i in record:
+            if name == i[1]:
+                whe_exist = True
+        if whe_exist:
             flash('用戶已存在')
             return render_template('register.html')
-        users[name] = {}
-        users[name]['password'] = bcrypt.generate_password_hash(password).decode('utf-8')
+        password = bcrypt.generate_password_hash(password).decode('utf-8')
+        print(type(password))
+        sql = """
+        INSERT INTO User (User_Name, Password, Stamp, Postcard)
+        VALUES (\"{}\", \"{}\", 0, 0);
+        """.format(name, password)
+        cursor.execute(sql)
+        conn.commit()
         flash('Success! Please login. user: ' + name)
         print(users)
         return render_template('login.html')
-
-
+        cursor.close()
+        conn.close()
     return render_template('register.html')
 
 app.run(host = '0.0.0.0', port=5000, debug=True)
