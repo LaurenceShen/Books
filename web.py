@@ -31,22 +31,13 @@ cursor.execute("SELECT * FROM User;")
 users = cursor.fetchall()
 cursor.close()
 conn.close()
-
-Month = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
-borrowed = {}
-conn = sqlite3.connect('Coding101.db')
-cursor = conn.cursor()
-for i in Month:
-    sql = """
-SELECT * FROM Borrowed_{} INNER JOIN User ON User.ID = Borrowed_{}.User_ID
-    """.format(i, i)
-    cursor.execute(sql)
-    borrowed_mon = cursor.fetchall()
-    borrowed[i] = borrowed_mon
-cursor.close()
-conn.close()
-
-
+#users = {'Me': {'password': 'myself'}}
+'''
+=======
+books = [['A', 'Allen', '借閱中', '2050/01/01', '25%', '50'], 'B', 'C']
+users = {'Me': {'password': 'myself'}}
+>>>>>>> origin/main
+'''
 pjdir = os.path.abspath(os.path.dirname(__file__))
 
 app = Flask(__name__, static_folder="statics", static_url_path="/")
