@@ -39,6 +39,11 @@ header {
   align-items: center;
   justify-content: space-between;
   padding: 40px 50px 15px 50px;
+  background-color: white;
+}
+
+.header-container{
+  background-color: white;
 }
 
 .nav > a {
@@ -59,6 +64,10 @@ header {
   position: fixed;
   right: 1rem;
   display: flex;
+}
+
+.navbar{
+  background-color: white;
 }
 
 .navbar a{

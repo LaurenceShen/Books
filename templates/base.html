@@ -12,9 +12,6 @@
     <!-- css -->
     <link rel="stylesheet" href="./../base.css"/>
 
-    <!-- Bootstrap -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-
     <!-- jquery -->
     <script src="./../js/jquery-3.6.3.min.js"></script>
 
@@ -26,11 +23,9 @@
 
 <!-- 上方導覽選單 -->
   <body>
-      <div class="header-background">
-        <header class="header container">
-          <div class="logo-wrapper">
+
+        <header>
             <a class="logo" href="#">我的貓咪書友</a>
-          </div>
 
           <ul class="navbar">
             {% if current_user.is_authenticated %}
