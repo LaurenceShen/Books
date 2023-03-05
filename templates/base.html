@@ -1,95 +1,71 @@
 <!DOCTYPE html>
 <html lang = "zh-tw">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="https://unpkg.com/boxicons@latest/css/boxicons.min.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-    <script src="https://kit.fontawesome.com/4ce746933b.js" crossorigin="anonymous"></script>
-    
-    <!-- css -->
-    <link rel="stylesheet" href="./../base.css"/>
+    <head>
+        <meta charset="UTF-8">
+        <link href="./../images/icon1.ico" rel="shortcut icon" />
+        <meta name="viewport" content="width=device-width", initial-scale=1.0 />
+        <!-- Bootstrap -->
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        <!-- Bootstrap -->
+        <link rel="stylesheet" type="text/css" href="./../base.css">
+        <link rel="stylesheet" href="https://unpkg.com/boxicons@latest/css/boxicons.min.css">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+        <script src="https://kit.fontawesome.com/4ce746933b.js" crossorigin="anonymous"></script>
+        <!-- jquery -->
+        <script src="./../js/jquery-3.6.3.min.js"></script>
+        <title>{% block title %}{% endblock %}</title>
+    </head>
 
-    <!-- jquery -->
-    <script src="./../js/jquery-3.6.3.min.js"></script>
-
-    <!-- title -->
-    <title>{% block title %}{% endblock %}</title>
-    
-  </head>
-
-
-<!-- 上方導覽選單 -->
-  <body>
+    <body>
+<!--上方選單-->
 
         <header>
-            <a class="logo" href="#">我的貓咪書友</a>
-
-          <ul class="navbar">
-            {% if current_user.is_authenticated %}
-            <li><a href="./../map">地圖</a></li>
-            <li>
-                <a href="#memory">回憶 ▾</a>
-                <ul class="dropdown">
-                    <li><a href="#">個人分析</a></li>
-                    <li><a href="./../post_cards">我的收藏</a></li>
-                    <li><a href="./../mybooks">讀過的書</a></li>
-                </ul>
-            </li>
-            <li><a href="./../discovery">探索</a></li>
-            <li><a href="https://tpml.gov.taipei/">圖書館</a></li>
-            <li><a href="./../logout">登出</a></li>
-            <li><a href="./../donate">抖內我們</a></li>
-            {% else %}
-            <li><a href="./../discovery">探索</a></li>
-            <li><a href="https://tpml.gov.taipei/">圖書館</a></li>
-            <li><a href="./../login">登入</a></li>
-            <li><a href="../../register">註冊帳號</a></li>
-            {% endif %}
-        </ul>
+            <span>
+                <a href="#" class="logo">
+                    <img src="../../images/cat1-d.png" alt="logo" class="catlogo">我的貓咪書友</a>
+            </span>
+            <div class="bx bx-menu" id="menu-icon"></div>
+            
+            <ul class="navbar">
+                {% if current_user.is_authenticated %}
+                <li><a href="./../map">地圖</a></li>
+                <li>
+                    <a href="#">回憶 ▾</a>
+                    <ul class="dropdown">
+                        <li><a href="analysis">個人分析</a></li>
+                        <li><a href="./../post_cards">我的收藏</a></li>
+                        <li><a href="./../mybooks">讀過的書</a></li>
+                    </ul>
+                </li>
+                <li><a href="./../discovery">探索</a></li>
+                <li><a href="https://tpml.gov.taipei/">圖書館</a></li>
+                <li><a href="./../logout">登出</a></li>
+                <li><a href="./../donate">抖內我們</a></li>
+                {% else %}
+                <li><a href="./../discovery">探索</a></li>
+                <li><a href="https://tpml.gov.taipei/">圖書館</a></li>
+                <li><a href="./../login">登入</a></li>
+                <li><a href="../../register">註冊帳號</a></li>
+                {% endif %}
+            </ul>
         </header>
-      </div>
-<!-- 上方導覽選單結束 -->
+        
+<!--上方選單結束 -->
 
-
-<!-- 小螢幕的彈出導覽選單 -->
-      <div class="mob-menu">
-        <img src="./../images/open.png" class="mob-open" alt="openSvg" />
-        <div class="mob-wrapper close">
-          <img src="./../images/close.png" class="mob-close" alt="closeSvg" />
-          
-          <ul class="mob-list">
-            <li><h3 href="#home">我的貓咪書友</h3></li>
-            <li><a href="#home">地圖</a></li>
-            <li>
-                <a href="#about">回憶 ▾</a>
-                <ul class="mob-dropdown">
-                    <li><a href="#">個人分析</a></li>
-                    <li><a href="#">我的收藏</a></li>
-                    <li><a href="#">讀過的書</a></li>
-                </ul>
-            </li>
-            <li><a href="#menu">探索</a></li>
-            <li><a href="#services">圖書館</a></li>
-            <li><a href="#contact">登出</a></li>
-            <li><a href="#contact">個人資料</a></li>
-        </ul>
-        </div>
-      </div>
-<!-- 小螢幕的彈出導覽選單 -->
-
-<!-- 彈出式背包-->
-<input type="checkbox" id="check">
-        <label for="check">
-            <i class="fas fa-bag-backpack" id="btn">     背包</i>
-            <i class="fas fa-angles-left" id="cancel"></i>
-        </label>
+<!-- 背包 -->
+            <input type="checkbox" id="check">
+            <label for="check">
+                <i class="fas fa-bag-backpack" id="btn">     背包</i>
+                <i class="fas fa-angles-left" id="cancel"></i>
+            </label>
         <div class="sidebar">
             <h2>背包</h2>
             <ul>
-                <li><a href="#"><i class="fas fa-book">  書 1</i></a></li>
+                {% for b in bag_books%}
+                <li><a href="#"><img src = {{b[2]}} width = '50' height = '50' >{{b[1]}}</i></a></li>
+                <!--
                 <li><a href="#"><i class="fas fa-book">  書 2</i></a></li>
                 <li><a href="#"><i class="fas fa-book">  書 3</i></a></li>
                 <li><a href="#"><i class="fas fa-book">  書 4</i></a></li>
@@ -97,25 +73,29 @@
                 <li><a href="#"><i class="fas fa-book">  書 6</i></a></li>
                 <li><a href="#"><i class="fas fa-book">  書 7</i></a></li>
                 <li><a href="#"><i class="fas fa-book">  書 8</i></a></li>
+                -->
+                {% endfor %}
             </ul>
         </div>
-<!-- 彈出式背包結束-->
+<!-- 背包結束 -->
 
-<main>
-  <!-- 可供更改的部分 -->
-  <section class = "main">
- {% block main %}{% endblock %}
- </section>
-</main>
+        <main>
+            <!-- 可供更改的部分 -->
+            <section class = "main">
+           {% block main %}{% endblock %}
+           </section>
+       </main>
 
-<footer>
-  <!--footer-->
-</footer>
+       <footer>
+           <div></div>
+       </footer>
+       
+       
+       {% block script %}{% endblock %}
 
-    <script src="./../base.js"></script>
+    </body>
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-    {% block script %}{% endblock %}
-  </body>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>  
+    <script src="./../js/myscript.js"></script>
 </html>

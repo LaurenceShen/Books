@@ -1,19 +1,14 @@
 {% extends "base.html" %}
-
-{% block title %}我的書房{% endblock %}
+{% block title %}探索{% endblock %}
 {% block main %}
-    
-    <h1>我的回憶 | Books</h1>
-    {% if name == "" %}
-    <form method="post">
-      <input type="text" name="mybook">
-      <input type="submit" name="send" value="探索">
-    </form>
-    {% else %}
-    <p>以下是{{name}}的資訊</p>
-    {% endif %}
-    <p>這是一個段落</p>
+<!--<!DOCTYPE html>
+<html>
+<head>-->
+
+  
+
     <h1>我的回憶｜Books</h1> 
+    <!--
     <select>
       <option>所有月份</option>
       <option>1</option>
@@ -29,115 +24,20 @@
       <option>11</option>
       <option>12</option>
   </select>
-  <h3>January</h3>
-  <div class="col-sm-6 mb-3 mb-sm-0" style="border:4px black solid;">
-    <img src="..." class="card-img-top" alt="...">
-    <div class="card-body">
-    <h3 class="card-title">書名</h3>
-    <p class="card-text">大綱</p>
-    <a href="#" class="btn btn-primary">該明信片連結</a>
-    </div>
+-->
+{% for i in borrowed.keys()%}
+  <h2>{{i}}</h2>
+  <div class="card">
+    {% for j in borrowed[i] %}
+    <a href="#"> <img src= {{ books[j[2] - 1][3] }} width="150" height="250"></a>
+    {% endfor %}
+    <!-- <a href="#"> <img src="" width="150" height="250"></a> -->
   </div>
-  <h3>February</h3>
-  <div class="col-sm-6 mb-3 mb-sm-0" style="border:4px black solid;">
-    <img src="..." class="card-img-top" alt="...">
-    <div class="card-body">
-    <h3 class="card-title">書名</h3>
-    <p class="card-text">大綱</p>
-    <a href="#" class="btn btn-primary">該明信片連結</a>
-    </div>
-  </div>
-  <h3>March</h3>
-  <div class="col-sm-6 mb-3 mb-sm-0" style="border:4px black solid;">
-    <img src="..." class="card-img-top" alt="...">
-    <div class="card-body">
-    <h3 class="card-title">書名</h3>
-    <p class="card-text">大綱</p>
-    <a href="#" class="btn btn-primary">該明信片連結</a>
-    </div>
-  </div>
-  <h3>April</h3>
-  <div class="col-sm-6 mb-3 mb-sm-0" style="border:4px black solid;">
-    <img src="..." class="card-img-top" alt="...">
-    <div class="card-body">
-    <h3 class="card-title">書名</h3>
-    <p class="card-text">大綱</p>
-    <a href="#" class="btn btn-primary">該明信片連結</a>
-    </div>
-  </div>
-  <h3>May</h3>
-  <div class="col-sm-6 mb-3 mb-sm-0" style="border:4px black solid;">
-    <img src="..." class="card-img-top" alt="...">
-    <div class="card-body">
-    <h3 class="card-title">書名</h3>
-    <p class="card-text">大綱</p>
-    <a href="#" class="btn btn-primary">該明信片連結</a>
-    </div>
-  </div>
-  <h3>June</h3>
-  <div class="col-sm-6 mb-3 mb-sm-0" style="border:4px black solid;">
-    <img src="..." class="card-img-top" alt="...">
-    <div class="card-body">
-    <h3 class="card-title">書名</h3>
-    <p class="card-text">大綱</p>
-    <a href="#" class="btn btn-primary">該明信片連結</a>
-    </div>
-  </div>
-  <h3>July</h3>
-  <div class="col-sm-6 mb-3 mb-sm-0" style="border:4px black solid;">
-    <img src="..." class="card-img-top" alt="...">
-    <div class="card-body">
-    <h3 class="card-title">書名</h3>
-    <p class="card-text">大綱</p>
-    <a href="#" class="btn btn-primary">該明信片連結</a>
-    </div>
-  </div>
-  <h3>August</h3>
-  <div class="col-sm-6 mb-3 mb-sm-0" style="border:4px black solid;">
-    <img src="..." class="card-img-top" alt="...">
-    <div class="card-body">
-    <h3 class="card-title">書名</h3>
-    <p class="card-text">大綱</p>
-    <a href="#" class="btn btn-primary">該明信片連結</a>
-    </div>
-  </div>
-  <h3>September</h3>
-  <div class="col-sm-6 mb-3 mb-sm-0" style="border:4px black solid;">
-    <img src="..." class="card-img-top" alt="...">
-    <div class="card-body">
-    <h3 class="card-title">書名</h3>
-    <p class="card-text">大綱</p>
-    <a href="#" class="btn btn-primary">該明信片連結</a>
-    </div>
-  </div>
-  <h3>October</h3>
-  <div class="col-sm-6 mb-3 mb-sm-0" style="border:4px black solid;">
-    <img src="..." class="card-img-top" alt="...">
-    <div class="card-body">
-    <h3 class="card-title">書名</h3>
-    <p class="card-text">大綱</p>
-    <a href="#" class="btn btn-primary">該明信片連結</a>
-    </div>
-  </div>
-  <h3>November</h3>
-  <div class="col-sm-6 mb-3 mb-sm-0" style="border:4px black solid;">
-    <img src="..." class="card-img-top" alt="...">
-    <div class="card-body">
-    <h3 class="card-title">書名</h3>
-    <p class="card-text">大綱</p>
-    <a href="#" class="btn btn-primary">該明信片連結</a>
-    </div>
-  </div>
-  <h3>December</h3>
-  <div class="col-sm-6 mb-3 mb-sm-0" style="border:4px black solid;">
-    <img src="..." class="card-img-top" alt="...">
-    <div class="card-body">
-    <h3 class="card-title">書名</h3>
-    <p class="card-text">大綱</p>
-    <a href="#" class="btn btn-primary">該明信片連結</a>
-    </div>
-  </div>
-
+  <!--
+  <h2>December</h2>
+  <div class="card">
+    <a href="書本連結"> <img src="https://im2.book.com.tw/image/getImage?i=https://www.books.com.tw/img/001/077/32/0010773253_bc_01.jpg&v=5a38f8b9k&w=280&h=280" width="150" height="250"></a>
+  -->
+{% endfor %}
 
 {% endblock %}
-
