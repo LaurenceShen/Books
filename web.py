@@ -134,6 +134,7 @@ def mybooks():
 
 @app.route('/discovery', methods = ['POST', 'GET'])
 def discovery():
+     print(current_borrowed)
      return render_template("discovery.html", books = books, bag_books = current_borrowed)
 
 @app.route('/donate')
