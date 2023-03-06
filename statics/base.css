@@ -9,7 +9,7 @@
 }
 
 :root {
-    --main-color:#ff702a;
+    --main-color:#98693f;
     --text-color:#1e1c2a;
     --bg-color:#fefdfa;
     --big-font:5rem;
@@ -118,7 +118,9 @@ ul li ul.dropdown{
     position: absolute;
     z-index: 1;
     display: none;
-    background-color: #fefdfa;
+    background-color: white;
+    /* border: 1px solid;
+    border-radius: 8px; */
 }
 
 ul li:hover ul.dropdown{
@@ -134,7 +136,7 @@ ul li:hover ul.dropdown{
     left: -250px;
     width: 250px;
     height: 8%;
-    background: #fdf9f7;
+    background: white;
     transition: all.5s ease;
 }   
 /* .sidebar{
@@ -166,12 +168,11 @@ ul li:hover ul.dropdown{
     font-size: 23px;
     text-align: center;
     line-height: 40px;
-    background: #fd9264;
+    background: #c9b09b;
     user-select: none;
 }
 
 .sidebar ul {
-    margin-top: 20px;
     margin-left: 10px;
 }
 
@@ -182,7 +183,7 @@ ul li:hover ul.dropdown{
     line-height: 80px;
     font-size: 12px; 
     color: #042331;
-    background-color: #fdf9f7;
+    background-color: white;
     padding-left: 5px; 
     box-sizing: border-box;
     transition: .4s;
@@ -213,7 +214,7 @@ label #btn, label #cancel{
 label #btn{
     left: 50px;
     top: 100px;
-    background: #ff702a;
+    background: #98693f;
     font-size: 20px;
     color: white;
     padding: 6px 12px;
