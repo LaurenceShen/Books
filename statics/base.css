@@ -106,11 +106,12 @@ ul li ul.dropdown li{
 }
 
 ul li ul.dropdown{
-    width: 100%;
+    width: 21%;
     line-height: 30px;
     position: absolute;
-    z-index: 2000;
+    z-index: 1;
     display: none;
+    background-color: #fefdfa;
 }
 
 ul li:hover ul.dropdown{
