@@ -22,6 +22,11 @@
     color:#fff;
 }
 
+/* 往右推動整頁 */
+.section{
+  margin-top: -60px;
+  margin-left: -120px;
+}
 body{
     color: var(--text-color);
     background: var(--bg-color);
@@ -29,6 +34,7 @@ body{
 
 header{
     position: fixed;
+    z-index: 1;
     top: 0;
     right: 0;
     width: 100%;
@@ -37,6 +43,7 @@ header{
     justify-content: space-between;
     padding: 15px 50px 10px 50px;
     background: var(--bg-color);
+    border-bottom: solid 0.5px #888375;
 }
 
 section{
@@ -115,11 +122,11 @@ ul li:hover ul.dropdown{
 
 .sidebar{
     position: fixed;
-    margin-top: 50px;
+    margin-top: 70px;
     left: -250px;
     width: 250px;
     height: 8%;
-    background: #fefdfa;
+    background: #fdf9f7;
     transition: all.5s ease;
 }   
 /* .sidebar{
@@ -149,10 +156,9 @@ ul li:hover ul.dropdown{
 
 .sidebar h2{
     font-size: 23px;
-    color: white;
     text-align: center;
     line-height: 40px;
-    background: #ff702a;
+    background: #fd9264;
     user-select: none;
 }
 
@@ -165,19 +171,18 @@ ul li:hover ul.dropdown{
     display: block;
     height: 100%;
     width: 100%;
-    line-height: 65px;
-    font-size: 18px; 
+    line-height: 80px;
+    font-size: 12px; 
     color: #042331;
-    padding-left: 20px; 
+    background-color: #fdf9f7;
+    padding-left: 5px; 
     box-sizing: border-box;
-    border-top: 1px solid rgba(255, 255,255,.1);
-    /*  每本書中間的界線 border-bottom: 1px solid #042331; */
     transition: .4s;
 }
 
 /* 鼠標點擊往右 */
 .sidebar ul li:hover a{
-    padding-left: 50px;
+    padding-left: 25px;
 }
 
 /* 書的圖案靠右 */
@@ -199,7 +204,7 @@ label #btn, label #cancel{
 /* 主頁打開背包的logo */
 label #btn{
     left: 50px;
-    top: 80px;
+    top: 100px;
     background: #ff702a;
     font-size: 20px;
     color: white;
@@ -210,7 +215,7 @@ label #btn{
 /* 收起來叉叉 */
 label #cancel{
     z-index: 1111;
-    top: 62px;
+    top: 82px;
     left: -195px;
     line-height: 65px;
     font-size: 20px;
