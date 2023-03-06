@@ -3,6 +3,7 @@
 {% block title %}手札{% endblock %}
 {% block main %}
 <link rel="stylesheet" href="./../mystyle.css">
+<section class = "section">
 <div class="allwrap">
     <h1 title="書名" class= "bookname"> {{book[1]}} </h1>
     <div class="container1">
@@ -26,8 +27,9 @@
                 <div class="popup-box transform-out">
                     <div class="bookpage">
                         <h2>您的閱讀進度</h2>
-                        <form method="get">
-                            <div><input type="range" id="bookprogress" min="0" max="{{book[4]}}" step="1" value="0" /></div>
+                        <form method="post">
+                            <div><input type="range" id="bookprogress" name = "bookprogress" min="0" max="{{book[4]}}" step="1" value="0" /></div>
+                            <a>目前進度：{{book[5]}}頁</a>
                             <div>
                             書籤：第<span class="rangeTxt"></span><span>頁 / {{book[4]}}頁</span>
                             </div>
@@ -48,7 +50,7 @@
             <p>心得紀錄 | Thoughts</p>
         </div>
         <div class="item2">
-            <form method="get">
+            <form method="post">
                 <div class="p-3 m-0 border-0 bd-example">  
                     <div class="form-floating">
                         <grammarly-extension data-grammarly-shadow-root="true" class="cGcvT"></grammarly-extension>
