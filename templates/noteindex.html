@@ -17,36 +17,25 @@
             作者：<span>{{book[0]}}</span><br>
             狀態：<span>{{book[1]}}</span><br>
             期限：<span>{{book[2]}}</span><br>
-            閱讀進度/書籤：<br>
+            書籤：<br>
             <!-- popup的書籤 -->
             <div class="wrap">
-                <a class="btn popup-btn" href="#letmeopen">更新書籤</a>
+                <a class="btn popup-btn" href="#letmeopen">更新閱讀進度</a>
             </div class="body">
               <div class="popup-wrap" id="letmeopen">
                 <div class="popup-box transform-out">
-                  <h2>您的閱讀進度</h2>
-                  <div><input type="range" id="bookprogress" min="0" max="{{book[4]}}" step="1" value="0" /></div>
-                  <span class="rangeTxt"></span>
-                  <div></div>
-                    <!-- progressbar test -->
-                    <!-- <div>                     
-                        <div class="progress">
-                            <div class="progress-done"></div>
-                        </div>
-
-                        <div class="inputContainer">
+                    <div class="bookpage">
+                        <h2>您的閱讀進度</h2>
+                        <form method="get">
+                            <div><input type="range" id="bookprogress" min="0" max="{{book[4]}}" step="1" value="0" /></div>
                             <div>
-                                <div>目前閱讀頁數</div>
-                                <input class="input" type="number"/>
+                            書籤：第<span class="rangeTxt"></span><span>頁 / {{book[4]}}頁</span>
                             </div>
-                            
-                            <div>
-                                <div>此書總共頁數</div>
-                                <div class="maxInput">{{book[4]}}</div>
+                            <div >
+                            <input type="submit" value="更新" class="btn bookpage">
                             </div>
-                        </div>
-                    </div> -->
-                    <!-- progressbar test end -->
+                        </form>
+                    </div>
                   <a class="close-btn popup-close" href="#">x</a>
                 </div>
               </div>
