@@ -167,7 +167,7 @@ h2 {
     top: 10px;
     right: 10px;
     border-radius: 100%;
-    background: #d75f70;
+    background: #ff823f;
     font-weight: bold;
     text-decoration: none;
     color: #fff;
@@ -255,42 +255,35 @@ img:hover{
 
 /* maptest end */
 
-
-/* progressbar */
-
-.body{
-    height: 100vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
+/* progress range */
+/* 參考https://segmentfault.com/a/1190000041543171 */
+[type="range"] {
+    -webkit-appearance: none;
+    appearance: none;
+    margin: 0;
+    outline: 0;
+    background-color: transparent;
+    width: 500px;
 }
-
-.progress{
-    background-color: grey;
-    border-radius:20px;
-    height: 30px;
-    width: 100%;
+[type="range"]::-webkit-slider-runnable-track {
+    height: 4px;
+    background: #eee;
 }
-
-.progress-done{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background-image: repeating-linear-gradient(
-        to left, #0546e0,#1172f9,#4892f9);
-    box-shadow: 0 5px 5px -6px #0546e0, 0 3px 7px #1172f9;
-    border-radius: 20px;
-    color: white;
-    height: 100%;
-    width: 0;
-    transition: 1s ease 0.3s;
+[type="range" i]::-webkit-slider-container {
+    height: 80px;
+    overflow: hidden;
 }
-
-.inputContainer{
-    display: flex;
-    width: 100%;
-    justify-content: space-evenly;
+[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    background-color: #ff823f;
+    border: 1px solid transparent;
+    margin-top: -8px;
+    border-image: linear-gradient(#ff823f,#ff823f) 0 fill / 8 20 8 0 / 0px 0px 0 2000px;
+}
+.bookpage{
     font-size: 30px;
 }
-/* progressbar end */
