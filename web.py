@@ -107,7 +107,7 @@ def map():
 @app.route('/analysis')
 def analysis():
     borrow_size = []
-    print(current_borrowed)
+    print("cur: ", current_borrowed)
     for i in borrowed.values():
         borrow_size.append(len(i))
     return render_template('analysis.html', borrow_size = borrow_size, bag_books = current_borrowed)
