@@ -168,7 +168,7 @@ ul li:hover ul.dropdown{
     font-size: 23px;
     text-align: center;
     line-height: 40px;
-    background: #c6aa94;
+    background: #be9f87;
     user-select: none;
 }
 
@@ -260,7 +260,6 @@ label #cancel{
     margin-left: 10px;
     font-size: 25px;
     font-weight: 350;
-    
 }
 
 .card-title h2{
