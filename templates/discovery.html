@@ -9,8 +9,12 @@ h1 {
     color: rgb(0, 0, 0);
   }
 
+p{
+	margin-top: 10px;
+}
+
 		.container {
-            width: 170vh;
+            width: 129vh;
             height: 35vh;
 			display: flex;
 			justify-content: center;
@@ -20,7 +24,7 @@ h1 {
 		}
 
 		.activity {
-			width: 200vh;
+			width: 180vh;
 			height: 100%;
 			padding: 20px;
 			background-color: #fff;
@@ -46,8 +50,9 @@ h1 {
 		}
 
         .book_top img {
-			width: 65%;
-			height: auto;
+			width: 18vh;
+			height: 20vh;
+			max-width: 100%
 		}
 
 		.book_top h3 {
@@ -85,8 +90,8 @@ h1 {
         }
 
 		.book img {
-			width: 60%;
-			height: auto;
+			width: 18vh;
+			height: 20vh;
 			margin-top: 2vh;
 		}
 
@@ -108,19 +113,19 @@ h1 {
     <h1>最新消息｜News</h1>
 	<div class="container">
 		<div class="activity">
-			<p>這裡展示圖書館的最新活動</p>
+			<img src= "Event.png">
 		</div>
 
         <div class="book_top">
-            <p>新進館藏</p>
+            <h3>新進館藏</h3>
 			<img src={{bag_books[4][2]}}>
-			<h3>{{bag_books[4][1]}}</h3>
+			<p>{{bag_books[4][1]}}</p>
 		</div>
 
 		<div class="book_top">
-            <p>新進館藏</p>
+            <h3>新進館藏</h3>
 			<img src={{bag_books[5][2]}}>
-			<h3>{{bag_books[5][1]}}</h3>
+			<p>{{bag_books[5][1]}}</p>
 		</div>
     </div>
 
@@ -129,19 +134,19 @@ h1 {
     <div class="container1">
 		<div class="book">
 			<img src={{bag_books[0][2]}}>
-			<h3>{{bag_books[0][1]}}</h3>
+			<p>{{bag_books[0][1]}}</p>
 		</div>
 		<div class="book">
 			<img src={{bag_books[1][2]}}>
-			<h3>{{bag_books[1][1]}}</h3>
+			<p>{{bag_books[1][1]}}</p>
 		</div>
 		<div class="book">
 			<img src={{bag_books[2][2]}}>
-			<h3>{{bag_books[2][1]}}</h3>
+			<p>{{bag_books[2][1]}}</p>
 		</div>
 		<div class="book">
 			<img src={{bag_books[3][2]}}>
-			<h3>{{bag_books[3][1]}}</h3>
+			<p>{{bag_books[3][1]}}</p>
 		</div>
 		
 		
