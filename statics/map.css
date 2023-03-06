@@ -103,7 +103,7 @@ table {
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.5);
+    background-color: rgba(0, 0, 0, 0.5) !important;
     display: none;
     justify-content: center;
     align-items: center;
@@ -221,20 +221,26 @@ table {
   }
 
 
+  .img0 {
+    position: absolute;
+    top: 163px;
+    right: 427px;
+  }
+
   .img1 {
     position: absolute;
-    top: 128px;
-    right: 393px;
+    top: 160px;
+    right: 505px;
   }
   .img2 {
     position: absolute;
-    top: 128px;
-    right: 353px;
+    top: 160px;
+    right: 463px;
   }
   .img3 {
     position: absolute;
-    top: 128px;
-    right: 313px;
+    top: 160px;
+    right: 421px;
   }
   .img4 {
     position: absolute;
