@@ -95,13 +95,17 @@ def home():
 @app.route('/map', methods = ['POST', 'GET'])
 def map():
     try:
+        cur = []
+        current_borrowed = []
         for j in borrowed.values():
             for i in j:
                 print(i[1])
                 if i[6] == current_user.id and i[3] == 0:
-                    if [books[i[1] - 1][0], books[i[1] - 1][1], books[i[1] - 1][3]] not in current_borrowed:
-                        current_borrowed.append([books[i[1]][0], books[i[1]][1], books[i[1]][3]])
-        return render_template('map.html', bookurl = './noteindex/'+ str(books[0][0]), book = books[0],  bag_books = current_borrowed)
+                    if books[i[1] - 1][0] not in cur:
+                        cur.append(books[i[1] - 1][0])
+                        current_borrowed.append([books[i[1] - 1][0], books[i[1] - 1][1], books[i[1] - 1][3],  i[4], books[i[1] - 1][4], (i[4]/books[i[1] - 1][4])*100])
+                    print(type(current_borrowed[0][5]))
+        return render_template('map.html', bookurl = './noteindex/'+ str(books[0][0]), bag_books = current_borrowed)
     except:
         return redirect(url_for('login'))
 @app.route('/analysis')
