@@ -12,6 +12,7 @@
   
 
 .grid-container {
+    background-color: #fefdfa;
     display: grid;
     justify-content: space-evenly;
     column-gap: 150px;
@@ -20,7 +21,7 @@
   }
   
 .grid-container > div {
-    background-color: rgba(255, 255, 255, 0.8);
+    background-color: #fefdfa;
     text-align: left;
     padding: 20px 0;
     font-size: 15px;
@@ -148,8 +149,8 @@ table {
     height: 40px;
     display: inline-flexbox;
     position: absolute;
-    top: 370px;
-    right: 290px;
+    top: 390px;
+    right: 400px;
     border-radius: 10%;
     background: #e3e3e3;
     text-decoration: none;
@@ -159,8 +160,8 @@ table {
 
   .text1 {
     position: absolute;
-    top: 160px;
-    left: 290px;
+    top: 190px;
+    left: 405px;
     text-decoration: none;
     color: #000000;
     font-size: 18px;
@@ -168,8 +169,8 @@ table {
 
   .text2 {
     position: absolute;
-    top: 218px;
-    right: 320px;
+    top: 255px;
+    left: 685px;
     text-decoration: none;
     color: #000000;
     font-size: 18px;
@@ -177,8 +178,8 @@ table {
 
   .text3 {
     position: absolute;
-    top: 280px;
-    right: 325px;
+    top: 320px;
+    right: 440px;
     text-decoration: none;
     color: #000000;
     font-size: 18px;
@@ -186,8 +187,8 @@ table {
 
   .text4 {
     position: absolute;
-    top: 205px;
-    left: 290px;
+    top: 235px;
+    left: 405px;
     text-decoration: none;
     color: #000000;
     font-size: 15px;
@@ -195,8 +196,8 @@ table {
 
   .text5 {
     position: absolute;
-    top: 240px;
-    left: 290px;
+    top: 275px;
+    left: 405px;
     text-decoration: none;
     color: #000000;
     font-size: 15px;
@@ -204,8 +205,8 @@ table {
 
   .text6 {
     position: absolute;
-    top: 275px;
-    left: 290px;
+    top: 315px;
+    left: 405px;
     text-decoration: none;
     color: #000000;
     font-size: 15px;
@@ -213,8 +214,8 @@ table {
 
   .text7 {
     position: absolute;
-    top: 310px;
-    left: 290px;
+    top: 355px;
+    left: 405px;
     text-decoration: none;
     color: #000000;
     font-size: 15px;
@@ -244,6 +245,6 @@ table {
   }
   .img4 {
     position: absolute;
-    top: 125px;
-    right: 295px;
+    top: 155px;
+    right: 390px;
   }
