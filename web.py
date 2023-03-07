@@ -125,11 +125,13 @@ def login():
 
     whe_exist = False
     whe_pass_corr = False
+    
     for i in users:
         if user_id == i[1] and bcrypt.check_password_hash(i[2], user_password):
             whe_exist = True
             whe_pass_corr = True
         print(bcrypt.check_password_hash(i[2], user_password))
+        print(i[1])
     if whe_exist and whe_pass_corr:
         user = User()
         user.id = user_id
@@ -188,8 +190,8 @@ def register():
         password = bcrypt.generate_password_hash(password).decode('utf-8')
         print(type(password))
         sql = """
-        INSERT INTO User (User_Name, Password, Stamp, Postcard)
-        VALUES (\"{}\", \"{}\", 0, 0);
+        INSERT INTO User (User_Name, Password, Stamp, Postcard1, Postcard2, Postcard3, Postcard4, Postcard5, Postcard6, Postcard7, Postcard8, Postcard9, Postcard10, Postcard11, Postcard12, Postcard13, Postcard14, Postcard15, Postcard16, Postcard17, Cat1, Cat2, Cat3, Cat4, Cat5, Cat6, Cat7, Cat8, Cat9, Cat10, Cat11, Cat12, Cat13, Cat14, Cat15, Cat16, Cat17)
+        VALUES (\"{}\", \"{}\", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
         """.format(name, password)
         cursor.execute(sql)
         conn.commit()
