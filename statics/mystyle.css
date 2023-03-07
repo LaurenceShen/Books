@@ -1,27 +1,289 @@
+/* http://meyerweb.com/eric/tools/css/reset/ 
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+/*
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+body {
+	line-height: 1;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}*/
+/*到這裡是CSS reset的語法，避免不同瀏覽器有不同的預設值而導致跑版
+html {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+  }
+  *, *:before, *:after {
+    -webkit-box-sizing: inherit;
+    -moz-box-sizing: inherit;
+    box-sizing: inherit;
+    }
+*/
+/* .allwrap{
+    margin: 0 auto;
+    width: 1000px;
+} */
+
 .bookname {
-    padding: 70px 10px 10px 10px;
+    font-size: 22px;
+}
+.container1{
+    display: flex;
+    background-color: rgb(255, 255, 255);
+    width: 900px;
+    justify-content: start;
+}
+.item{
+    background-color: white;
+    width: 300px;
+    text-align: center;
+    margin: 5px;
+}
+.itemtext{
+    padding: 30px;
+    text-align: left;
+    line-height: 2;
 }
 img {
-    content: 'img';
-    display: block;
+    max-width: 100%;
     height: auto;
-    width: 150px;
-    float: left;
-    padding: 0px 20px 10px 20px;
+}
+.bookimg {
+    width: 67%;
+    padding: 25px;
     }
 .button {
-    background-color: #d4d4d4;
+    width: 200px;
+    background-color: #ffe3cd;
     border: none;
-    color: rgb(255, 255, 255);
-    padding: 4px 128px;
+    color: rgb(255, 144, 40);
     text-align: center;
-    text-decoration: none;
-    display: inline-block;
+    display: block;
     font-size: 14px;
-    margin: 4px 2px;
-    cursor: pointer;
-    border-radius: 12px;
+    padding: 10px;
+    margin-top: 10px;
+    border-radius: 15px;
     }
-.thoughts{
-    padding: 0px 0px 0px 20px;
+.button:hover{
+    background-color: rgb(255, 144, 40);
+    color: #ffe3cd;
+}
+
+/* popup書籤 */
+
+.wrap {
+    text-align: center;
+  }
+.btn {
+    background-color: #ffe3cd;
+    text-decoration: none;
+    color: rgb(255, 144, 40);;
+    padding: 10px;
+    border-radius: 15px;
+    font-size: 14px;
+    padding: 10px;
+    margin-top: 10px;
+    border-radius: 15px;
+    width: 200px;
+}
+.btn:hover{
+    background-color: rgb(255, 144, 40);
+    color: #ffe3cd;;
+}  
+.popup-wrap {
+    width: 100%;
+    height: 100%;
+    display: none;
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    content: '';
+    background: rgba(0, 0, 0, 0.406);
+  }
+  
+.popup-box {
+    width: 80%;
+    height: auto;
+    padding: 50px 75px;
+    transform: translate(-50%, -50%) scale(0.5);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    box-shadow: 0px 2px 16px rgba(208, 208, 208, 0.5);
+    border-radius: 3px;
+    background: #fff;
+    text-align: center;
+}
+h2 {
+    font-size: 32px;
+    color: #1a1a1a;
+}
+  
+  
+.close-btn {
+    width: 50px;
+    height: 50px;
+    display: inline-block;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    border-radius: 100%;
+    background: #ff823f;
+    font-weight: bold;
+    text-decoration: none;
+    color: #fff;
+    line-height: 40px;
+    font-size: 32px;
+}
+  
+.transform-in, .transform-out {
+    display: block;
+    -webkit-transition: all ease 0.5s;
+    transition: all ease 0.5s;
+}
+  
+.transform-in {
+    -webkit-transform: translate(-50%, -50%) scale(1);
+    transform: translate(-50%, -50%) scale(1);
+}
+  
+.transform-out {
+    -webkit-transform: translate(-50%, -50%) scale(0.5);
+    transform: translate(-50%, -50%) scale(0.5);
+  }
+  
+
+/* end */
+
+.container2{
+    display: flex;
+    background-color: rgb(255, 255, 255);
+    width: 900px;
+    justify-content: start;
+    flex-direction: column;
+}
+.item2{
+    background-color: rgb(255, 255, 255);
+    width: 800px;
+    padding-left: 50px;
+}
+.thought{
+    padding-left: 70px;
+    padding-bottom: 0 auto;
+}
+.cGcvT{
+    position: absolute;
+    top: 0px;
+    left: 0px; 
+    pointer-events: none;
+}
+.form-control{
+    height: 500px;
+}
+.submitbtn{
+    margin-top: 25px;
+}
+
+/* maptest */
+.wholemap{
+    position: relative;
+    width: 322px;
+    height: 610px;
+    background-image: url(./images/map/pngegg.png);
+    background-color: #ffffff;
+    background-position: 0 0;
+}
+.wholemap .img2{
+    position: absolute;
+    margin-left: 12px;
+    margin-top: 267px;
+    text-indent: 101%;
+    overflow: hidden;
+    white-space: nowrap;       
+}
+.wholemap .img15{
+    position: absolute;
+    margin-left: 12px;
+    margin-top: 302px;
+    text-indent: 101%;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+img:hover{ 
+    box-shadow: 0 0 2px 1px rgba(0, 140, 186, 0.5);
+}
+
+/* maptest end */
+
+/* progress range */
+/* 參考https://segmentfault.com/a/1190000041543171 */
+[type="range"] {
+    -webkit-appearance: none;
+    appearance: none;
+    margin: 0;
+    outline: 0;
+    background-color: transparent;
+    width: 500px;
+}
+[type="range"]::-webkit-slider-runnable-track {
+    height: 4px;
+    background: #eee;
+}
+[type="range" i]::-webkit-slider-container {
+    height: 80px;
+    overflow: hidden;
+}
+[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    background-color: #ff823f;
+    border: 1px solid transparent;
+    margin-top: -8px;
+    border-image: linear-gradient(#ff823f,#ff823f) 0 fill / 8 20 8 0 / 0px 0px 0 2000px;
+}
+.bookpage{
+    font-size: 30px;
 }

@@ -2,49 +2,69 @@
 
 {% block title %}手札{% endblock %}
 {% block main %}
-
-<link rel="stylesheet" href="./mystyle.css">
-<!--<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">-->
-<div>
-    <h1 title="書名" class= "bookname" style="font-size: 22px;"> 《當失戀的我，遇上尼采》 </h1>
-    <div>
-    <p title="正在閱讀" style="font-family:oswald;">
-        <!---<a href="書本的連結" target="">-->
-        <img src="./../images/book001.jpg" alt="您所選擇的書籍"></p>
-        <!--這裡擺的是書本相關資訊-->
-    </div>
-    <p>
-        <div class="w3-mobile">
-        作者：<span>{{book[0]}}</span><br>
-        狀態：<span>{{book[1]}}</span><br>
-        期限：<span>{{book[2]}}</span><br>
-        閱讀進度/書籤：<br>
-        <button id="bookmark" class="button w3-button w3-light-gray w3-mobile" onclick="myFunction()">更新書籤</button><br>
-        <script src="./myscript.js"></script>
-            <!--<script>
-                function myFunction() {
-                document.getElementById("bookmark").style.color = "white";
-                }
-            </script>-->
+<link rel="stylesheet" href="./../mystyle.css">
+<section class = "section">
+<div class="allwrap">
+    <h1 title="書名" class= "bookname"> {{book[1]}} </h1>
+    <div class="container1">
+        <div class="item">
+            <!--<p title="正在閱讀" style="font-family:oswald;"></p>-->
+            <!---<a href="書本的連結" target="">-->
+            <img src={{book[3]}} alt="您所選擇的書籍" class="bookimg">
+            <!--這裡擺的是書本相關資訊-->
         </div>
-    </p>
-</div>
-<div>
-    <div style="font-size: 22px;" class="thoughts">
-        <p>心得紀錄 | Thoughts</p>
-    </div>
-    <div>
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
-        <link href="https://getbootstrap.com/docs/5.3/assets/css/docs.css" rel="stylesheet">
-        <title>Bootstrap Example</title>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
-        <div class="p-3 m-0 border-0 bd-example">  
-            <div class="form-floating"><grammarly-extension data-grammarly-shadow-root="true" style="position: absolute; top: 0px; left: 0px; pointer-events: none;" class="cGcvT"></grammarly-extension><grammarly-extension data-grammarly-shadow-root="true" style="mix-blend-mode: darken; position: absolute; top: 0px; left: 0px; pointer-events: none;" class="cGcvT"></grammarly-extension>
-              <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea2" style="height: 100px" spellcheck="false"></textarea>
+        <div class="item itemtext">
+            <div>
+            作者：<span>{{book[0]}}</span><br>
+            狀態：<span>{{book[1]}}</span><br>
+            期限：<span>{{book[2]}}</span><br>
+            書籤：<br>
+            <!-- popup的書籤 -->
+            <div class="wrap">
+                <a class="btn popup-btn" href="#letmeopen">更新閱讀進度</a>
+            </div class="body">
+              <div class="popup-wrap" id="letmeopen">
+                <div class="popup-box transform-out">
+                    <div class="bookpage">
+                        <h2>您的閱讀進度</h2>
+                        <form method="post">
+                            <div><input type="range" id="bookprogress" name = "bookprogress" min="0" max="{{book[4]}}" step="1" value="0" /></div>
+                            <a>目前進度：{{book[5]}}頁</a>
+                            <div>
+                            書籤：第<span class="rangeTxt"></span><span>頁 / {{book[4]}}頁</span>
+                            </div>
+                            <div >
+                            <input type="submit" value="更新" class="btn bookpage">
+                            </div>
+                        </form>
+                    </div>
+                  <a class="close-btn popup-close" href="#">x</a>
+                </div>
+              </div>
+            <!-- end -->
             </div>
         </div>
     </div>
-</div>
-
+    <div class="container2">
+        <div style="font-size: 22px;" class="item2 thought">
+            <p>心得紀錄 | Thoughts</p>
+        </div>
+        <div class="item2">
+            <form method="post">
+                <div class="p-3 m-0 border-0 bd-example">  
+                    <div class="form-floating">
+                        <grammarly-extension data-grammarly-shadow-root="true" class="cGcvT"></grammarly-extension>
+                        <grammarly-extension data-grammarly-shadow-root="true" class="cGcvT"></grammarly-extension>
+                        <textarea class="form-control" placeholder="暢所欲言你的感想吧！" id="floatingTextarea2" name="thought" spellcheck="false"></textarea>
+                    </div>
+                    <div class="submitbtn">
+                        <input type="submit" value="紀錄" class="button">
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>    
+<script src="./../js/myscript.js"></script>
 
 {% endblock %}
