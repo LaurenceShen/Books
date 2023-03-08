@@ -100,6 +100,10 @@ def map():
     try:
         #current_borrowed = []
         c = []
+        stamp = 0
+        for j in user:
+            if j[1] == current_user.id:
+                stamp = j[3]
         for j in borrowed.values():
             for i in j:
                 print(i[1])
@@ -109,13 +113,14 @@ def map():
                         current_borrowed.append([books[i[1] - 1][0], books[i[1] - 1][1], books[i[1] - 1][3],  i[4], books[i[1] - 1][4], (i[4]/books[i[1] - 1][4])*100])
                         
         c = current_borrowed.copy()
-        return render_template('map.html', bookurl = bookurl, books = c, bag_books = current_borrowed)
+        c = c[0:2]
+        return render_template('map.html', bookurl = bookurl, books = c, bag_books = current_borrowed, stamp = stamp)
     except:
         return redirect(url_for('login'))
 @app.route('/analysis')
 def analysis():
     borrow_size = []
-    print("cur: ", current_borrowed)
+    print("cur: ", borrowed)
     for i in borrowed.values():
         borrow_size.append(len(i))
     return render_template('analysis.html', borrow_size = borrow_size, bag_books = current_borrowed)
