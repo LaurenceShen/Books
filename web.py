@@ -51,7 +51,6 @@ SELECT * FROM Borrowed_{} INNER JOIN User ON User.ID = Borrowed_{}.User_ID
 cursor.close()
 conn.close()
 
-#print(borrowed)
 pjdir = os.path.abspath(os.path.dirname(__file__))
 
 app = Flask(__name__, static_folder="statics", static_url_path="/")
@@ -97,25 +96,24 @@ def home():
 
 @app.route('/map', methods = ['POST', 'GET'])
 def map():
-    #try:
+    try:
         #current_borrowed = []
         c = []
         for j in borrowed.values():
             for i in j:
-                print(i[1])
                 if i[6] == current_user.id and i[3] == 0:
                     if books[i[1] - 1][0] not in cur:
                         cur.append(books[i[1] - 1][0])
                         current_borrowed.append([books[i[1] - 1][0], books[i[1] - 1][1], books[i[1] - 1][3],  i[4], books[i[1] - 1][4], (i[4]/books[i[1] - 1][4])*100])
+            print(current_borrowed)
                         
         c = current_borrowed.copy()
-        return render_template('map.html', bookurl = bookurl, books = c, bag_books = current_borrowed)
-    #except:
+        return render_template('map.html', bookurl = bookurl, books = books, bag_books = current_borrowed)
+    except:
         return redirect(url_for('login'))
 @app.route('/analysis')
 def analysis():
     borrow_size = []
-    print("cur: ", current_borrowed)
     for i in borrowed.values():
         borrow_size.append(len(i))
     return render_template('analysis.html', borrow_size = borrow_size, bag_books = current_borrowed)
@@ -126,7 +124,6 @@ def post_cards():
 
 @app.route('/mybooks' ,methods=['POST','GET'])
 def mybooks():
-    print(borrowed['Jan'])
     if request.method =='POST':
         if request.values['send']=='探索':
             return render_template('mybooks.html', name = request.values['mybook'], bag_books = current_borrowed)
@@ -150,13 +147,10 @@ def login():
 
     whe_exist = False
     whe_pass_corr = False
-    
     for i in users:
         if user_id == i[1] and bcrypt.check_password_hash(i[2], user_password):
             whe_exist = True
             whe_pass_corr = True
-        print(bcrypt.check_password_hash(i[2], user_password))
-        print(i[1])
     if whe_exist and whe_pass_corr:
         user = User()
         user.id = user_id
@@ -175,7 +169,6 @@ def note(book):
             print('thought:', request.form['thought'])
     output = None
     for i in books:
-        #print(i[0])
         if i[0] == int(book):
             output = list(i)
     if (output == None):
@@ -222,15 +215,13 @@ def register():
             flash('用戶已存在')
             return render_template('register.html')
         password = bcrypt.generate_password_hash(password).decode('utf-8')
-        print(type(password))
         sql = """
-        INSERT INTO User (User_Name, Password, Stamp, Postcard1, Postcard2, Postcard3, Postcard4, Postcard5, Postcard6, Postcard7, Postcard8, Postcard9, Postcard10, Postcard11, Postcard12, Postcard13, Postcard14, Postcard15, Postcard16, Postcard17, Cat1, Cat2, Cat3, Cat4, Cat5, Cat6, Cat7, Cat8, Cat9, Cat10, Cat11, Cat12, Cat13, Cat14, Cat15, Cat16, Cat17)
-        VALUES (\"{}\", \"{}\", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+        INSERT INTO User (User_Name, Password, Stamp, Postcard)
+        VALUES (\"{}\", \"{}\", 0, 0);
         """.format(name, password)
         cursor.execute(sql)
         conn.commit()
         flash('Success! Please login. user: ' + name)
-        print(users)
         return render_template('login.html')
         cursor.close()
         conn.close()
