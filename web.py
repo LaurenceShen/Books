@@ -97,7 +97,7 @@ def home():
 
 @app.route('/map', methods = ['POST', 'GET'])
 def map():
-    #try:
+    try:
         #current_borrowed = []
         c = []
         for j in borrowed.values():
@@ -110,7 +110,7 @@ def map():
                         
         c = current_borrowed.copy()
         return render_template('map.html', bookurl = bookurl, books = c, bag_books = current_borrowed)
-    #except:
+    except:
         return redirect(url_for('login'))
 @app.route('/analysis')
 def analysis():
