@@ -5,30 +5,42 @@
 <head>
 	<title>圖書館首頁</title>
 	<style>
-        body {
-    background-color:white;
-    }
-
 h1 {
     color: rgb(0, 0, 0);
   }
 
+p{
+	margin-top: 10px;
+}
 
 		.container {
-            width: 120vh;
+            width: 129vh;
             height: 35vh;
 			display: flex;
 			justify-content: center;
 			align-items: center;
-			background-color: white;
+			margin-bottom: 20px;
+			/* background-color: white; */
+		}
+
+		.activity {
+			width: 180vh;
+			height: 100%;
+			background-color: #fff;
+			/* box-shadow: 0 0 10px rgba(0, 0, 0, 0.3); */
+			text-align: center;
+			border: 1px solid;
+			border-radius: 8px;
 		}
 
         .book_top {
 			width: 50vh;
-			height: 31.5vh;
-			background-color: #fff;
-			box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
-			margin: 0px 20px 0 20px;
+			height: 100%;
+			border: 1px solid;
+			background-color: white;
+			border-radius: 8px;
+			/* box-shadow: 0 0 10px rgba(0, 0, 0, 0.3); */
+			margin: 0px 0px 0px 20px;
 			text-align: center;
 			display: flex;
 			flex-direction: column;
@@ -37,8 +49,9 @@ h1 {
 		}
 
         .book_top img {
-			width: 60%;
-			height: auto;
+			width: 18vh;
+			height: 20vh;
+			max-width: 100%
 		}
 
 		.book_top h3 {
@@ -50,28 +63,23 @@ h1 {
 		}
 
         .container1 {
-            width: 140vh;
+			margin-left: 2vh;
+            width: 125.1vh;
             height: 35vh;
 			display: flex;
 			justify-content: center;
 			align-items: center;
+			border: 1px solid;
 			background-color: white;
+			border-radius: 8px;
 		}
 
-		.activity {
-			width: 150%;
-			height: 90%;
-			padding: 20px;
-			background-color: #fff;
-			box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
-			text-align: center;
-		}
 
 		.book {
 			width: 50vh;
 			height: 31.5vh;
 			background-color: #fff;
-			box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+			/* box-shadow: 0 0 10px rgba(0, 0, 0, 0.3); */
 			margin: 0px 20px 0 20px;
 			text-align: center;
 			display: flex;
@@ -81,8 +89,9 @@ h1 {
         }
 
 		.book img {
-			width: 60%;
-			height: auto;
+			width: 18vh;
+			height: 20vh;
+			margin-top: 2vh;
 		}
 
 		.book h3 {
@@ -93,28 +102,10 @@ h1 {
 			overflow: hidden;
 		}
 
-
-        .new-arrival {
-			width: 30%;
-			height: 50%;
-			padding: 20px;
-			background-color: #fff;
-			box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
-			margin: 20px;
-			text-align: center;
-		}
-
-		.new-arrival img {
-			width: 80%;
-			height: auto;
-		}
-
-		.new-arrival h3 {
-			margin-top: 15px;
-			font-size: 1.4rem;
-			text-overflow: ellipsis;
-			white-space: nowrap;
-			overflow: hidden;
+		.event{
+			width: 75.6vh;
+			height: 100%;
+			border-radius: 8px;
 		}
 	</style>
 </head>
@@ -127,13 +118,19 @@ h1 {
     <h1>最新消息｜News</h1>
 	<div class="container">
 		<div class="activity">
-			<p>這裡展示圖書館的最新活動</p>
+			<img src= "./../images/Event.png" class="event">
 		</div>
 
         <div class="book_top">
-            <p>新進館藏</p>
-			<img src="https://via.placeholder.com/150x200.png?text=Book+2" alt="Book 2">
-			<h3>書名2</h3>
+            <h3>新進館藏</h3>
+			<img src={{bag_books[4][2]}}>
+			<p>{{bag_books[4][1]}}</p>
+		</div>
+
+		<div class="book_top">
+            <h3>新進館藏</h3>
+			<img src={{bag_books[5][2]}}>
+			<p>{{bag_books[5][1]}}</p>
 		</div>
     </div>
 
@@ -141,25 +138,23 @@ h1 {
     <h1>專屬推薦｜Recommendation</h1>
     <div class="container1">
 		<div class="book">
-			<img src="https://via.placeholder.com/150x200.png?text=Book+1" alt="Book 1">
-			<h3>書名1</h3>
+			<img src={{bag_books[0][2]}}>
+			<p>{{bag_books[0][1]}}</p>
 		</div>
 		<div class="book">
-			<img src="https://via.placeholder.com/150x200.png?text=Book+2" alt="Book 2">
-			<h3>書名2</h3>
+			<img src={{bag_books[1][2]}}>
+			<p>{{bag_books[1][1]}}</p>
 		</div>
 		<div class="book">
-			<img src="https://via.placeholder.com/150x200.png?text=Book+3" alt="Book 3">
-			<h3>書名3</h3>
+			<img src={{bag_books[2][2]}}>
+			<p>{{bag_books[2][1]}}</p>
 		</div>
 		<div class="book">
-			<img src="https://via.placeholder.com/150x200.png?text=Book+4" alt="Book 4">
-			<h3>書名4</h3>
+			<img src={{bag_books[3][2]}}>
+			<p>{{bag_books[3][1]}}</p>
 		</div>
-		<div class="book">
-			<img src="https://via.placeholder.com/150x200.png?text=Book+5" alt="Book 5">
-			<h3>書名5</h3>
-		</div>
+		
+		
 	</div>
 
 </body>

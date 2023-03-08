@@ -9,7 +9,7 @@
 }
 
 :root {
-    --main-color:#ff702a;
+    --main-color:#986b3f;
     --text-color:#1e1c2a;
     --bg-color:#fefdfa;
     --big-font:5rem;
@@ -29,7 +29,14 @@
 }
 body{
     color: var(--text-color);
-    background: var(--bg-color);
+    background: #fff9f3;
+}
+
+h1{
+    font-size: 2.3rem;
+    font-weight: 350;
+    margin-top: 6px;
+    margin-bottom: 12px;
 }
 
 header{
@@ -42,8 +49,8 @@ header{
     align-items: center;
     justify-content: space-between;
     padding: 15px 50px 10px 50px;
-    background: var(--bg-color);
-    border-bottom: solid 0.5px #888375;
+    background: white;
+    border-bottom: solid 0.3px #888375;
 }
 
 section{
@@ -67,7 +74,7 @@ section{
 }
 
 .logo:hover{
-    color: black;
+    color: #986b3f;
     text-shadow: #ff702a;
     text-decoration: none;
 }
@@ -111,7 +118,9 @@ ul li ul.dropdown{
     position: absolute;
     z-index: 1;
     display: none;
-    background-color: #fefdfa;
+    background-color: white;
+    /* border: 1px solid;
+    border-radius: 8px; */
 }
 
 ul li:hover ul.dropdown{
@@ -127,7 +136,7 @@ ul li:hover ul.dropdown{
     left: -250px;
     width: 250px;
     height: 8%;
-    background: #fdf9f7;
+    background: white;
     transition: all.5s ease;
 }   
 /* .sidebar{
@@ -159,12 +168,11 @@ ul li:hover ul.dropdown{
     font-size: 23px;
     text-align: center;
     line-height: 40px;
-    background: #fd9264;
+    background: #be9f87;
     user-select: none;
 }
 
 .sidebar ul {
-    margin-top: 20px;
     margin-left: 10px;
 }
 
@@ -175,7 +183,7 @@ ul li:hover ul.dropdown{
     line-height: 80px;
     font-size: 12px; 
     color: #042331;
-    background-color: #fdf9f7;
+    background-color: white;
     padding-left: 5px; 
     box-sizing: border-box;
     transition: .4s;
@@ -206,7 +214,7 @@ label #btn, label #cancel{
 label #btn{
     left: 50px;
     top: 100px;
-    background: #ff702a;
+    background: #98693f;
     font-size: 20px;
     color: white;
     padding: 6px 12px;
@@ -238,3 +246,43 @@ label #cancel{
 #check:checked ~ section{
     margin-left: 250px
 }
+
+.card{
+    border: 1px solid;
+    width: 120vh;
+	background-color: white;
+	border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 20px;
+}
+
+.card-title{
+    margin-left: 10px;
+    font-size: 25px;
+    font-weight: 350;
+}
+
+.card-title h2{
+    font-size: 10px;
+}
+
+.myChart{
+    border: 1px solid;
+	background-color: white;
+	border-radius: 8px;
+}
+
+#myChart{
+    border: 1px solid;
+	background-color: white;
+	border-radius: 8px; 
+    padding: 20px;
+}
+
+#myChart2{
+    border: 1px solid;
+	background-color: white;
+	border-radius: 8px; 
+    padding: 20px;
+}
+
