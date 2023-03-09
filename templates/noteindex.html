@@ -8,28 +8,25 @@
     <h1 title="書名" class= "bookname"> {{book[1]}} </h1>
     <div class="container1">
         <div class="item">
-            <!--<p title="正在閱讀" style="font-family:oswald;"></p>-->
-            <!---<a href="書本的連結" target="">-->
-            <img src={{book[3]}} alt="您所選擇的書籍" class="bookimg">
-            <!--這裡擺的是書本相關資訊-->
+            <img src={{book[3]}} alt="您所選擇的書籍" class="bookimg">       
         </div>
+        <!--這裡擺的是書本相關資訊-->
         <div class="item itemtext">
             <div>
             作者：<span>{{book[0]}}</span><br>
             狀態：<span>{{book[1]}}</span><br>
             期限：<span>{{book[2]}}</span><br>
             書籤：<br>
-            <!-- popup的書籤 -->
+            <!-- 彈跳視窗裡的書籤 -->
             <div class="wrap">
                 <a class="btn popup-btn" href="#letmeopen">更新閱讀進度</a>
             </div class="body">
               <div class="popup-wrap" id="letmeopen">
                 <div class="popup-box transform-out">
                     <div class="bookpage">
-                        <h2>您的閱讀進度</h2>
+                        <h2>您的目前閱讀到{{book[5]}}頁</h2>
                         <form method="post">
                             <div><input type="range" id="bookprogress" name = "bookprogress" min="0" max="{{book[4]}}" step="1" value="0" /></div>
-                            <a>目前進度：{{book[5]}}頁</a>
                             <div>
                             書籤：第<span class="rangeTxt"></span><span>頁 / {{book[4]}}頁</span>
                             </div>
