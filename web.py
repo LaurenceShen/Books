@@ -123,7 +123,7 @@ def analysis():
     print("cur: ", borrowed)
     for i in borrowed.values():
         borrow_size.append(len(i))
-    return render_template('analysis.html', borrow_size = borrow_size, bag_books = current_borrowed)
+    return render_template('analysis.html', borrow_size = borrow_size, bag_books = current_borrowed, bookurl = bookurl)
 
 @app.route('/post_cards')
 def post_cards():
@@ -135,7 +135,7 @@ def mybooks():
     if request.method =='POST':
         if request.values['send']=='探索':
             return render_template('mybooks.html', name = request.values['mybook'], bag_books = current_borrowed)
-    return render_template('mybooks.html', name = "", borrowed = borrowed, books = books, bag_books = current_borrowed)
+    return render_template('mybooks.html', name = "", borrowed = borrowed, books = books, bag_books = current_borrowed, bookurl = bookurl)
 
 @app.route('/discovery', methods = ['POST', 'GET'])
 def discovery():
