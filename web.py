@@ -128,11 +128,27 @@ def map():
         return redirect(url_for('login'))
 @app.route('/analysis')
 def analysis():
+    Category_Book = {}
+    conn = sqlite3.connect('Coding101.db')
+    cursor = conn.cursor()
+    for i in Month:
+        sql = """
+SELECT * FROM Borrowed_{} INNER JOIN Category_Book ON Category_Book.Book_ID = Borrowed_{}.Book_ID;
+        """.format(i, i)
+        cursor.execute(sql)
+        borrowed_mon = cursor.fetchall()
+        Category_Book[i] = borrowed_mon
+    cursor.close()
+    conn.close()
+    preference = [0, 0, 0, 0, 0]
+    for i in Category_Book:
+        for j in i:
+            preference[j[6] - 1] += 1
     borrow_size = []
     print("cur: ", current_borrowed)
     for i in borrowed.values():
         borrow_size.append(len(i))
-    return render_template('analysis.html', borrow_size = borrow_size, bag_books = current_borrowed, bookurl = bookurl)
+    return render_template('analysis.html', borrow_size = borrow_size, bag_books = current_borrowed, bookurl = bookurl, amount = preference)
 
 @app.route('/post_cards')
 def post_cards():
@@ -205,6 +221,18 @@ def note(book):
     print("hi:", reflection_personal)
     if request.method == 'POST':
         if 'bookprogress' in request.form.keys():
+            mon = ""
+            for i in borrowed.keys():
+                for j in i:
+                    if book == j[1] and current_user.id == j[6]:
+                        mon = i
+            conn = sqlite3.connect('Coding101.db')
+            cursor = conn.cursor()
+            sql = """
+UPDATE Borrowed_{} SET Page_SoFar = {} WHERE Book_ID = {};
+        """.format(mon, request.form['bookprogress'], int(book))
+            cursor.execute(sql)
+            conn.commit()
             print('page:', request.form['bookprogress'])
         else:
             conn = sqlite3.connect('Coding101.db')
@@ -212,7 +240,7 @@ def note(book):
             sql = """
 INSERT INTO Reflection (Book_ID, User_ID, Reflection, Rate)
 VALUES({}, 1, \'{}\', 5);
-		""".format(int(book), request.form['thought'])
+        """.format(int(book), request.form['thought'])
             cursor.execute(sql)
             conn.commit()
             print('thought:', request.form['thought'])
