@@ -139,24 +139,6 @@ ul li:hover ul.dropdown{
     background: white;
     transition: all.5s ease;
 }   
-/* .sidebar{
-    position: absolute;
-    margin-top: 50px;
-    top: 0;
-    bottom: 0;
-    width: 250px;
-    background: #fefdfa;
-    overflow: hidden;
-    transform: translateX(-250px);
-} */
-/* 推擠main */
-/* main{
-    position: relative;
-    width: 100%;
-    float: right;
-    transition: 0.3 ease;
-}
-*/
 .open .sidebar{
     transform: 0;
 }
@@ -221,7 +203,7 @@ label #btn{
     transition: all .5s;
 }
 
-/* 收起來叉叉 */
+/* 收起來logo */
 label #cancel{
     z-index: 1111;
     top: 82px;
@@ -284,5 +266,23 @@ label #cancel{
 	background-color: white;
 	border-radius: 8px; 
     padding: 20px;
+}
+
+
+.logincat1{
+    height: 30vh;
+    width: auto;
+    margin-left: -10px;
+}
+
+.logincat2{
+    height: 30vh;
+    width: auto;
+    margin-left: 10px;
+}
+
+.pushpush{
+    margin-left: 250px;
+    margin-top: 80px;
 }
 
