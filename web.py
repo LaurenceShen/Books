@@ -37,8 +37,8 @@ current_borrowed = []
 Month = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
 borrowed = {}
 bookurl = []
-for i in range(10):
-    bookurl.append(f"noteindex/"+ str(i))
+for i in range(30):
+    bookurl.append(f"../../noteindex/"+ str(i))
 conn = sqlite3.connect('Coding101.db')
 cursor = conn.cursor()
 for i in Month:
@@ -127,7 +127,7 @@ def analysis():
 
 @app.route('/post_cards')
 def post_cards():
-    return render_template('postcards.html', bag_books = current_borrowed)
+    return render_template('postcards.html', bag_books = current_borrowed, bookurl = bookurl)
 
 @app.route('/mybooks' ,methods=['POST','GET'])
 def mybooks():
@@ -141,11 +141,11 @@ def mybooks():
 def discovery():
      print(current_borrowed)
 
-     return render_template("discovery.html", books = books, bag_books = current_borrowed)
+     return render_template("discovery.html", books = books, bag_books = current_borrowed, bookurl = bookurl)
 
 @app.route('/donate')
 def donate():
-    return render_template("donate.html", bag_books = current_borrowed)
+    return render_template("donate.html", bag_books = current_borrowed, bookurl = bookurl)
 
 @app.route('/login', methods = ['POST', 'GET'])
 def login():
@@ -188,7 +188,7 @@ def note(book):
     for i in current_borrowed:
         if i[0] == output[0]:
             output.append(i[3])
-    return render_template('noteindex.html', book = output, bag_books = current_borrowed)
+    return render_template('noteindex.html', book = output, bag_books = current_borrowed, bookurl = bookurl)
 
 @app.route('/logout')
 def logout():
