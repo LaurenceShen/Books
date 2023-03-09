@@ -31,7 +31,7 @@
   <h2>{{i}}</h2>
   <div class="card">
     {% for j in borrowed[i] %}
-    <a href="#"> <img src= {{ books[j[2] - 1][3] }} width="150" height="250"></a>
+    <a href="#"> <img src= "{{ books[j[1]][3] }}" width="150" height="250"></a>
     {% endfor %}
     <!-- <a href="#"> <img src="" width="150" height="250"></a> -->
   </div>

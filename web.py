@@ -131,7 +131,8 @@ def post_cards():
 
 @app.route('/mybooks' ,methods=['POST','GET'])
 def mybooks():
-    print(borrowed['Jan'])
+    for i in borrowed.values():
+        print(i)
     if request.method =='POST':
         if request.values['send']=='探索':
             return render_template('mybooks.html', name = request.values['mybook'], bag_books = current_borrowed)
