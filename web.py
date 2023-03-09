@@ -108,7 +108,7 @@ def home():
 
 @app.route('/map', methods = ['POST', 'GET'])
 def map():
-    #try:
+    try:
         #current_borrowed = []
         c = []
         for j in borrowed.values():
@@ -121,8 +121,9 @@ def map():
                         current_borrowed.append([books[i[1] - 1][0], books[i[1] - 1][1], books[i[1] - 1][3],  i[4], books[i[1] - 1][4], (i[4]/books[i[1] - 1][4])*100])
                         
         c = current_borrowed.copy()
+        c = c[0:2]
         return render_template('map.html', bookurl = bookurl, books = c, bag_books = current_borrowed)
-    #except:
+    except:
         return redirect(url_for('login'))
 @app.route('/analysis')
 def analysis():
@@ -130,28 +131,28 @@ def analysis():
     print("cur: ", current_borrowed)
     for i in borrowed.values():
         borrow_size.append(len(i))
-    return render_template('analysis.html', borrow_size = borrow_size, bag_books = current_borrowed)
+    return render_template('analysis.html', borrow_size = borrow_size, bag_books = current_borrowed, bookurl = bookurl)
 
 @app.route('/post_cards')
 def post_cards():
-    return render_template('postcards.html', bag_books = current_borrowed)
+    return render_template('postcards.html', bag_books = current_borrowed, bookurl = bookurl)
 
 @app.route('/mybooks' ,methods=['POST','GET'])
 def mybooks():
     print(borrowed['Jan'])
     if request.method =='POST':
         if request.values['send']=='探索':
-            return render_template('mybooks.html', name = request.values['mybook'], bag_books = current_borrowed)
-    return render_template('mybooks.html', name = "", borrowed = borrowed, books = books, bag_books = current_borrowed)
+            return render_template('mybooks.html', name = request.values['mybook'], bag_books = current_borrowed, bookurl = bookurl)
+    return render_template('mybooks.html', name = "", borrowed = borrowed, books = books, bag_books = current_borrowed, bookurl = bookurl)
 
 @app.route('/discovery', methods = ['POST', 'GET'])
 def discovery():
      print(current_borrowed)
-     return render_template("discovery.html", books = books, bag_books = current_borrowed)
+     return render_template("discovery.html", books = books, bag_books = current_borrowed, bookurl = bookurl)
 
 @app.route('/donate')
 def donate():
-    return render_template("donate.html", bag_books = current_borrowed)
+    return render_template("donate.html", bag_books = current_borrowed, bookurl = bookurl)
 
 @app.route('/login', methods = ['POST', 'GET'])
 def login():
@@ -202,7 +203,7 @@ VALUES({}, 1, \'{}\', 5);
     for i in current_borrowed:
         if i[0] == output[0]:
             output.append(i[3])
-    return render_template('noteindex.html', book = output, bag_books = current_borrowed)
+    return render_template('noteindex.html', book = output, bag_books = current_borrowed, bookurl = bookurl)
 
 @app.route('/logout')
 def logout():
