@@ -173,10 +173,12 @@ def login():
 
 @app.route('/noteindex/<book>', methods = ['POST', 'GET'])
 def note(book):
+    thought = ""
     if request.method == 'POST':
         if 'bookprogress' in request.form.keys():
             print('page:', request.form['bookprogress'])
         else:
+            thought = request.form['thought']
             print('thought:', request.form['thought'])
     output = None
     for i in books:
@@ -188,7 +190,7 @@ def note(book):
     for i in current_borrowed:
         if i[0] == output[0]:
             output.append(i[3])
-    return render_template('noteindex.html', book = output, bag_books = current_borrowed, bookurl = bookurl)
+    return render_template('noteindex.html', book = output, bag_books = current_borrowed, bookurl = bookurl, thought = thought)
 
 @app.route('/logout')
 def logout():
