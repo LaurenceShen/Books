@@ -7,6 +7,16 @@ function closePopup2() {
   map_popup.style.display = "none";
 }
 
+function openPopup3() {
+  var map_popup = document.getElementById("map_popup2");
+  map_popup.style.display = "flex";
+}
+function closePopup3() {
+  var map_popup = document.getElementById("map_popup2");
+  map_popup.style.display = "none";
+}
+
+
 
   function openPopup() {
   var popup = document.getElementById("popup1");
