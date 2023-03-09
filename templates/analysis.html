@@ -9,9 +9,11 @@
     <section class="section">
       <!-- 往右推動 -->
       
+ 
+
     <h1>偏好類型｜Your Type</h1>
     <!--放圖表-->
-    <canvas id="myChart"></canvas>
+    <canvas class="chart" id="myChart"></canvas>
     <script>
       // 直條圖資料
       var data = {
@@ -72,11 +74,11 @@
     
       // 折線圖資料
       var data = {
-        labels: ["一月", "二月", "三月", "四月", "五月", "六月"],
+        labels: ["一月", "二月", "三月", "四月", "五月", "六月","七月", "八月", "九月", "十月", "十一月", "十二月"],
         datasets: [
           {
             label: "閱讀量",
-            data: [{{ borrow_size[0] }}, {{ borrow_size[1] }}, {{ borrow_size[2] }}, {{ borrow_size[3] }}, {{ borrow_size[4] }}, {{ borrow_size[5] }}],
+            data: [{{ borrow_size[0] }}, {{ borrow_size[1] }}, {{ borrow_size[2] }}, {{ borrow_size[3] }}, {{ borrow_size[4] }}, {{ borrow_size[5] }},{{ borrow_size[6] }}, {{ borrow_size[7] }}, {{ borrow_size[8] }}, {{ borrow_size[9] }}, {{ borrow_size[10] }}, {{ borrow_size[11] }}],
             backgroundColor: "rgba(75,192,192,0.4)",
             borderColor: "rgba(75,192,192,1)",
             borderWidth: 5
