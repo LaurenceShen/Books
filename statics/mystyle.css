@@ -95,7 +95,7 @@ img {
     width: 200px;
     background-color: #ffe3cd;
     border: none;
-    color: rgb(255, 144, 40);
+    color: rgb(0, 0, 0);
     text-align: center;
     display: block;
     font-size: 14px;
@@ -104,7 +104,7 @@ img {
     border-radius: 15px;
     }
 .button:hover{
-    background-color: rgb(255, 144, 40);
+    background-color: #986b3f;
     color: #ffe3cd;
 }
 
@@ -114,9 +114,9 @@ img {
     text-align: center;
   }
 .btn {
-    background-color: #ffe3cd;
+    background-color: #f1ccaf;
     text-decoration: none;
-    color: rgb(255, 144, 40);;
+    color: rgb(0, 0, 0);;
     padding: 10px;
     border-radius: 15px;
     font-size: 14px;
@@ -126,8 +126,8 @@ img {
     width: 200px;
 }
 .btn:hover{
-    background-color: rgb(255, 144, 40);
-    color: #ffe3cd;;
+    background-color: #986b3f;
+    color: #f4dfcf;;
 }  
 .popup-wrap {
     width: 100%;
@@ -167,7 +167,7 @@ h2 {
     top: 10px;
     right: 10px;
     border-radius: 100%;
-    background: #ff823f;
+    background: #986b3f;
     font-weight: bold;
     text-decoration: none;
     color: #fff;
@@ -278,11 +278,11 @@ img:hover{
     appearance: none;
     width: 35px;
     height: 35px;
-    border-radius: 50%;
-    background-color: #ff823f;
+    border-radius: 20%;
+    background-color: #9e6e55;
     border: 1px solid transparent;
     margin-top: -8px;
-    border-image: linear-gradient(#ff823f,#ff823f) 0 fill / 8 20 8 0 / 0px 0px 0 2000px;
+    border-image: linear-gradient(#9e6e55,#9e6e55) 0 fill / 8 20 8 0 / 0px 0px 0 2000px;
 }
 .bookpage{
     font-size: 30px;
