@@ -22,6 +22,10 @@ p{
 			margin-bottom: 20px;
 			/* background-color: white; */
 		}
+		.container a{
+			margin-top: 10px;
+            color: rgb(40, 40, 40);
+		}
 
 		.activity {
 			width: 180vh;
@@ -74,6 +78,11 @@ p{
 			border-radius: 8px;
 		}
 
+		.container1 a{
+			margin-top: 10px;
+            color: rgb(40, 40, 40);
+		}
+
 
 		.book {
 			width: 50vh;
@@ -123,14 +132,14 @@ p{
 
         <div class="book_top">
             <h3>新進館藏</h3>
-			<img src={{bag_books[4][2]}}>
-			<p>{{bag_books[4][1]}}</p>
+			<img src={{books[26][3]}}>
+			<a href = "{{bookurl[books[26][0]]}}">{{books[26][1]}}</a>
 		</div>
 
 		<div class="book_top">
             <h3>新進館藏</h3>
-			<img src={{bag_books[5][2]}}>
-			<p>{{bag_books[5][1]}}</p>
+			<img src={{books[27][3]}}>
+			<a href = "{{bookurl[books[27][0]]}}">{{books[27][1]}}</a>
 		</div>
     </div>
 
@@ -138,23 +147,21 @@ p{
     <h1>專屬推薦｜Recommendation</h1>
     <div class="container1">
 		<div class="book">
-			<img src={{bag_books[0][2]}}>
-			<p>{{bag_books[0][1]}}</p>
+			<img src={{books[28][3]}}>
+			<a href = "{{bookurl[books[28][0]]}}">{{books[28][1]}}</a>
 		</div>
 		<div class="book">
-			<img src={{bag_books[1][2]}}>
-			<p>{{bag_books[1][1]}}</p>
+			<img src={{books[11][3]}}>
+			<a href = "{{bookurl[books[11][0]]}}">{{books[11][1]}}</a>
 		</div>
 		<div class="book">
-			<img src={{bag_books[2][2]}}>
-			<p>{{bag_books[2][1]}}</p>
+			<img src={{books[23][3]}}>
+			<a href = "{{bookurl[books[23][0]]}}">{{books[23][1]}}</a>
 		</div>
 		<div class="book">
-			<img src={{bag_books[3][2]}}>
-			<p>{{bag_books[3][1]}}</p>
+			<img src={{books[24][3]}}>
+			<a href = "{{bookurl[books[24][0]]}}">{{books[24][1]}}</a>
 		</div>
-		
-		
 	</div>
 
 </body>

@@ -13,9 +13,9 @@
         <!--這裡擺的是書本相關資訊-->
         <div class="item itemtext">
             <div>
-            作者：<span>{{book[0]}}</span><br>
-            狀態：<span>{{book[1]}}</span><br>
-            期限：<span>{{book[2]}}</span><br>
+            作者：<span>{{book[5]}}</span><br>
+            ISBN：<span>{{book[2]}}</span><br>
+            總頁數：<span>{{book[4]}}頁</span><br>
             書籤：<br>
             <!-- 彈跳視窗裡的書籤 -->
             <div class="wrap">
@@ -24,7 +24,7 @@
               <div class="popup-wrap" id="letmeopen">
                 <div class="popup-box transform-out">
                     <div class="bookpage">
-                        <h2>您的目前閱讀到{{book[5]}}頁</h2>
+                        <h2>您的目前閱讀到{{book[6]}}頁</h2>
                         <form method="post">
                             <div><input type="range" id="bookprogress" name = "bookprogress" min="0" max="{{book[4]}}" step="1" value="0" /></div>
                             <div>
@@ -38,7 +38,6 @@
                   <a class="close-btn popup-close" href="#">x</a>
                 </div>
               </div>
-            <!-- end -->
             </div>
         </div>
     </div>
@@ -52,7 +51,7 @@
                     <div class="form-floating">
                         <grammarly-extension data-grammarly-shadow-root="true" class="cGcvT"></grammarly-extension>
                         <grammarly-extension data-grammarly-shadow-root="true" class="cGcvT"></grammarly-extension>
-                        <textarea class="form-control" placeholder="暢所欲言你的感想吧！" id="floatingTextarea2" name="thought" spellcheck="false"></textarea>
+                        <textarea class="form-control" placeholder="暢所欲言你的感想吧！" id="floatingTextarea2" name="thought" spellcheck="false">{{thought}}</textarea>
                     </div>
                     <div class="submitbtn">
                         <input type="submit" value="紀錄" class="button">
