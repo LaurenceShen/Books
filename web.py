@@ -106,9 +106,15 @@ def map():
     try:
         #current_borrowed = []
         c = []
+
+        stamp = 0
+        for j in users:
+            if j[1] == current_user.id:
+                stamp = j[3]
+        print("stamp:", stamp)
+
         for j in borrowed.values():
             for i in j:
-                
                 if i[6] == current_user.id and i[3] == 0:
                     print(i[6])
                     if books[i[1] - 1][0] not in cur:
@@ -117,7 +123,7 @@ def map():
                         
         c = current_borrowed.copy()
         c = c[0:2]
-        return render_template('map.html', bookurl = bookurl, books = c, bag_books = current_borrowed)
+        return render_template('map.html', bookurl = bookurl, books = c, bag_books = current_borrowed, stamp = stamp, finish = books)
     except:
         return redirect(url_for('login'))
 @app.route('/analysis')
