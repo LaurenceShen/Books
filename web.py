@@ -39,7 +39,7 @@ Month = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', '
 borrowed = {}
 bookurl = []
 for i in range(30):
-    bookurl.append(f"noteindex/"+ str(i))
+    bookurl.append(f"./../noteindex/"+ str(i))
 conn = sqlite3.connect('Coding101.db')
 cursor = conn.cursor()
 for i in Month:
@@ -141,7 +141,7 @@ SELECT * FROM Borrowed_{} INNER JOIN Category_Book ON Category_Book.Book_ID = Bo
     cursor.close()
     conn.close()
     preference = [0, 0, 0, 0, 0]
-    for i in Category_Book:
+    for i in Category_Book.values():
         for j in i:
             preference[j[6] - 1] += 1
     borrow_size = []
@@ -206,6 +206,28 @@ def login():
 
 @app.route('/noteindex/<book>', methods = ['POST', 'GET'])
 def note(book):
+    cur = []
+    current_borrowed = []
+    for j in borrowed.values():
+            for i in j:
+                if i[6] == current_user.id and i[3] == 0:
+                    print(i[6])
+                    if books[i[1] - 1][0] not in cur:
+                        cur.append(books[i[1] - 1][0])
+                        current_borrowed.append([books[i[1] - 1][0], books[i[1] - 1][1], books[i[1] - 1][3],  i[4], books[i[1] - 1][4], (i[4]/books[i[1] - 1][4])*100])
+    conn = sqlite3.connect('Coding101.db')
+    cursor = conn.cursor()
+
+    for i in Month:
+        sql = """
+    SELECT * FROM Borrowed_{} INNER JOIN User ON User.ID = Borrowed_{}.User_ID
+        """.format(i, i)
+        cursor.execute(sql)
+        borrowed_mon = cursor.fetchall()
+        borrowed[i] = borrowed_mon
+    cursor.close()
+    conn.close()
+
     conn = sqlite3.connect('Coding101.db')
     cursor = conn.cursor()
     cursor.execute("SELECT * FROM Reflection INNER JOIN User ON Reflection.User_ID = User.ID;")
@@ -223,8 +245,8 @@ def note(book):
         if 'bookprogress' in request.form.keys():
             mon = ""
             for i in borrowed.keys():
-                for j in i:
-                    if book == j[1] and current_user.id == j[6]:
+                for j in borrowed[i]:
+                    if int(book) == j[1] and current_user.id == j[6]:
                         mon = i
             conn = sqlite3.connect('Coding101.db')
             cursor = conn.cursor()
