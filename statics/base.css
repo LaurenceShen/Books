@@ -281,6 +281,12 @@ label #cancel{
     margin-left: 10px;
 }
 
+.errorcat{
+    height: 70vh;
+    width: auto;
+    margin-left: 10px;
+}
+
 .pushpush{
     margin-left: 250px;
     margin-top: 80px;
