@@ -4,7 +4,7 @@
 <!--<!DOCTYPE html>
 <html>
 <head>-->
-
+  <link rel="stylesheet" href="rong.css"/>
   
 
     <h1>我的回憶｜Books</h1> 
@@ -27,7 +27,8 @@
 -->
 {% for i in borrowed.keys()%}
   <h2>{{i}}</h2>
-  <div class="card">
+  
+  <div class="book">
     {% for j in borrowed[i] %}
     <a href="#"> <img src= {{ books[j[2] - 1][3] }} width="150" height="250"></a>
     {% endfor %}

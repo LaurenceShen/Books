@@ -59,6 +59,7 @@
         data: data,
         options: options
       });
+      
     </script>
 
 
@@ -66,39 +67,44 @@
 
     <canvas id="myChart2"></canvas>
     <script>
-    
+          // 折線圖設定
+    var options2 = {
+        scales: {
+          yAxes: [{
+            ticks: {
+              beginAtZero: true,
+              fontSize: 20, // 設定文字大小為20,
+              callback: function(value, index, values) {
+                return Math.floor(value);
+              
+              }
+            }
+          }]
+        }
+      };
+
       // 折線圖資料
-      var data = {
-        labels: ["一月", "二月", "三月", "四月", "五月", "六月"],
+     
+      var data2 = {
+        labels: ["一月", "二月", "三月", "四月", "五月", "六月","七月", "八月", "九月", "十月", "十一月", "十二月"],
+
         datasets: [
           {
             label: "閱讀量",
-            data: [{{ borrow_size[0] }}, {{ borrow_size[1] }}, {{ borrow_size[2] }}, {{ borrow_size[3] }}, {{ borrow_size[4] }}, {{ borrow_size[5] }}],
+            data: [{{ borrow_size[0] }}, {{ borrow_size[1] }}, {{ borrow_size[2] }}, {{ borrow_size[3] }}, {{ borrow_size[4] }}, {{ borrow_size[5] }},{{ borrow_size[6] }}, {{ borrow_size[7] }}, {{ borrow_size[8] }}, {{ borrow_size[9] }}, {{ borrow_size[10] }}, {{ borrow_size[11] }}],
             backgroundColor: "rgba(75,192,192,0.4)",
             borderColor: "rgba(75,192,192,1)",
             borderWidth: 5
           }
         ]
       };
-
-      // 折線圖設定
-      var options = {
-        scales: {
-          yAxes: [{
-            ticks: {
-              beginAtZero: true,
-              fontSize: 1000
-            }
-          }]
-        }
-      };
-
+  
       // 建立折線圖
-      var ctx = document.getElementById("myChart2").getContext("2d");
-      var myChart = new Chart(ctx, {
+      var ctx2 = document.getElementById("myChart2").getContext("2d");
+      var myChart2 = new Chart(ctx2, {
         type: "line",
-        data: data,
-        options: options
+        data: data2,
+        options: options2,
       });
     
     </script>
