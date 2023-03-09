@@ -33,11 +33,12 @@ cursor.execute("SELECT * FROM User;")
 users = cursor.fetchall()
 cursor.close()
 conn.close()
+
 current_borrowed = []
 Month = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
 borrowed = {}
 bookurl = []
-for i in range(10):
+for i in range(30):
     bookurl.append(f"noteindex/"+ str(i))
 conn = sqlite3.connect('Coding101.db')
 cursor = conn.cursor()
@@ -50,6 +51,16 @@ SELECT * FROM Borrowed_{} INNER JOIN User ON User.ID = Borrowed_{}.User_ID
     borrowed[i] = borrowed_mon
 cursor.close()
 conn.close()
+
+#閱讀心得
+conn = sqlite3.connect('Coding101.db')
+cursor = conn.cursor()
+cursor.execute("SELECT * FROM Reflection;")
+reflection = cursor.fetchall()
+cursor.close()
+conn.close()
+
+
 
 #print(borrowed)
 pjdir = os.path.abspath(os.path.dirname(__file__))
@@ -97,20 +108,21 @@ def home():
 
 @app.route('/map', methods = ['POST', 'GET'])
 def map():
-    try:
+    #try:
         #current_borrowed = []
         c = []
         for j in borrowed.values():
             for i in j:
-                print(i[1])
+                
                 if i[6] == current_user.id and i[3] == 0:
+                    print(i[6])
                     if books[i[1] - 1][0] not in cur:
                         cur.append(books[i[1] - 1][0])
                         current_borrowed.append([books[i[1] - 1][0], books[i[1] - 1][1], books[i[1] - 1][3],  i[4], books[i[1] - 1][4], (i[4]/books[i[1] - 1][4])*100])
                         
         c = current_borrowed.copy()
         return render_template('map.html', bookurl = bookurl, books = c, bag_books = current_borrowed)
-    except:
+    #except:
         return redirect(url_for('login'))
 @app.route('/analysis')
 def analysis():
@@ -171,6 +183,14 @@ def note(book):
         if 'bookprogress' in request.form.keys():
             print('page:', request.form['bookprogress'])
         else:
+            conn = sqlite3.connect('Coding101.db')
+            cursor = conn.cursor()
+            sql = """
+INSERT INTO Reflection (Book_ID, User_ID, Reflection, Rate)
+VALUES({}, 1, \'{}\', 5);
+		""".format(int(book), request.form['thought'])
+            cursor.execute(sql)
+            conn.commit()
             print('thought:', request.form['thought'])
     output = None
     for i in books:

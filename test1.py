@@ -6,12 +6,13 @@ cursor = conn.cursor()
 
 Month = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
 for i in Month:
-    sql = """
+	for j in range(23, 25):
+		sql = """
 INSERT INTO Borrowed_{}(Book_ID, User_ID, Whe_Finished, Page_SoFar)
-VALUES(1, 1, 1, 336);
-    """.format(i)
-    cursor.execute(sql)
-    conn.commit()
+VALUES({}, 1, 0, 20);
+		""".format(i, j)
+		cursor.execute(sql)
+		conn.commit()
 
 cursor.close()
 conn.close()
