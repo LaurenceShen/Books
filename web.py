@@ -134,11 +134,20 @@ def post_cards():
 
 @app.route('/mybooks' ,methods=['POST','GET'])
 def mybooks():
-    print(borrowed['Jan'])
-    if request.method =='POST':
-        if request.values['send']=='探索':
-            return render_template('mybooks.html', name = request.values['mybook'], bag_books = current_borrowed, bookurl = bookurl)
-    return render_template('mybooks.html', name = "", borrowed = borrowed, books = books, bag_books = current_borrowed, bookurl = bookurl)
+    conn = sqlite3.connect('Coding101.db')
+    cursor = conn.cursor()
+    cursor.execute("SELECT * FROM Reflection INNER JOIN User ON Reflection.User_ID = User.ID;")
+    reflection = cursor.fetchall()
+    cursor.close()
+    conn.close()
+    #將閱讀心得存入字串
+    reflection_personal = ""
+    thought = {}
+    for i in reflection:
+        #print(i[1])
+        thought[i[1]] = i[3]
+        print(thought[i[1]])
+    return render_template('mybooks.html', name = "", borrowed = borrowed, books = books, bag_books = current_borrowed, bookurl = bookurl, thought = thought)
 
 @app.route('/discovery', methods = ['POST', 'GET'])
 def discovery():
