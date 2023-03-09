@@ -33,12 +33,13 @@ cursor.execute("SELECT * FROM User;")
 users = cursor.fetchall()
 cursor.close()
 conn.close()
+
 current_borrowed = []
 Month = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
 borrowed = {}
 bookurl = []
 for i in range(30):
-    bookurl.append(f"../../noteindex/"+ str(i))
+    bookurl.append(f"noteindex/"+ str(i))
 conn = sqlite3.connect('Coding101.db')
 cursor = conn.cursor()
 for i in Month:
@@ -50,6 +51,16 @@ SELECT * FROM Borrowed_{} INNER JOIN User ON User.ID = Borrowed_{}.User_ID
     borrowed[i] = borrowed_mon
 cursor.close()
 conn.close()
+
+#閱讀心得
+conn = sqlite3.connect('Coding101.db')
+cursor = conn.cursor()
+cursor.execute("SELECT * FROM Reflection;")
+reflection = cursor.fetchall()
+cursor.close()
+conn.close()
+
+
 
 #print(borrowed)
 pjdir = os.path.abspath(os.path.dirname(__file__))
@@ -97,37 +108,33 @@ def home():
 
 @app.route('/map', methods = ['POST', 'GET'])
 def map():
-    try:
+    #try:
         #current_borrowed = []
         c = []
-        stamp = 0
-        for j in users:
-            if j[1] == current_user.id:
-                stamp = j[3]
         for j in borrowed.values():
             for i in j:
-                print(i[1])
+                
                 if i[6] == current_user.id and i[3] == 0:
+                    print(i[6])
                     if books[i[1] - 1][0] not in cur:
                         cur.append(books[i[1] - 1][0])
                         current_borrowed.append([books[i[1] - 1][0], books[i[1] - 1][1], books[i[1] - 1][3],  i[4], books[i[1] - 1][4], (i[4]/books[i[1] - 1][4])*100])
-        c = current_borrowed[0:2]
-        print(c)
-        #c = c[0:2]
-        return render_template('map.html', bookurl = bookurl, books = c, bag_books = current_borrowed, stamp = stamp)
-    except:
+                        
+        c = current_borrowed.copy()
+        return render_template('map.html', bookurl = bookurl, books = c, bag_books = current_borrowed)
+    #except:
         return redirect(url_for('login'))
 @app.route('/analysis')
 def analysis():
     borrow_size = []
-    print("cur: ", borrowed)
+    print("cur: ", current_borrowed)
     for i in borrowed.values():
         borrow_size.append(len(i))
-    return render_template('analysis.html', borrow_size = borrow_size, bag_books = current_borrowed, bookurl = bookurl)
+    return render_template('analysis.html', borrow_size = borrow_size, bag_books = current_borrowed)
 
 @app.route('/post_cards')
 def post_cards():
-    return render_template('postcards.html', bag_books = current_borrowed, bookurl = bookurl)
+    return render_template('postcards.html', bag_books = current_borrowed)
 
 @app.route('/mybooks' ,methods=['POST','GET'])
 def mybooks():
@@ -135,17 +142,16 @@ def mybooks():
     if request.method =='POST':
         if request.values['send']=='探索':
             return render_template('mybooks.html', name = request.values['mybook'], bag_books = current_borrowed)
-    return render_template('mybooks.html', name = "", borrowed = borrowed, books = books, bag_books = current_borrowed, bookurl = bookurl)
+    return render_template('mybooks.html', name = "", borrowed = borrowed, books = books, bag_books = current_borrowed)
 
 @app.route('/discovery', methods = ['POST', 'GET'])
 def discovery():
      print(current_borrowed)
-
-     return render_template("discovery.html", books = books, bag_books = current_borrowed, bookurl = bookurl)
+     return render_template("discovery.html", books = books, bag_books = current_borrowed)
 
 @app.route('/donate')
 def donate():
-    return render_template("donate.html", bag_books = current_borrowed, bookurl = bookurl)
+    return render_template("donate.html", bag_books = current_borrowed)
 
 @app.route('/login', methods = ['POST', 'GET'])
 def login():
@@ -177,6 +183,14 @@ def note(book):
         if 'bookprogress' in request.form.keys():
             print('page:', request.form['bookprogress'])
         else:
+            conn = sqlite3.connect('Coding101.db')
+            cursor = conn.cursor()
+            sql = """
+INSERT INTO Reflection (Book_ID, User_ID, Reflection, Rate)
+VALUES({}, 1, \'{}\', 5);
+		""".format(int(book), request.form['thought'])
+            cursor.execute(sql)
+            conn.commit()
             print('thought:', request.form['thought'])
     output = None
     for i in books:
@@ -188,7 +202,7 @@ def note(book):
     for i in current_borrowed:
         if i[0] == output[0]:
             output.append(i[3])
-    return render_template('noteindex.html', book = output, bag_books = current_borrowed, bookurl = bookurl)
+    return render_template('noteindex.html', book = output, bag_books = current_borrowed)
 
 @app.route('/logout')
 def logout():
