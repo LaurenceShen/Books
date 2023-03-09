@@ -108,7 +108,7 @@ def home():
 
 @app.route('/map', methods = ['POST', 'GET'])
 def map():
-    #try:
+    try:
         #current_borrowed = []
         c = []
         for j in borrowed.values():
@@ -122,7 +122,7 @@ def map():
                         
         c = current_borrowed.copy()
         return render_template('map.html', bookurl = bookurl, books = c, bag_books = current_borrowed)
-    #except:
+    except:
         return redirect(url_for('login'))
 @app.route('/analysis')
 def analysis():
@@ -179,6 +179,12 @@ def login():
 
 @app.route('/noteindex/<book>', methods = ['POST', 'GET'])
 def note(book):
+    #將閱讀心得存入字串
+    reflection_personal = ""
+    for i in reflection:
+    	if book == i[1] and current_user.id == i[2]:
+    		reflection_personal = i[3]
+    #
     if request.method == 'POST':
         if 'bookprogress' in request.form.keys():
             print('page:', request.form['bookprogress'])
