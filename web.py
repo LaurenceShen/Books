@@ -53,12 +53,7 @@ cursor.close()
 conn.close()
 
 #閱讀心得
-conn = sqlite3.connect('Coding101.db')
-cursor = conn.cursor()
-cursor.execute("SELECT * FROM Reflection;")
-reflection = cursor.fetchall()
-cursor.close()
-conn.close()
+
 
 
 
@@ -180,6 +175,19 @@ def login():
 
 @app.route('/noteindex/<book>', methods = ['POST', 'GET'])
 def note(book):
+    conn = sqlite3.connect('Coding101.db')
+    cursor = conn.cursor()
+    cursor.execute("SELECT * FROM Reflection INNER JOIN User ON Reflection.User_ID = User.ID;")
+    reflection = cursor.fetchall()
+    cursor.close()
+    conn.close()
+    #將閱讀心得存入字串
+    reflection_personal = ""
+    for i in reflection:
+        print(i[2])
+        if int(book) == i[1] and current_user.id == i[6]:
+            reflection_personal = i[3]
+    print("hi:", reflection_personal)
     if request.method == 'POST':
         if 'bookprogress' in request.form.keys():
             print('page:', request.form['bookprogress'])
@@ -203,7 +211,7 @@ VALUES({}, 1, \'{}\', 5);
     for i in current_borrowed:
         if i[0] == output[0]:
             output.append(i[3])
-    return render_template('noteindex.html', book = output, bag_books = current_borrowed, bookurl = bookurl)
+    return render_template('noteindex.html', book = output, bag_books = current_borrowed, bookurl = bookurl, thought = reflection_personal)
 
 @app.route('/logout')
 def logout():
