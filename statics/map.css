@@ -1,3 +1,36 @@
+.fontcolor {
+  color: black
+}
+
+
+.map1 {
+  position: absolute;
+  top: 220px;
+  left: 300px;
+}
+
+.cat1{
+  position: absolute;
+  top: 260px;
+  left: 230px;
+}
+
+.cat2{
+  position: absolute;
+  top: 470px;
+  left: 500px;
+}
+
+.image-container img:first-child {
+  z-index: 1;
+}
+
+.image-container img:second-child {
+  z-index: 2;
+}
+
+
+
 .container {
     position: relative;
   }
@@ -15,7 +48,7 @@
     background-color: #fefdfa;
     display: grid;
     justify-content: space-evenly;
-    column-gap: 150px;
+    column-gap: 120px;
     grid-template-columns: auto auto;
     padding: 5px;
   }
@@ -58,13 +91,14 @@ table {
     }
   th{
     text-align: left;
-    height: 50px
+    height: 50px;
+    width: 300px
     }
   
   td{
     border: 2px solid #bbbbbb;
     text-align: left;
-    width: 0%;
+    width: 300px;
     height: 50px
   }
   td:first-child {
@@ -72,11 +106,13 @@ table {
   }
 
   .div2 {
-    width: 920px;
-    height: 240px;
+    position: relative;
+    width: 830px;
+    height: 220px;
     border: 3px solid grey;
     box-sizing: border-box;
-    border-radius: 10px
+    border-radius: 10px;
+    background-color: white
   }
  
   .flex-container2 {
@@ -93,6 +129,13 @@ table {
     text-align: left;
     line-height: 50px;
   }
+
+
+
+  .progress-bar{
+    background-color:gray
+  }
+
 
 
 
@@ -149,7 +192,7 @@ table {
     height: 40px;
     display: inline-flexbox;
     position: absolute;
-    top: 390px;
+    top: 365px;
     right: 400px;
     border-radius: 10%;
     background: #e3e3e3;
@@ -160,7 +203,7 @@ table {
 
   .text1 {
     position: absolute;
-    top: 190px;
+    top: 165px;
     left: 405px;
     text-decoration: none;
     color: #000000;
@@ -169,7 +212,7 @@ table {
 
   .text2 {
     position: absolute;
-    top: 255px;
+    top: 230px;
     left: 685px;
     text-decoration: none;
     color: #000000;
@@ -178,7 +221,7 @@ table {
 
   .text3 {
     position: absolute;
-    top: 320px;
+    top: 295px;
     right: 440px;
     text-decoration: none;
     color: #000000;
@@ -187,7 +230,7 @@ table {
 
   .text4 {
     position: absolute;
-    top: 235px;
+    top: 210px;
     left: 405px;
     text-decoration: none;
     color: #000000;
@@ -196,7 +239,7 @@ table {
 
   .text5 {
     position: absolute;
-    top: 275px;
+    top: 250px;
     left: 405px;
     text-decoration: none;
     color: #000000;
@@ -205,7 +248,7 @@ table {
 
   .text6 {
     position: absolute;
-    top: 315px;
+    top: 290px;
     left: 405px;
     text-decoration: none;
     color: #000000;
@@ -214,7 +257,7 @@ table {
 
   .text7 {
     position: absolute;
-    top: 355px;
+    top: 330px;
     left: 405px;
     text-decoration: none;
     color: #000000;
@@ -224,27 +267,27 @@ table {
 
   .img0 {
     position: absolute;
-    top: 163px;
+    top: 138px;
     right: 427px;
   }
 
   .img1 {
     position: absolute;
-    top: 160px;
+    top: 135px;
     right: 505px;
   }
   .img2 {
     position: absolute;
-    top: 160px;
+    top: 135px;
     right: 463px;
   }
   .img3 {
     position: absolute;
-    top: 160px;
+    top: 135px;
     right: 421px;
   }
   .img4 {
     position: absolute;
-    top: 155px;
+    top: 130px;
     right: 390px;
   }

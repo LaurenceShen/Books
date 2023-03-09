@@ -32,11 +32,21 @@
                 <div class="container" style="flex-basis: 20px">
                     <a type="button" onclick="openPopup()">
                         <img src="./images/stamp.png" width="110" height="70">
-                        <div class="center">x 20</div>
+                        <div class="center">x {{stamp}}</div>
                     </a>
                 </div>  
             </div>
-            <img src="./images/亮台中的圖.png" width="250" height="400" usemap="#workmap">
+            
+            <p class="cat1">
+                <img src="./images/cat5.png" width="75" height="100">
+            </p>
+            <p class="cat2">
+                <img src="./images/cat6.png" width="75" height="100">
+            </p>
+            <p class="map1">
+                <img src="./images/亮台中的圖.png" width="250" height="400" usemap="#workmap">
+            </p>
+
             <map name="workmap">
                 <a type="button" onclick="openPopup2()">
                     <area shape="poly" coords="280,40, 380,40, 300,100">
@@ -78,7 +88,7 @@
                   <p class="text2">MEW TAIPEI CAT</p>
                   <p class="text3">CAT'S HOME</p>
                   <p class="text4">最近我念了三本書，想分享給你</p>
-                  <p class="text5">1. 哈囉</p>
+                  <p class="text5">1. {{bag_books[0][1]}}</p>
               
                   <button class=close-btn2 onclick="openNextPopup2()">stamp</button>
                 </div>
@@ -97,10 +107,10 @@
                       <p class="text2">MEW TAIPEI CAT</p>
                       <p class="text3">CAT'S HOME</p>
                       <p class="text4">最近我念了三本書，想分享給你</p>
-                      <p class="text5">1. 哈囉</p>
-                      <p class="text6">2. 哈囉</p>
+                      <p class="text5">1. {{bag_books[0][1]}}</p>
+                      <p class="text6">2. {{bag_books[0][1]}}</p>
               
-                      <button class=close-btn2 onclick="openNextPopup3()">paste</button>
+                      <button class=close-btn2 onclick="openNextPopup3()">stamp</button>
                 </div>
             </div>
               
@@ -165,7 +175,7 @@
 
         <!--本週進度、table-->
             <div class="item2">
-            <h1>本週進度 Weekly Plan</h1>
+            <h1>本週進度 <br>Weekly Plan</h1>
             <table>
                 <colgroup>
                     <col span="1" style="width: 30%;">
@@ -177,11 +187,16 @@
                     </tr>
                     <tr>
                         <td>MON</td>
-                        <td><a href={{bookurl[0]}}>{{bag_books[0][1]}}</a></td>
+                        <td>
+                            <a class="fontcolor" href={{bookurl[0]}}>{{bag_books[0][1]}}</a>
+                        </td>
                     </tr>
                     <tr>
                         <td>TUE</td>
-                        <td></td>
+                        <td>
+                            <a class="fontcolor" href={{bookurl[0]}}>{{bag_books[0][1]}}</a>
+                            <p>page 230~260</p>
+                        </td>
                     </tr>
                     <tr>
                         <td>WED</td>
@@ -209,8 +224,8 @@
 
         <!--正在閱讀-->
             <div class="item3">
-                <h1>正在閱讀 | READING</h1>
-                {% for book_list in books %}
+                <h1><br>正在閱讀 | READING<br><br></h1>
+                {% for book_list in bag_books %}
                 <div class="div2">
                 <div class="flex-container2">
                     <div style="flex-basis: 150px">
@@ -218,14 +233,16 @@
                         <img src={{book_list[2]}} width="90" height="100">
                     </div>
                     <div style="flex-basis: 400px">
-                        <a href={{bookurl[book_list[0]]}}>{{book_list[1]}}</a><br>
+                        <a class="fontcolor" href={{bookurl[book_list[0]]}}>{{book_list[1]}}</a><br>
                         閱讀進度
                         <div class="progress">
                             <div class="progress-bar" role="progressbar" style="width: {{book_list[5]}}%" aria-valuenow="{{book_list[5]}}" aria-valuemin="0" aria-valuemax="100"> </div>
                         </div>
                     </div>
                     <div style="flex-basis: 150px">
-                        <button type="button" class="btn btn-secondary btn-lg" href="">完 成<br>閱 讀</button>
+                        <a type="button">
+                            <img src="./images/finishbtn.png" width="110" height="120">
+                        </a>
                     </div>
                 </div>
                 </div>
