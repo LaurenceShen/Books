@@ -36,6 +36,9 @@ conn.close()
 current_borrowed = []
 Month = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
 borrowed = {}
+bookurl = []
+for i in range(10):
+    bookurl.append(f"noteindex/"+ str(i))
 conn = sqlite3.connect('Coding101.db')
 cursor = conn.cursor()
 for i in Month:
@@ -59,7 +62,7 @@ app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///' + \
                                         os.path.join(pjdir, 'data_register.sqlite')
 bootstrap = Bootstrap(app)
 db = SQLAlchemy(app)
-
+cur = []
 login_manager = LoginManager()
 login_manager.init_app(app)
 login_manager.session_protection = "strong"
@@ -67,7 +70,6 @@ login_manager.login_view = 'login'
 login_manager.login_message = 'login_message'
 class User(UserMixin):
     pass
-
 @login_manager.user_loader
 def user_loader(tmpuser):
     for i in users:
@@ -95,40 +97,54 @@ def home():
 
 @app.route('/map', methods = ['POST', 'GET'])
 def map():
-    for j in borrowed.values():
-        for i in j:
-            print(i[1])
-            if i[6] == current_user.id and i[3] == 0:
-                if [books[i[1] - 1][0], books[i[1] - 1][1], books[i[1] - 1][3]] not in current_borrowed:
-                    current_borrowed.append([books[i[1]][0], books[i[1]][1], books[i[1]][3]])
-    return render_template('map.html', bookurl = './noteindex/'+ str(books[0][0]), book = books[0],  bag_books = current_borrowed)
-
+    try:
+        #current_borrowed = []
+        c = []
+        stamp = 0
+        for j in users:
+            if j[1] == current_user.id:
+                stamp = j[3]
+        for j in borrowed.values():
+            for i in j:
+                print(i[1])
+                if i[6] == current_user.id and i[3] == 0:
+                    if books[i[1] - 1][0] not in cur:
+                        cur.append(books[i[1] - 1][0])
+                        current_borrowed.append([books[i[1] - 1][0], books[i[1] - 1][1], books[i[1] - 1][3],  i[4], books[i[1] - 1][4], (i[4]/books[i[1] - 1][4])*100])
+        c = current_borrowed.copy()
+        c = c[0:2]
+        return render_template('map.html', bookurl = bookurl, books = c, bag_books = current_borrowed, stamp = stamp)
+    except:
+        return redirect(url_for('login'))
 @app.route('/analysis')
 def analysis():
     borrow_size = []
+    print("cur: ", borrowed)
     for i in borrowed.values():
         borrow_size.append(len(i))
-    return render_template('analysis.html', borrow_size = borrow_size)
+    return render_template('analysis.html', borrow_size = borrow_size, bag_books = current_borrowed)
 
 @app.route('/post_cards')
 def post_cards():
-    return render_template('postcards.html')
+    return render_template('postcards.html', bag_books = current_borrowed)
 
 @app.route('/mybooks' ,methods=['POST','GET'])
 def mybooks():
     print(borrowed['Jan'])
     if request.method =='POST':
         if request.values['send']=='探索':
-            return render_template('mybooks.html', name = request.values['mybook'])
-    return render_template('mybooks.html', name = "", borrowed = borrowed, books = books)
+            return render_template('mybooks.html', name = request.values['mybook'], bag_books = current_borrowed)
+    return render_template('mybooks.html', name = "", borrowed = borrowed, books = books, bag_books = current_borrowed)
 
 @app.route('/discovery', methods = ['POST', 'GET'])
 def discovery():
-    return render_template("discovery.html", books = books)
+     print(current_borrowed)
+
+     return render_template("discovery.html", books = books, bag_books = current_borrowed)
 
 @app.route('/donate')
 def donate():
-    return render_template("donate.html")
+    return render_template("donate.html", bag_books = current_borrowed)
 
 @app.route('/login', methods = ['POST', 'GET'])
 def login():
@@ -154,16 +170,24 @@ def login():
     flash('登入失敗了...')
     return render_template('login.html')
 
-@app.route('/noteindex/<book>')
+@app.route('/noteindex/<book>', methods = ['POST', 'GET'])
 def note(book):
+    if request.method == 'POST':
+        if 'bookprogress' in request.form.keys():
+            print('page:', request.form['bookprogress'])
+        else:
+            print('thought:', request.form['thought'])
     output = None
     for i in books:
         #print(i[0])
         if i[0] == int(book):
-            output = i
+            output = list(i)
     if (output == None):
         return render_template('error.html')
-    return render_template('noteindex.html', book = output)
+    for i in current_borrowed:
+        if i[0] == output[0]:
+            output.append(i[3])
+    return render_template('noteindex.html', book = output, bag_books = current_borrowed)
 
 @app.route('/logout')
 def logout():

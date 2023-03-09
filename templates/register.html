@@ -3,7 +3,9 @@
 {% block title %}註冊{% endblock %}
 {% block main %}
 <div class="container">
-    <h3>註冊！</h3>
+ <div class="pushpush">
+    <section class="section">
+    <h1>歡迎！</h1>
     {% with messages = get_flashed_messages() %}
     {% if messages %}
     <ul class="flash">
@@ -14,21 +16,31 @@
      {% endif %}
      {% endwith %}
     <form method='post' action="register">
+
         <div class="form-group row"> 
         <label for="user_id" class="col-2 offset-1 col-form-label">user_id:</label>
-            <div class="col-3"> 
-                <input type='text' name="name">
-            </div>
+        <div class="col-3">
+            <input type="text" class="form-control" id="user_id" name="user_id" placeholder="user_id">
+            <!-- <small class="form-text">提示： Me</small> -->
+        </div>
+        </div>
+
+        <div class="form-group row"> 
         <label for="password" class="col-2 offset-1 col-form-label">password:</label>
-            <div class="col-3"> 
-                <input type = 'password' name = "password">
-            </div>
+        <div class="col-3">
+            <input type="password" class="form-control" id="password" name="password" placeholder="password">
+            <!-- <small class="form-text">提示： myself</small> -->
+          </div>
+        </div>
+
         <div class="form-group row">
-            <div class="col-5  offset-10"> 
-                <button type='submit'>Submit</button>
-            </div>
+        <div class="col-2  offset-3"> 
+            <button type='submit' class="btn btn-secondary btn">註冊</button>
         </div>
         </div>
+       
+        <img src= "./../images/cat5.png" class="logincat1">
+        <img src= "./../images/cat14.png" class="logincat2">
     </form>
 </div>    
 {% endblock %}

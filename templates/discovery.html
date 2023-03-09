@@ -2,19 +2,160 @@
 
 {% block title %}探索{% endblock %}
 {% block main %}
+<head>
+	<title>圖書館首頁</title>
+	<style>
+h1 {
+    color: rgb(0, 0, 0);
+  }
 
-    <h1>專屬推薦 | Recommandation</h1>
-    <div class="card-group">
-    {% for book in books %}
-        <div class="card">
-            <img src="https://images.unsplash.com/photo-1495446815901-a7297e633e8d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80" class="card-img-top" alt="...">
-            <div class="card-body">
-                <h5 class="card-title">{{book}}</h5>
-                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                    <a href="#" class="btn btn-primary">Go somewhere</a>
-            </div>
-        </div>
-    {% endfor %}
+p{
+	margin-top: 10px;
+}
+
+		.container {
+            width: 129vh;
+            height: 35vh;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			margin-bottom: 20px;
+			/* background-color: white; */
+		}
+
+		.activity {
+			width: 180vh;
+			height: 100%;
+			background-color: #fff;
+			/* box-shadow: 0 0 10px rgba(0, 0, 0, 0.3); */
+			text-align: center;
+			border: 1px solid;
+			border-radius: 8px;
+		}
+
+        .book_top {
+			width: 50vh;
+			height: 100%;
+			border: 1px solid;
+			background-color: white;
+			border-radius: 8px;
+			/* box-shadow: 0 0 10px rgba(0, 0, 0, 0.3); */
+			margin: 0px 0px 0px 20px;
+			text-align: center;
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			padding: 10px;
+		}
+
+        .book_top img {
+			width: 18vh;
+			height: 20vh;
+			max-width: 100%
+		}
+
+		.book_top h3 {
+			margin-top: 15px;
+			font-size: 1rem;
+			text-overflow: ellipsis;
+			white-space: nowrap;
+			overflow: hidden;
+		}
+
+        .container1 {
+			margin-left: 2vh;
+            width: 125.1vh;
+            height: 35vh;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			border: 1px solid;
+			background-color: white;
+			border-radius: 8px;
+		}
+
+
+		.book {
+			width: 50vh;
+			height: 31.5vh;
+			background-color: #fff;
+			/* box-shadow: 0 0 10px rgba(0, 0, 0, 0.3); */
+			margin: 0px 20px 0 20px;
+			text-align: center;
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			padding: 10px;
+        }
+
+		.book img {
+			width: 18vh;
+			height: 20vh;
+			margin-top: 2vh;
+		}
+
+		.book h3 {
+			margin-top: 15px;
+			font-size: 1rem;
+			text-overflow: ellipsis;
+			white-space: nowrap;
+			overflow: hidden;
+		}
+
+		.event{
+			width: 75.6vh;
+			height: 100%;
+			border-radius: 8px;
+		}
+	</style>
+</head>
+
+<body>
+    <!-- 往右推動 -->
+    <section class="section">
+    <!-- 往右推動 -->
+
+    <h1>最新消息｜News</h1>
+	<div class="container">
+		<div class="activity">
+			<img src= "./../images/Event.png" class="event">
+		</div>
+
+        <div class="book_top">
+            <h3>新進館藏</h3>
+			<img src={{bag_books[4][2]}}>
+			<p>{{bag_books[4][1]}}</p>
+		</div>
+
+		<div class="book_top">
+            <h3>新進館藏</h3>
+			<img src={{bag_books[5][2]}}>
+			<p>{{bag_books[5][1]}}</p>
+		</div>
     </div>
 
+
+    <h1>專屬推薦｜Recommendation</h1>
+    <div class="container1">
+		<div class="book">
+			<img src={{bag_books[0][2]}}>
+			<p>{{bag_books[0][1]}}</p>
+		</div>
+		<div class="book">
+			<img src={{bag_books[1][2]}}>
+			<p>{{bag_books[1][1]}}</p>
+		</div>
+		<div class="book">
+			<img src={{bag_books[2][2]}}>
+			<p>{{bag_books[2][1]}}</p>
+		</div>
+		<div class="book">
+			<img src={{bag_books[3][2]}}>
+			<p>{{bag_books[3][1]}}</p>
+		</div>
+		
+		
+	</div>
+
+</body>
 {% endblock %}

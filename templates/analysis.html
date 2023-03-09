@@ -1,84 +1,108 @@
 {% extends "base.html" %}
 {% block title %}探索{% endblock %}
 {% block main %}
-<title>Chart.js Example</title>
-	<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-	<style>
-		canvas {
-			-moz-user-select: none;
-			-webkit-user-select: none;
-			-ms-user-select: none;
-		}
-	</style>
+    <link rel="stylesheet" href="rong.css"/>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
-	<!-- 长条图 -->
+    <!-- 往右推動 -->
+    <section class="section">
+      <!-- 往右推動 -->
+      
+    <h1>偏好類型｜Your Type</h1>
+    <!--放圖表-->
+    <canvas id="myChart"></canvas>
+    <script>
+      // 直條圖資料
+      var data = {
+        labels: ["哲學", "財經", "科幻", "恐怖", "漫畫"],
+        datasets: [
+          {
+            label: "閱讀量",
+            data: [12, 19, 3, 5, 2],
+            backgroundColor: [
+              "rgba(255, 99, 132, 1)",
+              "rgba(54, 162, 235, 1)",
+              "rgba(255, 206, 86, 1)",
+              "rgba(75, 192, 192, 1)",
+              "rgba(153, 102, 255, 1)"
+            ],
+            borderColor: [
+              "rgba(255, 99, 132, 1)",
+              "rgba(54, 162, 235, 1)",
+              "rgba(255, 206, 86, 1)",
+              "rgba(75, 192, 192, 1)",
+              "rgba(153, 102, 255, 1)"
+            ],
+            borderWidth: 1
+          }
+        ]
+      };
 
-  <h1>閱讀偏好</h1>
+      // 直條圖設定
+     
+      var options = {
+        scales: {
+            yAxes: [{
+            ticks: {
+                beginAtZero: true,
+                fontSize: 20 // 設定文字大小為20
+            },
+            gridLines: {
+                color: "rgba(255, 0, 0, 1)"
+            }
+            }]
+        }
+        };
 
-	<div style="width: 800px;">
-		<canvas id="barChart"></canvas>
-	</div>
+      // 建立直條圖
+      var ctx = document.getElementById("myChart").getContext("2d");
+      var myChart = new Chart(ctx, {
+        type: "bar",
+        data: data,
+        options: options
+      });
+    </script>
 
-	<script>
-		var ctx = document.getElementById('barChart').getContext('2d');
-		var barChart = new Chart(ctx, {
-			type: 'bar',
-			data: {
-				labels: ['財經', '文學', '哲學', '漫畫', '驚悚'],
-				datasets: [{
-					label: '閱讀量',
-					data: [12, 19, 3, 5, 2,],
-					backgroundColor: 'rgba(255, 99, 132, 0.2)',
-					borderColor: 'rgba(255, 99, 132, 1)',
-					borderWidth: 1
-				}]
-			},
-			options: {
-				responsive: true,
-				scales: {
-					yAxes: [{
-						ticks: {
-							beginAtZero: true
-						}
-					}]
-				}
-			}
-		});
-	</script>
+    <br>
+    <h1>時間歷程｜Past Time</h1>
 
-	<!-- 折线图 -->
+    <canvas id="myChart2"></canvas>
+    <script>
+    
+      // 折線圖資料
+      var data = {
+        labels: ["一月", "二月", "三月", "四月", "五月", "六月"],
+        datasets: [
+          {
+            label: "閱讀量",
+            data: [{{ borrow_size[0] }}, {{ borrow_size[1] }}, {{ borrow_size[2] }}, {{ borrow_size[3] }}, {{ borrow_size[4] }}, {{ borrow_size[5] }}],
+            backgroundColor: "rgba(75,192,192,0.4)",
+            borderColor: "rgba(75,192,192,1)",
+            borderWidth: 5
+          }
+        ]
+      };
 
-  <h1>閱讀數量</h1>
+      // 折線圖設定
+      var options = {
+        scales: {
+          yAxes: [{
+            ticks: {
+              beginAtZero: true,
+              fontSize: 1000
+            }
+          }]
+        }
+      };
 
-	<div style="width: 800px;">
-		<canvas id="lineChart"></canvas>
-	</div>
-
-	<script>
-		var ctx = document.getElementById('lineChart').getContext('2d');
-		var lineChart = new Chart(ctx, {
-			type: 'line',
-			data: {
-				labels: ['一月','二月','三月','四月','五月','六月','七月','八月','九月','十月','十一月','十二月'],
-				datasets: [{
-					label: '本數',
-					data: [12, 19, 3, 5, 2, 3, 10,6,3,7,2,7,8],
-					backgroundColor: 'rgba(255, 99, 132, 0.2)',
-					borderColor: 'rgba(255, 99, 132, 1)',
-					borderWidth: 1
-				}]
-			},
-			options: {
-				responsive: true,
-				scales: {
-					yAxes: [{
-						ticks: {
-							beginAtZero: true
-						}
-					}]
-				}
-			}
-		});
-	</script>
-
+      // 建立折線圖
+      var ctx = document.getElementById("myChart2").getContext("2d");
+      var myChart = new Chart(ctx, {
+        type: "line",
+        data: data,
+        options: options
+      });
+    
+    </script>
 {% endblock %}
