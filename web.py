@@ -111,8 +111,9 @@ def map():
                     if books[i[1] - 1][0] not in cur:
                         cur.append(books[i[1] - 1][0])
                         current_borrowed.append([books[i[1] - 1][0], books[i[1] - 1][1], books[i[1] - 1][3],  i[4], books[i[1] - 1][4], (i[4]/books[i[1] - 1][4])*100])
-        c = current_borrowed.copy()
-        c = c[0:2]
+        c = current_borrowed[0:2]
+        print(c)
+        #c = c[0:2]
         return render_template('map.html', bookurl = bookurl, books = c, bag_books = current_borrowed, stamp = stamp)
     except:
         return redirect(url_for('login'))
