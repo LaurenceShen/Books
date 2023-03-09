@@ -101,7 +101,7 @@ def map():
         #current_borrowed = []
         c = []
         stamp = 0
-        for j in user:
+        for j in users:
             if j[1] == current_user.id:
                 stamp = j[3]
         for j in borrowed.values():
@@ -111,7 +111,6 @@ def map():
                     if books[i[1] - 1][0] not in cur:
                         cur.append(books[i[1] - 1][0])
                         current_borrowed.append([books[i[1] - 1][0], books[i[1] - 1][1], books[i[1] - 1][3],  i[4], books[i[1] - 1][4], (i[4]/books[i[1] - 1][4])*100])
-                        
         c = current_borrowed.copy()
         c = c[0:2]
         return render_template('map.html', bookurl = bookurl, books = c, bag_books = current_borrowed, stamp = stamp)
@@ -140,6 +139,7 @@ def mybooks():
 @app.route('/discovery', methods = ['POST', 'GET'])
 def discovery():
      print(current_borrowed)
+
      return render_template("discovery.html", books = books, bag_books = current_borrowed)
 
 @app.route('/donate')
