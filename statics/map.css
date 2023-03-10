@@ -6,19 +6,19 @@
 .map1 {
   position: absolute;
   top: 220px;
-  left: 300px;
+  left: 320px;
 }
 
 .cat1{
   position: absolute;
   top: 260px;
-  left: 230px;
+  left: 270px;
 }
 
 .cat2{
   position: absolute;
   top: 470px;
-  left: 500px;
+  left: 520px;
 }
 
 .image-container img:first-child {
