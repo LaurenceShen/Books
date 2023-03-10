@@ -256,8 +256,9 @@
 
         <!--正在閱讀-->
             <div class="item3">
-                <h1><br>正在閱讀 | READING<br><br></h1>
+                <h1><br>正在閱讀 | READING<br></h1>
                 {% for book_list in books %}
+                <h3><br></h3>
                 <div class="div2">
                 <div class="flex-container2">
                     <div style="flex-basis: 150px">
@@ -278,9 +279,9 @@
                     </div>
                 </div>
                 </div>
+                {% endfor %}
                 </div>
             </div>
-        {% endfor %}
         
        <!--
         </body>
