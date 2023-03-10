@@ -33,12 +33,13 @@ cursor.execute("SELECT * FROM User;")
 users = cursor.fetchall()
 cursor.close()
 conn.close()
+
 current_borrowed = []
 Month = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
 borrowed = {}
 bookurl = []
-for i in range(10):
-    bookurl.append(f"noteindex/"+ str(i))
+for i in range(30):
+    bookurl.append(f"./../noteindex/"+ str(i))
 conn = sqlite3.connect('Coding101.db')
 cursor = conn.cursor()
 for i in Month:
@@ -50,6 +51,11 @@ SELECT * FROM Borrowed_{} INNER JOIN User ON User.ID = Borrowed_{}.User_ID
     borrowed[i] = borrowed_mon
 cursor.close()
 conn.close()
+
+#閱讀心得
+
+
+
 
 #print(borrowed)
 pjdir = os.path.abspath(os.path.dirname(__file__))
@@ -100,51 +106,79 @@ def map():
     try:
         #current_borrowed = []
         c = []
+
         stamp = 0
         for j in users:
             if j[1] == current_user.id:
                 stamp = j[3]
+        print("stamp:", stamp)
+
         for j in borrowed.values():
             for i in j:
-                print(i[1])
                 if i[6] == current_user.id and i[3] == 0:
+                    print(i[6])
                     if books[i[1] - 1][0] not in cur:
                         cur.append(books[i[1] - 1][0])
                         current_borrowed.append([books[i[1] - 1][0], books[i[1] - 1][1], books[i[1] - 1][3],  i[4], books[i[1] - 1][4], (i[4]/books[i[1] - 1][4])*100])
+                        
         c = current_borrowed.copy()
         c = c[0:2]
-        return render_template('map.html', bookurl = bookurl, books = c, bag_books = current_borrowed, stamp = stamp)
+        return render_template('map.html', bookurl = bookurl, books = c, bag_books = current_borrowed, stamp = stamp, finish = books)
     except:
         return redirect(url_for('login'))
 @app.route('/analysis')
 def analysis():
+    Category_Book = {}
+    conn = sqlite3.connect('Coding101.db')
+    cursor = conn.cursor()
+    for i in Month:
+        sql = """
+SELECT * FROM Borrowed_{} INNER JOIN Category_Book ON Category_Book.Book_ID = Borrowed_{}.Book_ID;
+        """.format(i, i)
+        cursor.execute(sql)
+        borrowed_mon = cursor.fetchall()
+        Category_Book[i] = borrowed_mon
+    cursor.close()
+    conn.close()
+    preference = [0, 0, 0, 0, 0]
+    for i in Category_Book.values():
+        for j in i:
+            preference[j[6] - 1] += 1
     borrow_size = []
-    print("cur: ", borrowed)
+    print("cur: ", current_borrowed)
     for i in borrowed.values():
         borrow_size.append(len(i))
-    return render_template('analysis.html', borrow_size = borrow_size, bag_books = current_borrowed)
+    return render_template('analysis.html', borrow_size = borrow_size, bag_books = current_borrowed, bookurl = bookurl, amount = preference)
 
 @app.route('/post_cards')
 def post_cards():
-    return render_template('postcards.html', bag_books = current_borrowed)
+    return render_template('postcards.html', bag_books = current_borrowed, bookurl = bookurl)
 
 @app.route('/mybooks' ,methods=['POST','GET'])
 def mybooks():
-    print(borrowed['Jan'])
-    if request.method =='POST':
-        if request.values['send']=='探索':
-            return render_template('mybooks.html', name = request.values['mybook'], bag_books = current_borrowed)
-    return render_template('mybooks.html', name = "", borrowed = borrowed, books = books, bag_books = current_borrowed)
+    conn = sqlite3.connect('Coding101.db')
+    cursor = conn.cursor()
+    cursor.execute("SELECT * FROM Reflection INNER JOIN User ON Reflection.User_ID = User.ID;")
+    reflection = cursor.fetchall()
+    cursor.close()
+    conn.close()
+    #將閱讀心得存入字串
+    reflection_personal = ""
+    thought = {}
+    for i in reflection:
+        #print(i[1])
+        thought[i[1]] = i[3]
+        print(thought[i[1]])
+    return render_template('mybooks.html', name = "", borrowed = borrowed, books = books, bag_books = current_borrowed, bookurl = bookurl, thought = thought)
 
 @app.route('/discovery', methods = ['POST', 'GET'])
 def discovery():
      print(current_borrowed)
-
-     return render_template("discovery.html", books = books, bag_books = current_borrowed)
+     return render_template("discovery.html", books = books, bag_books = current_borrowed, bookurl = bookurl)
 
 @app.route('/donate')
 def donate():
-    return render_template("donate.html", bag_books = current_borrowed)
+    return render_template("donate.html", bag_books = current_borrowed, bookurl = bookurl)
 
 @app.route('/login', methods = ['POST', 'GET'])
 def login():
@@ -172,10 +206,65 @@ def login():
 
 @app.route('/noteindex/<book>', methods = ['POST', 'GET'])
 def note(book):
+    cur = []
+    current_borrowed = []
+    for j in borrowed.values():
+            for i in j:
+                if i[6] == current_user.id and i[3] == 0:
+                    print(i[6])
+                    if books[i[1] - 1][0] not in cur:
+                        cur.append(books[i[1] - 1][0])
+                        current_borrowed.append([books[i[1] - 1][0], books[i[1] - 1][1], books[i[1] - 1][3],  i[4], books[i[1] - 1][4], (i[4]/books[i[1] - 1][4])*100])
+    conn = sqlite3.connect('Coding101.db')
+    cursor = conn.cursor()
+
+    for i in Month:
+        sql = """
+    SELECT * FROM Borrowed_{} INNER JOIN User ON User.ID = Borrowed_{}.User_ID
+        """.format(i, i)
+        cursor.execute(sql)
+        borrowed_mon = cursor.fetchall()
+        borrowed[i] = borrowed_mon
+    cursor.close()
+    conn.close()
+
+    conn = sqlite3.connect('Coding101.db')
+    cursor = conn.cursor()
+    cursor.execute("SELECT * FROM Reflection INNER JOIN User ON Reflection.User_ID = User.ID;")
+    reflection = cursor.fetchall()
+    cursor.close()
+    conn.close()
+    #將閱讀心得存入字串
+    reflection_personal = ""
+    for i in reflection:
+        print(i[2])
+        if int(book) == i[1] and current_user.id == i[6]:
+            reflection_personal = i[3]
+    print("hi:", reflection_personal)
     if request.method == 'POST':
         if 'bookprogress' in request.form.keys():
+            mon = ""
+            for i in borrowed.keys():
+                for j in borrowed[i]:
+                    if int(book) == j[1] and current_user.id == j[6]:
+                        mon = i
+            conn = sqlite3.connect('Coding101.db')
+            cursor = conn.cursor()
+            sql = """
+UPDATE Borrowed_{} SET Page_SoFar = {} WHERE Book_ID = {};
+        """.format(mon, request.form['bookprogress'], int(book))
+            cursor.execute(sql)
+            conn.commit()
             print('page:', request.form['bookprogress'])
         else:
+            conn = sqlite3.connect('Coding101.db')
+            cursor = conn.cursor()
+            sql = """
+INSERT INTO Reflection (Book_ID, User_ID, Reflection, Rate)
+VALUES({}, 1, \'{}\', 5);
+        """.format(int(book), request.form['thought'])
+            cursor.execute(sql)
+            conn.commit()
             print('thought:', request.form['thought'])
     output = None
     for i in books:
@@ -187,7 +276,7 @@ def note(book):
     for i in current_borrowed:
         if i[0] == output[0]:
             output.append(i[3])
-    return render_template('noteindex.html', book = output, bag_books = current_borrowed)
+    return render_template('noteindex.html', book = output, bag_books = current_borrowed, bookurl = bookurl, thought = reflection_personal)
 
 @app.route('/logout')
 def logout():
