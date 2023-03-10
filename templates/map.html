@@ -49,7 +49,10 @@
 
             <map name="workmap">
                 <a type="button" onclick="openPopup2()">
-                    <area shape="poly" coords="280,40, 380,40, 300,100">
+                    <area shape="poly" coords="60,100, 90,110, 200,100, 80,150, 55,120">
+                </a>
+                <a type="button" onclick="openPopup3()">
+                    <area shape="poly" coords="155,15, 175,10, 245,15, 175,80">
                 </a>
             </map>
             </div>
@@ -57,14 +60,26 @@
             <!--地圖明信片彈跳-->
             <div id="map_popup" class="popup">
                 <div class="popup-content">
-                  <h2>台北市 | NEW TAIPEI CITY</h2>
+                  <h2>台中市 | TAICHUNG</h2>
                   <p>
-                    <img src="./images/stamp.png" width="150" height="100">
-                    <img src="./images/stamp.png" width="150" height="100">
+                    <img src="./images/台中1.png" width="150" height="100">
+                    <img src="./images/台中2.png" width="150" height="100">
+                    <img src="./images/台中3.png" width="150" height="100">
                   </p>
                   <button class=close-btn onclick="closePopup2()">X</button>
                 </div>
             </div>
+
+            <div id="map_popup2" class="popup">
+                <div class="popup-content">
+                  <h2>台北市 | NEW TAIPEI CITY</h2>
+                  <p>
+                    <img src="./images/台北1.png" width="150" height="100">
+                  </p>
+                  <button class=close-btn onclick="closePopup3()">X</button>
+                </div>
+            </div>
+
 
             <!--寄出明信片彈跳-->
             <div id="popup1" class="popup">
@@ -88,7 +103,7 @@
                   <p class="text2">MEW TAIPEI CAT</p>
                   <p class="text3">CAT'S HOME</p>
                   <p class="text4">最近我念了三本書，想分享給你</p>
-                  <p class="text5">1. {{bag_books[0][1]}}</p>
+                  <p class="text5">1. {{finish[4][1]}}</p>
               
                   <button class=close-btn2 onclick="openNextPopup2()">stamp</button>
                 </div>
@@ -107,8 +122,8 @@
                       <p class="text2">MEW TAIPEI CAT</p>
                       <p class="text3">CAT'S HOME</p>
                       <p class="text4">最近我念了三本書，想分享給你</p>
-                      <p class="text5">1. {{bag_books[0][1]}}</p>
-                      <p class="text6">2. {{bag_books[0][1]}}</p>
+                      <p class="text5">1. {{finish[4][1]}}</p>
+                      <p class="text6">2. {{finish[5][1]}}</p>
               
                       <button class=close-btn2 onclick="openNextPopup3()">stamp</button>
                 </div>
@@ -128,9 +143,9 @@
                       <p class="text2">MEW TAIPEI CAT</p>
                       <p class="text3">CAT'S HOME</p>
                       <p class="text4">最近我念了三本書，想分享給你</p>
-                      <p class="text5">1. 哈囉</p>
-                      <p class="text6">2. 哈囉</p>
-                      <p class="text7">3. 哈囉</p>
+                      <p class="text5">1. {{finish[4][1]}}</p>
+                      <p class="text6">2. {{finish[5][1]}}</p>
+                      <p class="text7">3. {{finish[6][1]}}</p>
               
                       <button class=close-btn2 onclick="openNextPopup4()">finish</button>
                 </div>
@@ -162,9 +177,10 @@
               
             <div id="popup6" class="popup">
                   <div class="popup-content2">
-                    <h2>Next Popup Title</h2>
-                    <p>Next popup content goes here...</p>
-                    <button class=close-btn onclick="closePopup()">close</button>
+                    <p class="img5">
+                        <img src="./../images/新北1.jpg" width="420" height="270">
+                    </p>
+                    <button class=close-btn onclick="closePopup()">X</button>
                   </div>
             </div>
 
@@ -189,34 +205,50 @@
                         <td>MON</td>
                         <td>
                             <a class="fontcolor" href={{bookurl[books[0][0]]}}>{{books[0][1]}}</a>
+                            <p>page 230~260</p>
                         </td>
                     </tr>
                     <tr>
                         <td>TUE</td>
                         <td>
-                            <a class="fontcolor" href={{bookurl[0]}}>{{bag_books[0][1]}}</a>
-                            <p>page 230~260</p>
+                            <a class="fontcolor" href={{bookurl[books[0][0]]}}>{{books[0][1]}}</a>
+                            <p>page 260~280</p>
                         </td>
                     </tr>
                     <tr>
                         <td>WED</td>
-                        <td></td>
+                        <td>
+                            <a class="fontcolor" href={{bookurl[books[0][0]]}}>{{books[0][1]}}</a>
+                            <p>page 280~300</p>
+                        </td>
                     </tr>
                     <tr>
                         <td>THU</td>
-                        <td></td>
+                        <td>
+                            <a class="fontcolor" href={{bookurl[books[0][0]]}}>{{books[0][1]}}</a>
+                            <p>page 300~330</p>
+                        </td>
                     </tr>
                     <tr>
                         <td>FRI</td>
-                        <td></td>
+                        <td>
+                            <a class="fontcolor" href={{bookurl[books[0][0]]}}>{{books[0][1]}}</a>
+                            <p>page 330~350</p>
+                        </td>
                     </tr>
                     <tr>
                         <td>SAT</td>
-                        <td></td>
+                        <td>
+                            <a class="fontcolor" href={{bookurl[books[0][0]]}}>{{books[0][1]}}</a>
+                            <p>page 350~380</p>
+                        </td>
                     </tr>
                     <tr>
                         <td>SUN</td>
-                        <td></td>
+                        <td>
+                            <a class="fontcolor" href={{bookurl[books[0][0]]}}>{{books[0][1]}}</a>
+                            <p>page 380~400</p>
+                        </td>
                     </tr>
                 </tbody>   
             </table>

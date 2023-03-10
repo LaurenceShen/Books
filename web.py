@@ -242,35 +242,40 @@ def note(book):
             reflection_personal = i[3]
     print("hi:", reflection_personal)
     if request.method == 'POST':
-        if 'bookprogress' in request.form.keys():
-            mon = ""
-            for i in borrowed.keys():
-                for j in borrowed[i]:
-                    if int(book) == j[1] and current_user.id == j[6]:
-                        mon = i
-            conn = sqlite3.connect('Coding101.db')
-            cursor = conn.cursor()
-            sql = """
-UPDATE Borrowed_{} SET Page_SoFar = {} WHERE Book_ID = {};
-        """.format(mon, request.form['bookprogress'], int(book))
-            cursor.execute(sql)
-            conn.commit()
-            print('page:', request.form['bookprogress'])
-        else:
-            conn = sqlite3.connect('Coding101.db')
-            cursor = conn.cursor()
-            sql = """
-INSERT INTO Reflection (Book_ID, User_ID, Reflection, Rate)
-VALUES({}, 1, \'{}\', 5);
-        """.format(int(book), request.form['thought'])
-            cursor.execute(sql)
-            conn.commit()
-            print('thought:', request.form['thought'])
+        try:
+            if 'bookprogress' in request.form.keys():
+                mon = ""
+                for i in borrowed.keys():
+                    for j in borrowed[i]:
+                        if int(book) == j[1] and current_user.id == j[6]:
+                            mon = i
+                conn = sqlite3.connect('Coding101.db')
+                cursor = conn.cursor()
+                sql = """
+    UPDATE Borrowed_{} SET Page_SoFar = {} WHERE Book_ID = {};
+            """.format(mon, request.form['bookprogress'], int(book))
+                cursor.execute(sql)
+                conn.commit()
+                print('page:', request.form['bookprogress'])
+            else:
+                conn = sqlite3.connect('Coding101.db')
+                cursor = conn.cursor()
+                sql = """
+    INSERT INTO Reflection (Book_ID, User_ID, Reflection, Rate)
+    VALUES({}, 1, \'{}\', 5);
+            """.format(int(book), request.form['thought'])
+                cursor.execute(sql)
+                conn.commit()
+                print('thought:', request.form['thought'])
+        except:
+            flash('好像還沒借過這本書...')
+            return render_template("error.html")
     output = None
     for i in books:
         #print(i[0])
         if i[0] == int(book):
             output = list(i)
+            #output[0] = int(output[0])
     if (output == None):
         return render_template('error.html')
     for i in current_borrowed:

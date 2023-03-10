@@ -2,8 +2,19 @@
 
 {% block title %}錯誤{% endblock %}
 {% block main %}
-    
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+    <ul class="flash">
+        {% for message in messages %}
+            <h3>  </h3>
+            <h3>    {{ message }}</h3>
+        {% endfor %}
+    </ul>
+    <img src= "./../images/errorcat.png" class="errorcat">
+    {% else %}
     <h1>Error:(</h1>
     <img src = "./../images/errorcat.png" width = '250' height = '300'></img>
+    {% endif %}
+    {% endwith %}
 {% endblock %}
 
