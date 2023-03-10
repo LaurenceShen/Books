@@ -62,9 +62,9 @@
                 <div class="popup-content">
                   <h2>台中市 | TAICHUNG</h2>
                   <p>
-                    <img src="./images/台中1.png" width="150" height="100">
-                    <img src="./images/台中2.png" width="150" height="100">
-                    <img src="./images/台中3.png" width="150" height="100">
+                    <img src="./images/台中1.jpg" width="150" height="100">
+                    <img src="./images/台中2.jpg" width="150" height="100">
+                    <img src="./images/台中3.jpg" width="150" height="100">
                   </p>
                   <button class=close-btn onclick="closePopup2()">X</button>
                 </div>
@@ -74,7 +74,7 @@
                 <div class="popup-content">
                   <h2>台北市 | NEW TAIPEI CITY</h2>
                   <p>
-                    <img src="./images/台北1.png" width="150" height="100">
+                    <img src="./images/台北1.jpg" width="150" height="100">
                   </p>
                   <button class=close-btn onclick="closePopup3()">X</button>
                 </div>
@@ -178,7 +178,7 @@
             <div id="popup6" class="popup">
                   <div class="popup-content2">
                     <p class="img5">
-                        <img src="./images/新北1.png" width="420" height="270">
+                        <img src="./images/新北1.jpg" width="420" height="270">
                     </p>
                     <button class=close-btn onclick="closePopup()">X</button>
                   </div>
@@ -256,8 +256,9 @@
 
         <!--正在閱讀-->
             <div class="item3">
-                <h1><br>正在閱讀 | READING<br><br></h1>
+                <h1><br>正在閱讀 | READING<br></h1>
                 {% for book_list in books %}
+                <h3><br></h3>
                 <div class="div2">
                 <div class="flex-container2">
                     <div style="flex-basis: 150px">
@@ -278,9 +279,9 @@
                     </div>
                 </div>
                 </div>
+                {% endfor %}
                 </div>
             </div>
-        {% endfor %}
         
        <!--
         </body>
