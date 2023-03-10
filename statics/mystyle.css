@@ -287,3 +287,7 @@ img:hover{
 .bookpage{
     font-size: 30px;
 }
+
+textarea.form-control{
+    height: 300px;
+}
