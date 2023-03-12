@@ -152,9 +152,11 @@ table {
     display: none;
     justify-content: center;
     align-items: center;
+    z-index: 999
   }
   
   .popup-content {
+    position: fixed;
     background-color: #fff;
     width: 500px;
     height: 300px;
@@ -164,6 +166,7 @@ table {
   }
 
   .popup-content2 {
+    position: fixed;
     background-color: #fff;
     width: 500px;
     height: 300px;
