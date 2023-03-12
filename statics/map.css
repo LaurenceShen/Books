@@ -180,8 +180,8 @@ table {
     height: 30px;
     display: inline-block;
     position: absolute;
-    top: 155px;
-    right: 390px;
+    top: 5px;
+    right: 5px;
     border-radius: 100%;
     background: #d75f70;
     font-weight: bold;
@@ -196,8 +196,8 @@ table {
     height: 40px;
     display: inline-flexbox;
     position: absolute;
-    top: 390px;
-    right: 400px;
+    top: 240px;
+    right: 18px;
     border-radius: 10%;
     background: #e3e3e3;
     text-decoration: none;
@@ -207,8 +207,8 @@ table {
 
   .text1 {
     position: absolute;
-    top: 190px;
-    left: 405px;
+    top: 48px;
+    left: 30px;
     text-decoration: none;
     color: #000000;
     font-size: 18px;
@@ -216,8 +216,8 @@ table {
 
   .text2 {
     position: absolute;
-    top: 255px;
-    left: 685px;
+    top: 110px;
+    right: 45px;
     text-decoration: none;
     color: #000000;
     font-size: 18px;
@@ -225,8 +225,8 @@ table {
 
   .text3 {
     position: absolute;
-    top: 320px;
-    right: 440px;
+    top: 172px;
+    right: 44px;
     text-decoration: none;
     color: #000000;
     font-size: 18px;
@@ -234,8 +234,8 @@ table {
 
   .text4 {
     position: absolute;
-    top: 235px;
-    left: 405px;
+    top: 90px;
+    left: 30px;
     text-decoration: none;
     color: #000000;
     font-size: 15px;
@@ -243,8 +243,8 @@ table {
 
   .text5 {
     position: absolute;
-    top: 275px;
-    left: 405px;
+    top: 125px;
+    left: 30px;
     text-decoration: none;
     color: #000000;
     font-size: 15px;
@@ -252,8 +252,8 @@ table {
 
   .text6 {
     position: absolute;
-    top: 315px;
-    left: 405px;
+    top: 160px;
+    left: 30px;
     text-decoration: none;
     color: #000000;
     font-size: 15px;
@@ -261,8 +261,8 @@ table {
 
   .text7 {
     position: absolute;
-    top: 355px;
-    left: 405px;
+    top: 195px;
+    left: 30px;
     text-decoration: none;
     color: #000000;
     font-size: 15px;
@@ -271,34 +271,34 @@ table {
 
   .img0 {
     position: absolute;
-    top: 163px;
-    right: 427px;
+    top: 15px;
+    right: 35px;
   }
 
   .img1 {
     position: absolute;
-    top: 160px;
-    right: 505px;
+    top: 10px;
+    right: 115px;
   }
   .img2 {
     position: absolute;
-    top: 160px;
-    right: 463px;
+    top: 10px;
+    right: 70px;
   }
   .img3 {
     position: absolute;
-    top: 160px;
-    right: 421px;
+    top: 10px;
+    right: 25px;
   }
   .img4 {
     position: absolute;
-    top: 155px;
-    right: 390px;
+    top: 10px;
+    right: 5px;
   }
 
 
   .img5 {
     position: absolute;
-    top: 163px;
-    right: 427px;
+    top: 17px;
+    right: 38px;
   }
