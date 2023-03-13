@@ -29,7 +29,7 @@ background-color: rgb(255, 255, 255);
 }
 
 /* 圖片樣式 */
-img {
+.p_img {
   width: 50%;
   height: 50%;
   margin-left: 25px;
