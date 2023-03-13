@@ -10,7 +10,6 @@
     <head>
         <link rel="stylesheet" href="map.css"> 
     </head>
-
     <body>-->
         <!--地圖部分--> 
   {% with messages = get_flashed_messages() %}
@@ -30,7 +29,7 @@
                     <h1>地圖 Map</h1>
                 </div>
                 <div class="container" style="flex-basis: 20px">
-                    <a type="button" onclick="openPopup()">
+                    <a class="stamp" onclick="openPopup()">
                         <img src="./images/stamp.png" width="110" height="70">
                         <div class="center">x {{stamp}}</div>
                     </a>
@@ -178,7 +177,7 @@
             <div id="popup6" class="popup">
                   <div class="popup-content2">
                     <p class="img5">
-                        <img src="./../images/新北1.jpg" width="420" height="270">
+                        <img src="./../images/新北1.jpg" width="450" height="300">
                     </p>
                     <button class=close-btn onclick="closePopup()">X</button>
                   </div>
@@ -200,6 +199,7 @@
                 <tbody>
                     <tr>
                         <th>本週日期</th>
+                        <td></td>
                     </tr>
                     <tr>
                         <td>MON</td>
