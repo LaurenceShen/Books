@@ -52,6 +52,7 @@ SELECT * FROM Borrowed_{} INNER JOIN User ON User.ID = Borrowed_{}.User_ID
 cursor.close()
 conn.close()
 
+print(borrowed)
 #閱讀心得
 
 
@@ -206,6 +207,15 @@ def login():
 
 @app.route('/noteindex/<book>', methods = ['POST', 'GET'])
 def note(book):
+    cur = []
+    current_borrowed = []
+    for j in borrowed.values():
+            for i in j:
+                if i[6] == current_user.id and i[3] == 0:
+                    print(i[6])
+                    if books[i[1] - 1][0] not in cur:
+                        cur.append(books[i[1] - 1][0])
+                        current_borrowed.append([books[i[1] - 1][0], books[i[1] - 1][1], books[i[1] - 1][3],  i[4], books[i[1] - 1][4], (i[4]/books[i[1] - 1][4])*100])
     conn = sqlite3.connect('Coding101.db')
     cursor = conn.cursor()
 
@@ -225,16 +235,6 @@ def note(book):
     reflection = cursor.fetchall()
     cursor.close()
     conn.close()
-    
-    cur = []
-    current_borrowed = []
-    for j in borrowed.values():
-            for i in j:
-                if i[6] == current_user.id and i[3] == 0:
-                    print(i[6])
-                    if books[i[1] - 1][0] not in cur:
-                        cur.append(books[i[1] - 1][0])
-                        current_borrowed.append([books[i[1] - 1][0], books[i[1] - 1][1], books[i[1] - 1][3],  i[4], books[i[1] - 1][4], (i[4]/books[i[1] - 1][4])*100])
     #將閱讀心得存入字串
     reflection_personal = ""
     for i in reflection:
@@ -272,43 +272,6 @@ def note(book):
             flash('好像還沒借過這本書...')
             return render_template("error.html")
     output = None
-    
-    conn = sqlite3.connect('Coding101.db')
-    cursor = conn.cursor()
-    cursor.execute("SELECT * FROM Reflection INNER JOIN User ON Reflection.User_ID = User.ID;")
-    reflection = cursor.fetchall()
-    cursor.close()
-    conn.close()
-    #將閱讀心得存入字串
-    reflection_personal = ""
-    for i in reflection:
-        print(i[2])
-        if int(book) == i[1] and current_user.id == i[6]:
-            reflection_personal = i[3]
-    print("hi:", reflection_personal)
-    
-    conn = sqlite3.connect('Coding101.db')
-    cursor = conn.cursor()
-
-    for i in Month:
-        sql = """
-    SELECT * FROM Borrowed_{} INNER JOIN User ON User.ID = Borrowed_{}.User_ID
-        """.format(i, i)
-        cursor.execute(sql)
-        borrowed_mon = cursor.fetchall()
-        borrowed[i] = borrowed_mon
-    cursor.close()
-    conn.close()
-    
-    cur = []
-    current_borrowed = []
-    for j in borrowed.values():
-            for i in j:
-                if i[6] == current_user.id and i[3] == 0:
-                    print(i[6])
-                    if books[i[1] - 1][0] not in cur:
-                        cur.append(books[i[1] - 1][0])
-                        current_borrowed.append([books[i[1] - 1][0], books[i[1] - 1][1], books[i[1] - 1][3],  i[4], books[i[1] - 1][4], (i[4]/books[i[1] - 1][4])*100])
     for i in books:
         #print(i[0])
         if i[0] == int(book):
@@ -360,8 +323,8 @@ def register():
         password = bcrypt.generate_password_hash(password).decode('utf-8')
         print(type(password))
         sql = """
-        INSERT INTO User (User_Name, Password, Stamp, Postcard)
-        VALUES (\"{}\", \"{}\", 0, 0);
+        INSERT INTO User (User_Name, Password, Stamp, Postcard1, Postcard2, Postcard3, Postcard4, Postcard5, Postcard6, Postcard7, Postcard8, Postcard9, Postcard10, Postcard11, Postcard12, Postcard13, Postcard14, Postcard15, Postcard16, Postcard17, Cat1, Cat2, Cat3, Cat4, Cat5, Cat6, Cat7, Cat8, Cat9, Cat10, Cat11, Cat12, Cat13, Cat14, Cat15, Cat16, Cat17)
+        VALUES (\"{}\", \"{}\", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
         """.format(name, password)
         cursor.execute(sql)
         conn.commit()
