@@ -271,6 +271,21 @@ def note(book):
             flash('好像還沒借過這本書...')
             return render_template("error.html")
     output = None
+    
+    conn = sqlite3.connect('Coding101.db')
+    cursor = conn.cursor()
+    cursor.execute("SELECT * FROM Reflection INNER JOIN User ON Reflection.User_ID = User.ID;")
+    reflection = cursor.fetchall()
+    cursor.close()
+    conn.close()
+    #將閱讀心得存入字串
+    reflection_personal = ""
+    for i in reflection:
+        print(i[2])
+        if int(book) == i[1] and current_user.id == i[6]:
+            reflection_personal = i[3]
+    print("hi:", reflection_personal)
+    
     for i in books:
         #print(i[0])
         if i[0] == int(book):
