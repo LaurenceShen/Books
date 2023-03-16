@@ -20,7 +20,7 @@
             狀態：<span>未讀過</span><br>
             {% endif %}
             總頁數：<span>{{book[4]}}頁</span><br>
-            書籤：<br>
+            書籤：<span>{{book[6]}}頁</span><br>
             <!-- 彈跳視窗裡的書籤 -->
             <div class="wrap">
                 <a class="btn popup-btn" href="#letmeopen">更新閱讀進度</a>
@@ -28,7 +28,6 @@
               <div class="popup-wrap" id="letmeopen">
                 <div class="popup-box transform-out">
                     <div class="bookpage">
-                        <h2>您的目前閱讀到{{book[6]}}頁</h2>
                         <form method="post">
                             <div><input type="range" id="bookprogress" name = "bookprogress" min="0" max="{{book[4]}}" step="1" value="0" /></div>
                             <div>
