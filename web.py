@@ -206,15 +206,6 @@ def login():
 
 @app.route('/noteindex/<book>', methods = ['POST', 'GET'])
 def note(book):
-    cur = []
-    current_borrowed = []
-    for j in borrowed.values():
-            for i in j:
-                if i[6] == current_user.id and i[3] == 0:
-                    print(i[6])
-                    if books[i[1] - 1][0] not in cur:
-                        cur.append(books[i[1] - 1][0])
-                        current_borrowed.append([books[i[1] - 1][0], books[i[1] - 1][1], books[i[1] - 1][3],  i[4], books[i[1] - 1][4], (i[4]/books[i[1] - 1][4])*100])
     conn = sqlite3.connect('Coding101.db')
     cursor = conn.cursor()
 
@@ -234,6 +225,16 @@ def note(book):
     reflection = cursor.fetchall()
     cursor.close()
     conn.close()
+    
+    cur = []
+    current_borrowed = []
+    for j in borrowed.values():
+            for i in j:
+                if i[6] == current_user.id and i[3] == 0:
+                    print(i[6])
+                    if books[i[1] - 1][0] not in cur:
+                        cur.append(books[i[1] - 1][0])
+                        current_borrowed.append([books[i[1] - 1][0], books[i[1] - 1][1], books[i[1] - 1][3],  i[4], books[i[1] - 1][4], (i[4]/books[i[1] - 1][4])*100])
     #將閱讀心得存入字串
     reflection_personal = ""
     for i in reflection:
@@ -286,6 +287,28 @@ def note(book):
             reflection_personal = i[3]
     print("hi:", reflection_personal)
     
+    conn = sqlite3.connect('Coding101.db')
+    cursor = conn.cursor()
+
+    for i in Month:
+        sql = """
+    SELECT * FROM Borrowed_{} INNER JOIN User ON User.ID = Borrowed_{}.User_ID
+        """.format(i, i)
+        cursor.execute(sql)
+        borrowed_mon = cursor.fetchall()
+        borrowed[i] = borrowed_mon
+    cursor.close()
+    conn.close()
+    
+    cur = []
+    current_borrowed = []
+    for j in borrowed.values():
+            for i in j:
+                if i[6] == current_user.id and i[3] == 0:
+                    print(i[6])
+                    if books[i[1] - 1][0] not in cur:
+                        cur.append(books[i[1] - 1][0])
+                        current_borrowed.append([books[i[1] - 1][0], books[i[1] - 1][1], books[i[1] - 1][3],  i[4], books[i[1] - 1][4], (i[4]/books[i[1] - 1][4])*100])
     for i in books:
         #print(i[0])
         if i[0] == int(book):
