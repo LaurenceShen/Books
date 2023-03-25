@@ -1,10 +1,17 @@
-# 使用說明書
-* 為了幫助大家更熟悉git，一定要先跟著 <a href = https://hackmd.io/egyoowsRTu-BzwRWdMxTCg?view>這份文件</a> 學習```git```跟sublime merge要怎麼用
-  * 下面這些可以幫助你更了解git!
-  - [x] <a href = "https://www.youtube.com/watch?v=Zd5jSDRjWfA&ab_channel=%E8%B5%B0%E6%AD%AA%E7%9A%84%E5%B7%A5%E7%A8%8B%E5%B8%ABJames"> git教學影片
-  - [x] <a href = "https://www.maxlist.xyz/2018/11/02/git_tutorial/"> git教學文章
-  - [x] <a href = "https://ithelp.ithome.com.tw/articles/10211790"> git branch教學文章
-  - [x] <a href = "https://www.youtube.com/watch?v=P-nbNgIzlYE&t=387s&ab_channel=%E8%B5%B0%E6%AD%AA%E7%9A%84%E5%B7%A5%E7%A8%8B%E5%B8%ABJames"> git branch教學影片
+# 我的貓咪書友-全方位閱讀習慣養成網頁
+
+![image](https://user-images.githubusercontent.com/123754782/227696400-0f7cf2a8-2884-4bf8-bef8-cabec122cb1d.png)
+
+* 專案核心目標
+  - 幫助大學生以趣味的方式建立閱讀習慣
+  - 活化大學圖書館的館藏使用情形
+* 專案創作理念
+  - 透過與同學的談話得知，大學生在借書和閱讀上有許多問題：
+    - 多數同學不太去圖書館借書，甚至根本沒在圖書館借過書
+    - 同學不太知道該借什麼書，無法準確找到自己喜歡的書
+    - 借了書卻沒讀完甚至沒翻開過所借的書
+    - 看完不久就忘記自己讀了什麼書，沒有完整閱讀歷程紀錄
+    - 忘記曾讀過的書本內容，沒辦法檢視當時閱讀的心得與想法 
 * template是放html的地方，直接改動裡面的檔案即可，增加的html檔也要放裡面
 * 要在本機執行網站的話，請先在本機中安裝flask，終端機指令：```pip3 install flask```，再直接用python執行web.py即可，他有可能會跟你說有少東西，少什麼就用```pip3 install```裝什麼
 
